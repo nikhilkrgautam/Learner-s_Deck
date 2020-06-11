@@ -11,10 +11,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join("dist")));
+
+app.get('/api/ping', function (req, res) {
+ return res.send('pong');
+});
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname + "/dist/index.html"));
+	res.sendFile(path.join("dist", "index.html"));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

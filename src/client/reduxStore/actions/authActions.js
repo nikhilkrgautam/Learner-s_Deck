@@ -1,7 +1,12 @@
 
+import axios from 'axios';
+
 export const logInUser = (cred) => {
   return (dispatch) => {
-    dispatch({ type: 'LOGIN_SUCCESS' });
+    axios.get('/api/ping').then(res => {
+      console.log(res);
+      dispatch({ type: 'LOGIN_SUCCESS' });
+    });
   }
 }
 
