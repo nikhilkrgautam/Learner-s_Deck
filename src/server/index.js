@@ -7,15 +7,15 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
+const indexRouter = require('./routes');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static(path.join("dist")));
+app.use('/', indexRouter);
 
-app.get('/api/ping', function (req, res) {
- return res.send('pong');
-});
+app.use(express.static(path.join("dist")));
 
 app.get("*", (req, res) => {
 	res.sendFile(path.join("dist", "index.html"));

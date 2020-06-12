@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
+  console.log(props);
     return (
       <div style={{display: 'flex', justifyContent: 'space-around'}}>
       <Link to='/' style={{textDecoration: 'none'}} >

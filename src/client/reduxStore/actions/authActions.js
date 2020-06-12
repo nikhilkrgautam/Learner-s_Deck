@@ -1,23 +1,25 @@
 
+import * as ACTIONS from './actionTypes';
 import axios from 'axios';
 
 export const logInUser = (cred) => {
+  console.log(cred);
   return (dispatch) => {
-    axios.get('/api/ping').then(res => {
+    axios.get('/api/hello').then(res => {
       console.log(res);
-      dispatch({ type: 'LOGIN_SUCCESS' });
+      dispatch({ type: ACTIONS.LOGIN_SUCCESS , payload: cred });
     });
   }
 }
 
 export const signUpUser = (cred) => {
   return (dispatch) => {
-    dispatch({ type: 'SIGNUP_SUCCESS' });
+    dispatch({ type: ACTIONS.SIGNUP_SUCCESS });
   }
 }
 
 export const logOut = () => {
   return (dispatch) => {
-    dispatch({ type: 'LOGOUT_SUCCESS' });
+    dispatch({ type: ACTIONS.LOGOUT_SUCCESS });
   }
 }
