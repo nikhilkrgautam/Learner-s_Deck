@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
+import { Container, Menu, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
   console.log(props);
     return (
-      <div style={{display: 'flex', justifyContent: 'space-around'}}>
-      <Link to='/' style={{textDecoration: 'none'}} >
-        Home
-      </Link>
-      <Link to='/login' style={{textDecoration: 'none'}} >
-        Log In
-      </Link>
-      <Link to='/signup' style={{textDecoration: 'none'}} >
-        Sign Up
-      </Link>
-      <Link to='/profile' style={{textDecoration: 'none'}} >
-        Profile
-      </Link>
-      </div>
+
+      <Menu
+        pointing
+        size='large'
+        color='blue'
+      >
+        <Container>
+          <Menu.Item
+            as={Link}
+            to='/'
+          >
+            Home
+          </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to='/profile'
+          >Profile</Menu.Item>
+          <Menu.Item position='right'>
+            <Button as={Link} to='/login'>
+              Log in
+            </Button>
+            <Button as={Link} to='/signup' primary={true} style={{ marginLeft: '0.5em' }}>
+              Sign Up
+            </Button>
+          </Menu.Item>
+        </Container>
+      </Menu>
     );
 }
 

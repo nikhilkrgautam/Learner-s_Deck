@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './app.css';
+import 'semantic-ui-css/semantic.min.css'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './pages/components/navbar/Navbar';
 import routes from './pages/routes';
