@@ -1,15 +1,9 @@
 CREATE TABLE users (
-  uid SERIAL PRIMARY KEY,
-  username VARCHAR(255) UNIQUE,
-  email VARCHAR(255),
-  date_created DATE
+  user_id uuid PRIMARY KEY DEFAULT
+  uuid_generate_v4(),
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE posts (
-  pid SERIAL PRIMARY KEY,
-  title VARCHAR(255),
-  body VARCHAR,
-  user_id INT REFERENCES users(uid),
-  author VARCHAR REFERENCES users(username),
-  date_created TIMESTAMP
-);
+INSERT INTO users(username, email, password) VALUES ('Sahil Nare', 'sahilnare78@gmail.com', 'post07gres08');

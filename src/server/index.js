@@ -3,17 +3,21 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
+const indexRouter = require('./routes/routes');
+const authRouter = require('./routes/jwtAuth');
 
 const app = express();
 
-const indexRouter = require('./routes');
-
+// Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/', indexRouter);
+// Routes
+app.use('/api', indexRouter);
+app.use('/auth', authRouter);
+
 
 app.use(express.static(path.join("dist")));
 

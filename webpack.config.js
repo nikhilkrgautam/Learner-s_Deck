@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const outputDirectory = 'dist';
 
 module.exports = {
@@ -12,6 +13,15 @@ module.exports = {
     path: path.join(__dirname, outputDirectory),
     filename: 'bundle.js',
     publicPath: '/'
+  },
+  resolve: {
+    alias: {
+      '../../theme.config$': path.join(
+        __dirname,
+        'my-custom-semantic-theme/theme.config',
+      ),
+    },
+    extensions: ['*', '.js', '.jsx']
   },
   module: {
     rules: [{
@@ -26,20 +36,27 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
+        test: /\.less$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          'less-loader',
+        ],
+      },
+      {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000'
       }
     ]
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
   },
   devServer: {
     port: 3000,
     open: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:8080'
+      '/api': 'http://localhost:5000'
     }
   },
   plugins: [
@@ -50,6 +67,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].[contenthash].css',
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     // new BundleAnalyzerPlugin()
