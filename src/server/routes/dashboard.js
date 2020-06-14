@@ -18,8 +18,5 @@ router.get('/', authorization, async (req, res) => {
   }
 });
 
-router.get('/ping', function (req, res) {
- return res.json('pong');
-});
 
 module.exports = router;

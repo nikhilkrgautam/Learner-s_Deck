@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import SignupForm from './components/forms/SignupForm';
 import { connect } from 'react-redux';
 import { signUpUser } from '../reduxStore/actions/authActions';
-import { Grid } from 'semantic-ui-react';
 
 class Signup extends Component {
 
   signUpUser = (cred) => {
-    // this.props.logInUser(cred);
-    console.log(cred);
+    this.props.signUpUser(cred);
+    // console.log(cred);
   }
 
   render() {
     return (
       <React.Fragment>
-        <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <SignupForm signUpUser={this.signUpUser} />
-          </Grid.Column>
-        </Grid>
+        <div style={{ margin: '30px auto', width: '60%' }}>
+          <h1>
+            Sign-up with your email
+          </h1>
+          <SignupForm signUpUser={this.signUpUser} />
+        </div>
       </React.Fragment>
     );
   }
@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default Signup;
+export default connect(null, mapDispatchToProps)(Signup);

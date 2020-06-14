@@ -8,3 +8,7 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGIN_ERR = "LOGIN_ERR";
 
 export const SIGNUP_ERR = "SIGNUP_ERR";
+
+export const GET_DATA_SUCCESS = "GET_DATA_SUCCESS";
+
+export const GET_DATA_ERR = "GET_DATA_ERR";

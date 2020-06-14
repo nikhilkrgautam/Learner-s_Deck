@@ -1,57 +1,34 @@
 import React, { Component } from 'react';
-import { Grid, Menu, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { logOut } from '../reduxStore/actions/authActions';
+import { Button } from '@zeit-ui/react';
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: 'bio'
-    }
+
+  logOut = () => {
+    this.props.logOut();
+    // console.log(cred);
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
   render() {
-    const { activeItem } = this.state
 
     return (
       <React.Fragment>
-        <Grid>
-          <Grid.Column width={4}>
-            <Menu fluid vertical tabular>
-              <Menu.Item
-                name='bio'
-                active={activeItem === 'bio'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='pics'
-                active={activeItem === 'pics'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='companies'
-                active={activeItem === 'companies'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='links'
-                active={activeItem === 'links'}
-                onClick={this.handleItemClick}
-              />
-            </Menu>
-          </Grid.Column>
-
-          <Grid.Column stretched width={12}>
-            <Segment>
-              This is an stretched grid column. This segment will always match the
-              tab height
-            </Segment>
-          </Grid.Column>
-        </Grid>
+        <h1>Profile</h1>
+          <Button type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={() => this.logOut()}>
+            Log out
+          </Button>
       </React.Fragment>
     )
   }
 }
 
-export default Profile;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut: () => {
+      dispatch(logOut());
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Profile);

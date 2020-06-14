@@ -1,38 +1,20 @@
-import React, { Component } from 'react';
-import { Container, Menu, Button } from 'semantic-ui-react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = (props) => {
-  console.log(props);
-    return (
+class Navbar extends Component {
 
-      <Menu
-        pointing
-        size='large'
-        color='blue'
-      >
-        <Container>
-          <Menu.Item
-            as={Link}
-            to='/'
-          >
-            Home
-          </Menu.Item>
-          <Menu.Item
-            as={Link}
-            to='/profile'
-          >Profile</Menu.Item>
-          <Menu.Item position='right'>
-            <Button as={Link} to='/login'>
-              Log in
-            </Button>
-            <Button as={Link} to='/signup' primary={true} style={{ marginLeft: '0.5em' }}>
-              Sign Up
-            </Button>
-          </Menu.Item>
-        </Container>
-      </Menu>
+  render() {
+    return (
+      <Fragment>
+        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+          <Link to='/' style={{cursor: 'pointer', padding: '10px 5px'}}>Home</Link>
+          <Link to='/signup' style={{cursor: 'pointer', padding: '10px 5px'}}>Sign Up</Link>
+          <Link to='/login' style={{cursor: 'pointer', padding: '10px 5px'}}>Log In</Link>
+          <Link to='/profile' style={{cursor: 'pointer', padding: '10px 5px'}}>Profile</Link>
+        </div>
+      </Fragment>
     );
+  }
 }
 
 export default Navbar;
