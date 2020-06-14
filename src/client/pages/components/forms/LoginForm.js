@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Prompt } from 'react-router-dom';
-import { Container, Header, Segment, Message, Button, Form, Checkbox } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Grid, Button, Input } from '@zeit-ui/react';
 
 class LogInForm extends Component {
   constructor(props) {
@@ -13,7 +13,8 @@ class LogInForm extends Component {
 
       },
       isBlocking: false,
-      formValid: true
+      emailValid: true,
+      passwordValid: true,
     }
   }
 
@@ -77,13 +78,22 @@ class LogInForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if(this.state.success.email === "c" && this.state.success.password === "c") {
-      this.setState({isBlocking: false, formValid: true}, () => {
+      this.setState({isBlocking: false, emailValid: true, passwordValid: true}, () => {
         this.props.logInUser({ email: this.state.email, password: this.state.password });
         this.setState({email: '', password: ''});
       });
     }
     else {
-      this.setState({ formValid: false });
+      if(this.state.success.email !== "c") {
+        this.setState({ emailValid: false });
+      } else {
+        this.setState({ emailValid: true });
+      }
+      if(this.state.success.password !== "c") {
+        this.setState({ passwordValid: false });
+      } else {
+        this.setState({ passwordValid: true });
+      }
     }
   }
 
@@ -94,48 +104,55 @@ class LogInForm extends Component {
           when={this.state.isBlocking}
           message={(location) => `The login form is being filled. Are you sure you want to leave the page?`}
         />
-        <Header as='h2' color='teal' textAlign='center'>
-          Log-in to your account
-        </Header>
-        <Form size='large' onSubmit={this.handleSubmit}>
-          <Segment stacked>
-            <Form.Input
-              fluid
-              icon='user'
-              iconPosition='left'
-              type="text"
-              onChange={this.handleChange}
-              name="email"
-              value={this.state.email}
-              id="email"
-              placeholder='E-mail address'
-            />
-            <Form.Input
-              fluid
-              icon='lock'
-              iconPosition='left'
-              placeholder='Password'
-              type="password"
-              onChange={this.handleChange}
-              name="password"
-              value={this.state.password}
-              id="password"
-            />
-            <Button color='teal' fluid size='large' type="submit" style={{cursor: "pointer"}}>
-              Login
+      <form onSubmit={this.handleSubmit} style={{ margin: '50px 0 30px' }}>
+          <Grid.Container gap={2} justify="center">
+            <Grid xs={24} md={12}>
+              <Input
+                size="large"
+                width="100%"
+                type="text"
+                onChange={this.handleChange}
+                status={this.state.emailValid ? null : "error"}
+                name="email"
+                value={this.state.email}
+                id="email"
+                placeholder='E-mail address'
+              />
+            </Grid>
+            <Grid xs={24} md={12}>
+              <Input
+                  size="large"
+                  width="100%"
+                  placeholder='Password'
+                  type="password"
+                  onChange={this.handleChange}
+                  status={this.state.passwordValid ? null : "error"}
+                  name="password"
+                  value={this.state.password}
+                  id="password"
+                />
+            </Grid>
+          </Grid.Container>
+            <Button type="success" onClick={this.handleSubmit} style={{cursor: "pointer", marginTop: '20px'}}>
+              Log in
             </Button>
-          </Segment>
-        </Form>
+
+        </form>
         {
-          this.state.formValid ? null : (
-            <Message negative>
-              Enter the registered email and make sure that the password is correct.
-            </Message>
+          this.state.emailValid ? null : (
+            <h3>
+              Enter a valid email address.
+            </h3>
           )
         }
-        <Message>
+        {
+          this.state.passwordValid ? null : (
+            <h3>The password should be atleast 6 characters long.</h3>
+          )
+        }
+        <h3>
           New to us? <Link to='/signup'>Sign Up</Link>
-        </Message>
+        </h3>
       </React.Fragment>
     );
   }

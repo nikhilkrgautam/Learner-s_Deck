@@ -16,14 +16,17 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-app.use('/api', dashRouter);
-app.use('/auth', authRouter);
+app.use('/api/dash', dashRouter);
+app.use('/api/auth', authRouter);
 
+app.get('/api/ping', function (req, res) {
+ return res.json('pong');
+});
 
 app.use(express.static(path.join("dist")));
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join("dist", "index.html"));
+	res.sendFile(path.join("dist", "index.html"), {root: path.join(__dirname, "..", "..")});
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

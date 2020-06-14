@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import LoginForm from './components/forms/LoginForm';
 import { connect } from 'react-redux';
 import { logInUser } from '../reduxStore/actions/authActions';
-import { Grid } from 'semantic-ui-react';
+import { Row } from '@zeit-ui/react';
 
 class Login extends Component {
 
   logInUser = (cred) => {
-    // this.props.logInUser(cred);
-    console.log(cred);
+    this.props.logInUser(cred);
+    // console.log(cred);
   }
 
   render() {
     return (
       <React.Fragment>
-        <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <LoginForm logInUser={this.logInUser} />
-          </Grid.Column>
-        </Grid>
+         <div style={{ margin: '30px auto', width: '60%' }}>
+           <h1>
+             Log-in to your account
+           </h1>
+           <LoginForm logInUser={this.logInUser} />
+         </div>
       </React.Fragment>
     );
   }

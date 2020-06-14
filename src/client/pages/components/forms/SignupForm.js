@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Prompt } from 'react-router-dom';
-import { Container, Header, Segment, Message, Button, Form, Checkbox } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Grid, Input, Button } from '@zeit-ui/react';
 
 class LogInForm extends Component {
   constructor(props) {
@@ -10,11 +10,15 @@ class LogInForm extends Component {
       email: '',
       password: '',
       username: '',
+      conpass: '',
       success: {
 
       },
       isBlocking: false,
-      formValid: true
+      emailValid: true,
+      passwordValid: true,
+      usernameValid: true,
+      passwordMatch: true,
     }
   }
 
@@ -24,7 +28,7 @@ class LogInForm extends Component {
     switch(name) {
         case "username":
           {
-            if(value.match(/^[a-zA-Z0-9_.-]*$/) && value.length > 0) {
+            if(value.match(/^[a-zA-Z0-9_.-]+$/) && value.length > 0) {
               this.setState(prevState => {
                 let success = { ...prevState.success };
                 success[name] = "c";
@@ -85,7 +89,7 @@ class LogInForm extends Component {
     this.setState({
       [name]: value
     }, () => {
-      if(this.state.email.length > 0 || this.state.password.length > 0 || this.state.username.length > 0 ) {
+      if(this.state.email.length > 0 || this.state.password.length > 0 || this.state.username.length > 0 || this.state.conpass.length > 0 ) {
         this.setState({isBlocking: true});
       } else {
         this.setState({isBlocking: false});
@@ -95,14 +99,34 @@ class LogInForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(this.state.success.email === "c" && this.state.success.password === "c" && this.state.success.username === "c") {
-      this.setState({isBlocking: false, formValid: true}, () => {
+    console.log(this.state.conpass);
+    if(this.state.success.email === "c" && this.state.success.password === "c" && this.state.success.username === "c" && this.state.password === this.state.conpass) {
+      this.setState({isBlocking: false, emailValid: true, usernameValid: true, passwordValid: true, passwordMatch: true}, () => {
         this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username });
-        this.setState({email: '', password: '', username: ''});
+        this.setState({email: '', password: '', username: '', conpass: ''});
       });
     }
     else {
-      this.setState({ formValid: false });
+      if(this.state.success.email !== "c") {
+        this.setState({ emailValid: false });
+      } else {
+        this.setState({ emailValid: true });
+      }
+      if(this.state.success.username !== "c") {
+        this.setState({ usernameValid: false });
+      } else {
+        this.setState({ usernameValid: true });
+      }
+      if(this.state.success.password !== "c") {
+        this.setState({ passwordValid: false });
+      } else {
+        this.setState({ passwordValid: true });
+      }
+      if(this.state.password !== this.state.conpass) {
+        this.setState({ passwordMatch: false });
+      } else {
+        this.setState({ passwordMatch: true });
+      }
     }
   }
 
@@ -113,59 +137,95 @@ class LogInForm extends Component {
           when={this.state.isBlocking}
           message={(location) => `The signup form is being filled. Are you sure you want to leave the page?`}
         />
-        <Header as='h2' color='teal' textAlign='center'>
-          Sign-up with your email
-        </Header>
-        <Form size='large' onSubmit={this.handleSubmit}>
-          <Segment stacked>
-            <Form.Input
-              fluid
-              icon='user circle'
-              iconPosition='left'
+
+        <form onSubmit={this.handleSubmit} style={{ margin: '50px 0 30px' }}>
+          <Grid.Container gap={2} justify="center">
+            <Grid xs={24} md={12}>
+              <Input
+                size="large"
+                width="100%"
+                type="text"
+                onChange={this.handleChange}
+                status={this.state.usernameValid ? null : "error"}
+                name="username"
+                value={this.state.username}
+                id="username"
+                placeholder="Username"
+              />
+            </Grid>
+            <Grid xs={24} md={12}>
+            <Input
+              size="large"
+              width="100%"
               type="text"
               onChange={this.handleChange}
-              name="username"
-              value={this.state.username}
-              id="username"
-              placeholder="Username"
-            />
-            <Form.Input
-              fluid
-              icon='user'
-              iconPosition='left'
-              type="text"
-              onChange={this.handleChange}
+              status={this.state.emailValid ? null : "error"}
               name="email"
               value={this.state.email}
               id="email"
               placeholder='E-mail address'
             />
-            <Form.Input
-              fluid
-              icon='lock'
-              iconPosition='left'
+            </Grid>
+            <Grid xs={24} md={12}>
+            <Input
+              size="large"
+              width="100%"
               placeholder='Password'
               type="password"
               onChange={this.handleChange}
+              status={(this.state.passwordValid && this.state.passwordMatch) ? null : "error"}
               name="password"
               value={this.state.password}
               id="password"
             />
-            <Button color='teal' fluid size='large' type="submit" style={{cursor: "pointer"}}>
-              Login
-            </Button>
-          </Segment>
-        </Form>
+            </Grid>
+            <Grid xs={24} md={12}>
+            <Input
+              size="large"
+              width="100%"
+              placeholder='Confirm Password'
+              type="password"
+              onChange={this.handleChange}
+              status={this.state.passwordMatch ? null : "error"}
+              name="conpass"
+              value={this.state.conpass}
+              id="conpass"
+            />
+            </Grid>
+          </Grid.Container>
+          <Button type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={this.handleSubmit}>
+            Sign up
+          </Button>
+        </form>
         {
-          this.state.formValid ? null : (
-            <Message negative>
-              Enter a valid email address and make sure that the password is atleast 6 characters. The username should contain only letters, numbers or _ . -
-            </Message>
+          this.state.emailValid ? null : (
+            <h3>
+              Enter a valid email address.
+            </h3>
           )
         }
-        <Message>
+        {
+          this.state.passwordValid ? null : (
+            <h3>The password should be atleast 6 characters long.</h3>
+          )
+        }
+        {
+          this.state.usernameValid ? null : (
+            <h3>
+              The username should contain only letters, numbers or _ . -
+            </h3>
+          )
+        }
+        {
+          this.state.passwordMatch ? null : (
+            <h3>
+              The passwords do not match.
+            </h3>
+          )
+        }
+        <h4>
           Already registered? <Link to='/login'>Log In</Link>
-        </Message>
+        </h4>
       </React.Fragment>
     );
   }

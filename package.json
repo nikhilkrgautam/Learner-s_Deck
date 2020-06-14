@@ -14,6 +14,7 @@
   "author": "Sahil Nare <sahilnare78@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@zeit-ui/react": "^1.7.0-canary.5",
     "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^5.0.0",
@@ -28,8 +29,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.88.2"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -48,11 +48,7 @@
     "eslint-plugin-react": "^7.20.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
-    "less": "2.7.3",
-    "less-loader": "^6.1.1",
-    "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.4",
-    "semantic-ui-less": "^2.4.1",
     "style-loader": "^1.2.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.0",

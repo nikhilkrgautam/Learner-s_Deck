@@ -2,7 +2,7 @@
 import * as ACTIONS from '../actions/actionTypes';
 
 const initState = {
-  name: null
+  isAuthenticated: false
 }
 
 const authReducer = (state = initState, action) => {
@@ -11,7 +11,7 @@ const authReducer = (state = initState, action) => {
     console.log('Login success!');
     return {
       ...state,
-      name: action.payload
+      isAuthenticated: true
     }
   }
 
@@ -19,6 +19,7 @@ const authReducer = (state = initState, action) => {
     console.log('Login failed!');
     return {
       ...state,
+      isAuthenticated: false
     }
   }
 
@@ -26,6 +27,7 @@ const authReducer = (state = initState, action) => {
     console.log('Signup success!');
     return {
       ...state,
+      isAuthenticated: true
     }
   }
 
@@ -33,6 +35,7 @@ const authReducer = (state = initState, action) => {
     console.log('Signup failed!');
     return {
       ...state,
+      isAuthenticated: false
     }
   }
 
@@ -40,6 +43,7 @@ const authReducer = (state = initState, action) => {
     console.log('Logout success!');
     return {
       ...state,
+      isAuthenticated: false
     }
   }
 

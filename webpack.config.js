@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const outputDirectory = 'dist';
 
 module.exports = {
@@ -15,12 +14,6 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    alias: {
-      '../../theme.config$': path.join(
-        __dirname,
-        'my-custom-semantic-theme/theme.config',
-      ),
-    },
     extensions: ['*', '.js', '.jsx']
   },
   module: {
@@ -34,16 +27,6 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.less$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-          'less-loader',
-        ],
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
@@ -60,16 +43,10 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin({
-      dry: true,
-      verbose: true
-    }),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico'
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash].css',
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     // new BundleAnalyzerPlugin()
