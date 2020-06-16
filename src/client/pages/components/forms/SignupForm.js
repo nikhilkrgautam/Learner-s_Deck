@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Prompt } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Grid, Input, Button } from '@zeit-ui/react';
+import { Grid, Input, Button, Radio, Note } from '@zeit-ui/react';
 
 class LogInForm extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class LogInForm extends Component {
       password: '',
       username: '',
       conpass: '',
+      role: 'S',
       success: {
 
       },
@@ -22,10 +23,17 @@ class LogInForm extends Component {
     }
   }
 
+  handleRadio = (value) => {
+    this.setState({
+      role: value
+    }, () => console.log(this.state));
+  }
+
   handleChange = (e) => {
     const {name, value} = e.target;
 
     switch(name) {
+
         case "username":
           {
             if(value.match(/^[a-zA-Z0-9_.-]+$/) && value.length > 0) {
@@ -102,7 +110,7 @@ class LogInForm extends Component {
     console.log(this.state.conpass);
     if(this.state.success.email === "c" && this.state.success.password === "c" && this.state.success.username === "c" && this.state.password === this.state.conpass) {
       this.setState({isBlocking: false, emailValid: true, usernameValid: true, passwordValid: true, passwordMatch: true}, () => {
-        this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username });
+        this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username, role: this.state.role });
         this.setState({email: '', password: '', username: '', conpass: ''});
       });
     }
@@ -192,6 +200,22 @@ class LogInForm extends Component {
               id="conpass"
             />
             </Grid>
+            <Grid xs={24} md={12}>
+              <Radio.Group value={this.state.role} onChange={this.handleRadio}>
+                <Radio
+                  value="S"
+                  size="large"
+                  name="role"
+                  id="role"
+                >Student</Radio>
+                <Radio
+                  value="T"
+                  size="large"
+                  name="role"
+                  id="role"
+                >Teacher</Radio>
+              </Radio.Group>
+            </Grid>
           </Grid.Container>
           <Button type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={this.handleSubmit}>
             Sign up
@@ -199,28 +223,22 @@ class LogInForm extends Component {
         </form>
         {
           this.state.emailValid ? null : (
-            <h3>
-              Enter a valid email address.
-            </h3>
+            <Note type="warning">Enter a valid email address.</Note>
           )
         }
         {
           this.state.passwordValid ? null : (
-            <h3>The password should be atleast 6 characters long.</h3>
+            <Note type="warning">The password should be atleast 6 characters long.</Note>
           )
         }
         {
           this.state.usernameValid ? null : (
-            <h3>
-              The username should contain only letters, numbers or _ . -
-            </h3>
+            <Note type="warning">The username should contain only letters, numbers or _ . -.</Note>
           )
         }
         {
           this.state.passwordMatch ? null : (
-            <h3>
-              The passwords do not match.
-            </h3>
+            <Note type="warning">The passwords do not match.</Note>
           )
         }
         <h4>

@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: false
     }
   }
 
@@ -24,11 +24,11 @@ class App extends Component {
   }
 
   render() {
-    const {isAuthenticated} = this.props;
+    const {isAuthenticated, token} = this.props;
 
     return (
       <BrowserRouter>
-        <Navbar />
+        <Navbar isAuthenticated={isAuthenticated}/>
         <Switch>
           <Route
             path='/'
@@ -59,7 +59,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   // console.log(state);
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    token: state.auth.token
   }
 }
 

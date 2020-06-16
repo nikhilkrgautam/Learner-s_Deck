@@ -4,14 +4,15 @@ import axios from 'axios';
 
 export const getData = () => {
   return (dispatch) => {
-    const token = localStorage.token;
+    // const token = localStorage.token;
 
-    axios.get('/api/dash/', {
-      headers: {
-        token: token
-      }
+    // axios.get('/api/dash/', {
+    //   headers: {
+    //     token: token
+    //   }
+    // })
 
-    }).then(res => {
+    axios.get('/api/dash/').then(res => {
 
       dispatch({ type: ACTIONS.GET_DATA_SUCCESS, payload: res.data });
 

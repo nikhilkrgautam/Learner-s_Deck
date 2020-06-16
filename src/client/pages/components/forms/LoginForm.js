@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Prompt } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Grid, Button, Input } from '@zeit-ui/react';
+import { Grid, Button, Input, Note } from '@zeit-ui/react';
 
 class LogInForm extends Component {
   constructor(props) {
@@ -140,14 +140,12 @@ class LogInForm extends Component {
         </form>
         {
           this.state.emailValid ? null : (
-            <h3>
-              Enter a valid email address.
-            </h3>
+            <Note type="warning">Enter a valid email address.</Note>
           )
         }
         {
           this.state.passwordValid ? null : (
-            <h3>The password should be atleast 6 characters long.</h3>
+            <Note type="warning">The password should be atleast 6 characters long.</Note>
           )
         }
         <h3>
