@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
+import Upload from './pages/Upload';
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
 
@@ -49,6 +50,11 @@ class App extends Component {
             path='/profile'
             exact={true}
             render={(props) => isAuthenticated ? <Profile {...props} /> : <Redirect to='/login' />}
+          />
+          <Route
+            path='/upload'
+            exact={true}
+            render={(props) => isAuthenticated ? <Upload {...props} /> : <Redirect to='/login' />}
           />
         </Switch>
       </BrowserRouter>

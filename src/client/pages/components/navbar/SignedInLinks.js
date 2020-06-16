@@ -15,6 +15,11 @@ const SignedInLinks = () => {
         <Link to='/profile' style={{cursor: 'pointer', padding: '10px 5px'}}>Profile</Link>
         </div>
       </Grid>
+      <Grid xs={2} >
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Link to='/upload' style={{cursor: 'pointer', padding: '10px 5px'}}>Upload</Link>
+        </div>
+      </Grid>
     </Fragment>
   )
 }
