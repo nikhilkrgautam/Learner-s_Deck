@@ -15,6 +15,14 @@ class Upload extends Component {
     return (
       <React.Fragment>
         <h1>Upload Files</h1>
+        <form>
+          <div>
+            <input type="file" />
+          </div>
+          <div>
+            <Button type="submit">Upload</button>
+          </div>
+        </form>
       </React.Fragment>
     )
   }
