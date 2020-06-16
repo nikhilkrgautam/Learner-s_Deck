@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getData } from '../reduxStore/actions/dataActions';
+import { toastHOC } from '../hoc/toast';
+import { compose } from 'redux';
 
 class Home extends Component {
 
   componentDidMount() {
-    this.props.getData();
+    if(!this.props.userData) {
+      this.props.getData();
+      setTimeout(() => {
+        this.props.toastify();
+      }, 1000);
+    }
   }
 
   render() {
-    console.log(this.props);
     return (
       <React.Fragment>
         <h1>Home</h1>
@@ -38,4 +44,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  toastHOC
+)(Home);

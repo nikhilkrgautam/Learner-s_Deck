@@ -1,17 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { Grid } from '@zeit-ui/react';
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
 
 class Navbar extends Component {
 
   render() {
+    const {isAuthenticated} = this.props;
     return (
       <Fragment>
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
-          <Link to='/' style={{cursor: 'pointer', padding: '10px 5px'}}>Home</Link>
-          <Link to='/signup' style={{cursor: 'pointer', padding: '10px 5px'}}>Sign Up</Link>
-          <Link to='/login' style={{cursor: 'pointer', padding: '10px 5px'}}>Log In</Link>
-          <Link to='/profile' style={{cursor: 'pointer', padding: '10px 5px'}}>Profile</Link>
-        </div>
+        <Grid.Container gap={2} justify="center">
+          <Grid xs>
+            <div></div>
+          </Grid>
+          {
+            isAuthenticated ? <SignedInLinks /> : <SignedOutLinks />
+          }
+        </Grid.Container>
       </Fragment>
     );
   }

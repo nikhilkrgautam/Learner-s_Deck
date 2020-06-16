@@ -10,7 +10,7 @@ const authorization = require('../middleware/authorization');
 router.post('/register', validation, async (req, res) => {
   try {
 
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
 
     const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
 
@@ -24,11 +24,13 @@ router.post('/register', validation, async (req, res) => {
     const bcryptPassword = await bcrypt.hash(password, salt);
 
     const newUser = await pool.query(
-      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
-      [username, email, bcryptPassword]
+      "INSERT INTO users (username, email, password, role) VALUES ($1, $2, $3, $4) RETURNING *",
+      [username, email, bcryptPassword, role]
     );
 
     const token = jwtGenerator(newUser.rows[0].user_id);
+
+    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: true, });
 
     res.json({ token });
 
@@ -58,6 +60,8 @@ router.post('/login', validation, async (req, res) => {
 
     const token = jwtGenerator(user.rows[0].user_id);
 
+    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: true, });
+
     res.json({ token });
 
   } catch (err) {
@@ -71,6 +75,19 @@ router.get("/is-verify", authorization, async (req, res) => {
   try {
 
     res.json(true);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server error");
+  }
+});
+
+// Logout route
+router.get("/logout", authorization, async (req, res) => {
+  try {
+
+    res.clearCookie('token');
+    res.json('Log out success');
 
   } catch (err) {
     console.error(err.message);

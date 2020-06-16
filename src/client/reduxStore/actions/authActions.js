@@ -15,9 +15,9 @@ export const logInUser = (cred) => {
 
     }).then(res => {
 
-      localStorage.setItem("token", res.data.token);
+      // localStorage.setItem("token", res.data.token);
 
-      dispatch({ type: ACTIONS.LOGIN_SUCCESS });
+      dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: res.data.token });
 
     }).catch(err => {
       console.error(err);
@@ -36,9 +36,9 @@ export const signUpUser = (cred) => {
 
     }).then(res => {
 
-      localStorage.setItem("token", res.data.token);
+      // localStorage.setItem("token", res.data.token);
 
-      dispatch({ type: ACTIONS.SIGNUP_SUCCESS });
+      dispatch({ type: ACTIONS.SIGNUP_SUCCESS, payload: res.data.token });
 
     }).catch(err => {
       console.error(err);
@@ -50,14 +50,15 @@ export const signUpUser = (cred) => {
 
 export const isLoggedIn = () => {
   return (dispatch) => {
-    const token = localStorage.token;
+    // const token = localStorage.token;
 
-    axios.get('/api/auth/is-verify', {
-      headers: {
-        token: token
-      }
+    // axios.get('/api/auth/is-verify', {
+    //   headers: {
+    //     token: token
+    //   }
+    // })
 
-    }).then(res => {
+    axios.get('/api/auth/is-verify').then(res => {
 
       dispatch({ type: ACTIONS.LOGIN_SUCCESS });
 
@@ -70,7 +71,16 @@ export const isLoggedIn = () => {
 
 export const logOut = () => {
   return (dispatch) => {
-    localStorage.removeItem("token");
-    dispatch({ type: ACTIONS.LOGOUT_SUCCESS });
+    axios.get('/api/auth/logout').then(res => {
+
+      dispatch({ type: ACTIONS.LOGOUT_SUCCESS });
+      dispatch({ type: ACTIONS.GET_DATA_ERR });
+
+    }).catch(err => {
+      console.error(err);
+    });
+
+    // localStorage.removeItem("token");
+    // dispatch({ type: ACTIONS.LOGOUT_SUCCESS });
   }
 }

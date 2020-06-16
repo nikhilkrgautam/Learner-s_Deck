@@ -19,6 +19,7 @@ const dataReducer = (state = initState, action) => {
     console.log('Getting data failed!');
     return {
       ...state,
+      userData: null
     }
   }
 
