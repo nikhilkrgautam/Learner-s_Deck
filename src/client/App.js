@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 import Upload from './pages/Upload';
+import Video from './pages/Video';
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
 
@@ -55,6 +56,11 @@ class App extends Component {
             path='/upload'
             exact={true}
             render={(props) => isAuthenticated ? <Upload {...props} /> : <Redirect to='/login' />}
+          />
+          <Route
+            path='/video'
+            exact={true}
+            render={(props) => isAuthenticated ? <Video {...props} /> : <Redirect to='/login' />}
           />
         </Switch>
       </BrowserRouter>
