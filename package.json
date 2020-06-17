@@ -5,7 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack --mode production",
-    "start": "yarn run build && node src/server/index.js",
+    "start": "node src/server/index.js",
     "client": "NODE_ENV=development webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@zeit-ui/react": "^1.7.0-canary.5",
+    "aws-sdk": "^2.698.0",
     "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^5.0.0",
@@ -25,6 +26,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
     "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
