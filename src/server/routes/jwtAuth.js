@@ -28,7 +28,21 @@ router.post('/register', validation, async (req, res) => {
       [username, email, bcryptPassword, role]
     );
 
-    const token = jwtGenerator(newUser.rows[0].user_id);
+    if(role === 'S') {
+      const newProfile = await pool.query(
+        "INSERT INTO student_profiles (user_id) VALUES ($1) RETURNING *",
+        [newUser.rows[0].user_id]
+      );
+    } else if(role === 'T') {
+      const newProfile = await pool.query(
+        "INSERT INTO teacher_profiles (user_id) VALUES ($1) RETURNING *",
+        [newUser.rows[0].user_id]
+      );
+    } else {
+      return res.status(500).json("Server error");
+    }
+
+    const token = jwtGenerator(newUser.rows[0].user_id, role);
 
     res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true });
 
@@ -58,7 +72,7 @@ router.post('/login', validation, async (req, res) => {
       return res.status(401).json("Email or Password is incorrect");
     }
 
-    const token = jwtGenerator(user.rows[0].user_id);
+    const token = jwtGenerator(user.rows[0].user_id, user.rows[0].role);
 
     res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true });
 

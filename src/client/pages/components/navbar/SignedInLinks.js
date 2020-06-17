@@ -17,11 +17,6 @@ const SignedInLinks = () => {
       </Grid>
       <Grid xs={4} md={2} >
         <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Link to='/upload' style={{cursor: 'pointer', padding: '10px 5px'}}>Upload</Link>
-        </div>
-      </Grid>
-      <Grid xs={4} md={2} >
-        <div style={{display: 'flex', justifyContent: 'center'}}>
         <Link to='/video' style={{cursor: 'pointer', padding: '10px 5px'}}>Video</Link>
         </div>
       </Grid>
