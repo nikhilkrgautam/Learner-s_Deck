@@ -81,6 +81,12 @@ class LogInForm extends Component {
       this.setState({isBlocking: false, emailValid: true, passwordValid: true}, () => {
         this.props.logInUser({ email: this.state.email, password: this.state.password });
         this.setState({email: '', password: ''});
+        this.setState(prevState => {
+          let success = { ...prevState.success };
+          success.email = "w";
+          success.password = "w";
+          return { success };
+        })
       });
     }
     else {

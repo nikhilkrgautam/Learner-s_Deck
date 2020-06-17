@@ -26,7 +26,7 @@ class LogInForm extends Component {
   handleRadio = (value) => {
     this.setState({
       role: value
-    }, () => console.log(this.state));
+    });
   }
 
   handleChange = (e) => {
@@ -112,6 +112,13 @@ class LogInForm extends Component {
       this.setState({isBlocking: false, emailValid: true, usernameValid: true, passwordValid: true, passwordMatch: true}, () => {
         this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username, role: this.state.role });
         this.setState({email: '', password: '', username: '', conpass: ''});
+        this.setState(prevState => {
+          let success = { ...prevState.success };
+          success.email = "w";
+          success.password = "w";
+          success.username = "w";
+          return { success };
+        })
       });
     }
     else {

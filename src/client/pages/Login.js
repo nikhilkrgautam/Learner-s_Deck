@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LoginForm from './components/forms/LoginForm';
 import { connect } from 'react-redux';
 import { logInUser } from '../reduxStore/actions/authActions';
-import { Row } from '@zeit-ui/react';
+import { Note } from '@zeit-ui/react';
 
 class Login extends Component {
 
@@ -12,6 +12,7 @@ class Login extends Component {
   }
 
   render() {
+    const {loginError} = this.props;
     return (
       <React.Fragment>
          <div style={{ margin: '30px auto', width: '60%' }}>
@@ -19,9 +20,21 @@ class Login extends Component {
              Log-in to your account
            </h1>
            <LoginForm logInUser={this.logInUser} />
+             {
+               loginError ? (
+                 <Note type="error">{ loginError }</Note>
+               ) : null
+             }
          </div>
       </React.Fragment>
     );
+  }
+}
+
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    loginError: state.auth.loginError
   }
 }
 
@@ -33,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

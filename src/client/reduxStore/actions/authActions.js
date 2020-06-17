@@ -20,8 +20,11 @@ export const logInUser = (cred) => {
       dispatch({ type: ACTIONS.LOGIN_SUCCESS, payload: res.data.token });
 
     }).catch(err => {
-      console.error(err);
-      dispatch({ type: ACTIONS.LOGIN_ERR });
+      if(err.response.status === 401) {
+        dispatch({ type: ACTIONS.LOGIN_ERR, payload: err.response.data });
+      } else {
+        dispatch({ type: ACTIONS.LOGIN_ERR, payload: 'There was some error, please try again.' });
+      }
     });
   }
 }
@@ -41,8 +44,13 @@ export const signUpUser = (cred) => {
       dispatch({ type: ACTIONS.SIGNUP_SUCCESS, payload: res.data.token });
 
     }).catch(err => {
-      console.error(err);
-      dispatch({ type: ACTIONS.SIGNUP_ERR });
+      console.log(err.response.status);
+      console.log(err.response.data);
+      if(err.response.status === 401) {
+        dispatch({ type: ACTIONS.SIGNUP_ERR, payload: err.response.data });
+      } else {
+        dispatch({ type: ACTIONS.SIGNUP_ERR, payload: 'There was some error, please try again.' });
+      }
     });
 
   }
@@ -63,7 +71,8 @@ export const isLoggedIn = () => {
       dispatch({ type: ACTIONS.LOGIN_SUCCESS });
 
     }).catch(err => {
-      console.error(err);
+      console.log(err.response.status);
+      console.log(err.response.data);
       dispatch({ type: ACTIONS.LOGIN_ERR });
     });
   }
@@ -77,7 +86,7 @@ export const logOut = () => {
       dispatch({ type: ACTIONS.GET_DATA_ERR });
 
     }).catch(err => {
-      console.error(err);
+      console.log(err);
     });
 
     // localStorage.removeItem("token");

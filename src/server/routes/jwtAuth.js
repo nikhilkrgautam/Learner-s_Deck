@@ -30,7 +30,7 @@ router.post('/register', validation, async (req, res) => {
 
     const token = jwtGenerator(newUser.rows[0].user_id);
 
-    res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true, });
+    res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true });
 
     res.json({ token });
 
@@ -60,7 +60,7 @@ router.post('/login', validation, async (req, res) => {
 
     const token = jwtGenerator(user.rows[0].user_id);
 
-    res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true, });
+    res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true });
 
     res.json({ token });
 

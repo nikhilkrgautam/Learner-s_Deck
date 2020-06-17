@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignupForm from './components/forms/SignupForm';
 import { connect } from 'react-redux';
 import { signUpUser } from '../reduxStore/actions/authActions';
+import { Note } from '@zeit-ui/react';
 
 class Signup extends Component {
 
@@ -11,6 +12,7 @@ class Signup extends Component {
   }
 
   render() {
+    const {signupError} = this.props;
     return (
       <React.Fragment>
         <div style={{ margin: '30px auto', width: '60%' }}>
@@ -18,9 +20,21 @@ class Signup extends Component {
             Sign-up with your email
           </h1>
           <SignupForm signUpUser={this.signUpUser} />
+            {
+              signupError ? (
+                <Note type="error">{ signupError }</Note>
+              ) : null
+            }
         </div>
       </React.Fragment>
     );
+  }
+}
+
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    signupError: state.auth.signupError
   }
 }
 
@@ -32,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
