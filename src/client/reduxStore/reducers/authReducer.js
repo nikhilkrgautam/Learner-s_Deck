@@ -3,7 +3,9 @@ import * as ACTIONS from '../actions/actionTypes';
 
 const initState = {
   isAuthenticated: false,
-  token: null
+  token: null,
+  loginError: null,
+  signupError: null
 }
 
 const authReducer = (state = initState, action) => {
@@ -13,7 +15,8 @@ const authReducer = (state = initState, action) => {
     return {
       ...state,
       isAuthenticated: true,
-      token: action.payload
+      token: action.payload,
+      loginError: null
     }
   }
 
@@ -22,7 +25,8 @@ const authReducer = (state = initState, action) => {
     return {
       ...state,
       isAuthenticated: false,
-      token: null
+      token: null,
+      loginError: action.payload
     }
   }
 
@@ -31,7 +35,8 @@ const authReducer = (state = initState, action) => {
     return {
       ...state,
       isAuthenticated: true,
-      token: action.payload
+      token: action.payload,
+      signupError: null
     }
   }
 
@@ -40,7 +45,8 @@ const authReducer = (state = initState, action) => {
     return {
       ...state,
       isAuthenticated: false,
-      token: null
+      token: null,
+      signupError: action.payload
     }
   }
 
@@ -49,7 +55,9 @@ const authReducer = (state = initState, action) => {
     return {
       ...state,
       isAuthenticated: false,
-      token: null
+      token: null,
+      loginError: null,
+      signupError: null
     }
   }
 

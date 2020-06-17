@@ -6,8 +6,10 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 require("dotenv").config();
 const port = process.env.PORT || 5000;
+
 const dashRouter = require('./routes/dashboard');
 const authRouter = require('./routes/jwtAuth');
+const fileRouter = require('./routes/files');
 
 const app = express();
 
@@ -20,10 +22,11 @@ app.use(cookieParser());
 // Routes
 app.use('/api/dash', dashRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/file', fileRouter);
 
-app.get('/api/ping', function (req, res) {
- return res.json('pong');
-});
+// app.get('/api/ping', function (req, res) {
+//  return res.json('pong');
+// });
 
 app.use(express.static(path.join("dist")));
 
