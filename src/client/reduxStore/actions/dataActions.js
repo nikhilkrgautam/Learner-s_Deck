@@ -13,6 +13,7 @@ export const getData = () => {
     // })
 
     axios.get('/api/dash/').then(res => {
+      console.log(res.data);
 
       dispatch({ type: ACTIONS.GET_DATA_SUCCESS, payload: res.data });
 

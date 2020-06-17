@@ -36,7 +36,7 @@ class LogInForm extends Component {
 
         case "username":
           {
-            if(value.match(/^[a-zA-Z0-9_.-]+$/) && value.length > 0) {
+            if(value.match(/^[a-zA-Z.]+( [a-zA-Z.]+)*$/) && value.length > 0 && value.length < 255) {
               this.setState(prevState => {
                 let success = { ...prevState.success };
                 success[name] = "c";
@@ -54,7 +54,7 @@ class LogInForm extends Component {
           }
         case "email":
           {
-            if(value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            if(value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) && value.length < 255) {
               this.setState(prevState => {
                 let success = { ...prevState.success };
                 success[name] = "c";
@@ -73,7 +73,7 @@ class LogInForm extends Component {
 
           case "password":
             {
-              if(value.length >= 6) {
+              if(value.length >= 6 && value.length < 255) {
                 this.setState(prevState => {
                   let success = { ...prevState.success };
                   success[name] = "c";
@@ -165,7 +165,7 @@ class LogInForm extends Component {
                 name="username"
                 value={this.state.username}
                 id="username"
-                placeholder="Username"
+                placeholder="Name"
               />
             </Grid>
             <Grid xs={24} md={12}>
@@ -240,7 +240,7 @@ class LogInForm extends Component {
         }
         {
           this.state.usernameValid ? null : (
-            <Note type="warning">The username should contain only letters, numbers or _ . -.</Note>
+            <Note type="warning">The name should contain only letters and spaces.</Note>
           )
         }
         {

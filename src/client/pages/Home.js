@@ -11,11 +11,12 @@ class Home extends Component {
       this.props.getData();
       setTimeout(() => {
         this.props.toastify();
-      }, 1000);
+      }, 2000);
     }
   }
 
   render() {
+    console.log(this.props.userData);
     return (
       <React.Fragment>
         <h1>Home</h1>

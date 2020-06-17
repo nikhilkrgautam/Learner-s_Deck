@@ -12,8 +12,22 @@ export const sendFile = (imageData) => {
       }
 
     }).then(res => {
-      console.log(res.data);
       dispatch({ type: ACTIONS.SEND_FILE_SUCCESS });
+
+      const data = {
+        imageLink: res.data
+      }
+      console.log(data);
+
+      axios.put('/api/dash/updateImage', data, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err);
+      });
 
     }).catch(err => {
       console.log(err.response);
