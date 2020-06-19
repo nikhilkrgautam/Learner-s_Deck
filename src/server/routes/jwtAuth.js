@@ -100,7 +100,7 @@ router.get("/is-verify", authorization, async (req, res) => {
 router.get("/logout", authorization, async (req, res) => {
   try {
 
-    res.clearCookie('eBuzzToken');
+    res.clearCookie('eBuzzToken', { httpOnly: true, secure: true, domain: 'ebuzzet.com', sameSite: true });
     res.json('Log out success');
 
   } catch (err) {

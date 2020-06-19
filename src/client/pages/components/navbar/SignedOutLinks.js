@@ -5,14 +5,14 @@ import { Grid } from '@zeit-ui/react';
 const SignedOutLinks = () => {
   return (
     <Fragment>
-      <Grid xs={2} >
+      <Grid xs={4} md={2} >
         <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Link to='/signup' style={{cursor: 'pointer', padding: '10px 5px'}}>Sign Up</Link>
+        <Link to='/signup' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Sign Up</Link>
         </div>
       </Grid>
-      <Grid xs={2} >
+      <Grid xs={4} md={2} >
         <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Link to='/login' style={{cursor: 'pointer', padding: '10px 5px'}}>Log In</Link>
+        <Link to='/login' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Log In</Link>
         </div>
       </Grid>
     </Fragment>
