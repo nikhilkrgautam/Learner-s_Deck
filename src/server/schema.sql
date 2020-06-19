@@ -16,6 +16,7 @@ CREATE TABLE student_profiles (
   image VARCHAR(2083),
   class SMALLINT,
   school VARCHAR(255),
+  date_created DATE,
   PRIMARY KEY (profile_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
@@ -26,6 +27,7 @@ CREATE TABLE teacher_profiles (
   image VARCHAR(2083),
   degree VARCHAR(255),
   experience VARCHAR(255),
+  date_created DATE,
   PRIMARY KEY (profile_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

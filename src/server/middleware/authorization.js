@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
 
     // const jwtToken = req.header("token");
 
-    const jwtTokenCookie = req.cookies.token;
+    const jwtTokenCookie = req.cookies.eBuzzToken;
 
     if(!jwtTokenCookie) {
       return res.status(403).json("Not Authorized");
