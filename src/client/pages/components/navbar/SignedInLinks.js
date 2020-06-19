@@ -11,12 +11,12 @@ const SignedInLinks = () => {
         </div>
       </Grid>
       <Grid xs={4} md={2} >
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{display: 'flex', justifyContent: 'center', color: '#FFF'}}>
         <Link to='/profile' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Profile</Link>
         </div>
       </Grid>
       <Grid xs={4} md={2} >
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{display: 'flex', justifyContent: 'center', color: '#FFF'}}>
         <Link to='/video' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Video</Link>
         </div>
       </Grid>

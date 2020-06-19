@@ -20,6 +20,7 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.resetNotes();
+    window.scrollTo(0, 0);
   }
 
   submitProfileImage = (imageData) => {

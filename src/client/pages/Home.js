@@ -13,6 +13,7 @@ class Home extends Component {
         this.props.toastify();
       }, 2000);
     }
+    window.scrollTo(0, 0);
   }
 
   render() {
