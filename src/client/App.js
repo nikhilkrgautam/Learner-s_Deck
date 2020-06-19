@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './app.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './pages/components/navbar/Navbar';
+import Footer from './pages/components/footer/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -30,33 +31,36 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Navbar isAuthenticated={isAuthenticated}/>
-        <Switch>
-          <Route
-            path='/'
-            exact={true}
-            render={(props) => isAuthenticated ? <Home {...props} /> : <Redirect to='/login' />}
-          />
-          <Route
-            path='/login'
-            exact={true}
-            render={(props) => !isAuthenticated ? <Login {...props} /> : <Redirect to='/' />}
-          />
-          <Route
-            path='/signup'
-            exact={true}
-            render={(props) => !isAuthenticated ? <Signup {...props} /> : <Redirect to='/' />}
-          />
-          <Route
-            path='/profile'
-            exact={true}
-            render={(props) => isAuthenticated ? <Profile {...props} /> : <Redirect to='/login' />}
-          />
-          <Route
-            path='/video'
-            exact={true}
-            render={(props) => isAuthenticated ? <Video {...props} /> : <Redirect to='/login' />}
-          />
-        </Switch>
+        <main style={{minHeight: '100vh'}}>
+          <Switch>
+            <Route
+              path='/'
+              exact={true}
+              render={(props) => isAuthenticated ? <Home {...props} /> : <Redirect to='/login' />}
+            />
+            <Route
+              path='/login'
+              exact={true}
+              render={(props) => !isAuthenticated ? <Login {...props} /> : <Redirect to='/' />}
+            />
+            <Route
+              path='/signup'
+              exact={true}
+              render={(props) => !isAuthenticated ? <Signup {...props} /> : <Redirect to='/' />}
+            />
+            <Route
+              path='/profile'
+              exact={true}
+              render={(props) => isAuthenticated ? <Profile {...props} /> : <Redirect to='/login' />}
+            />
+            <Route
+              path='/video'
+              exact={true}
+              render={(props) => isAuthenticated ? <Video {...props} /> : <Redirect to='/login' />}
+            />
+          </Switch>
+        </main>
+        <Footer />
       </BrowserRouter>
     );
   }

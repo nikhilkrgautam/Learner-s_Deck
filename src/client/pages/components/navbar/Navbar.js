@@ -10,14 +10,16 @@ class Navbar extends Component {
     const {isAuthenticated} = this.props;
     return (
       <Fragment>
-        <Grid.Container gap={2} justify="center">
-          <Grid xs>
-            <div></div>
-          </Grid>
-          {
-            isAuthenticated ? <SignedInLinks /> : <SignedOutLinks />
-          }
-        </Grid.Container>
+        <nav style={{backgroundColor: '#3291FF', position: "sticky", top: "0", zIndex: "9999"}}>
+          <Grid.Container justify="center" >
+            <Grid xs>
+              <div></div>
+            </Grid>
+            {
+              isAuthenticated ? <SignedInLinks /> : <SignedOutLinks />
+            }
+          </Grid.Container>
+        </nav>
       </Fragment>
     );
   }

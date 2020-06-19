@@ -30,12 +30,12 @@ router.post('/register', validation, async (req, res) => {
 
     if(role === 'S') {
       const newProfile = await pool.query(
-        "INSERT INTO student_profiles (user_id) VALUES ($1) RETURNING *",
+        "INSERT INTO student_profiles (user_id, date_created) VALUES ($1, NOW()) RETURNING *",
         [newUser.rows[0].user_id]
       );
     } else if(role === 'T') {
       const newProfile = await pool.query(
-        "INSERT INTO teacher_profiles (user_id) VALUES ($1) RETURNING *",
+        "INSERT INTO teacher_profiles (user_id, date_created) VALUES ($1, NOW()) RETURNING *",
         [newUser.rows[0].user_id]
       );
     } else {
@@ -44,7 +44,7 @@ router.post('/register', validation, async (req, res) => {
 
     const token = jwtGenerator(newUser.rows[0].user_id, role);
 
-    res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true });
+    res.cookie('eBuzzToken', token, { httpOnly: true, secure: false, sameSite: true });
 
     res.json({ token });
 
@@ -74,7 +74,7 @@ router.post('/login', validation, async (req, res) => {
 
     const token = jwtGenerator(user.rows[0].user_id, user.rows[0].role);
 
-    res.cookie('token', token, { httpOnly: true, secure: false, sameSite: true });
+    res.cookie('eBuzzToken', token, { httpOnly: true, secure: false, sameSite: true });
 
     res.json({ token });
 
@@ -100,7 +100,7 @@ router.get("/is-verify", authorization, async (req, res) => {
 router.get("/logout", authorization, async (req, res) => {
   try {
 
-    res.clearCookie('token');
+    res.clearCookie('eBuzzToken');
     res.json('Log out success');
 
   } catch (err) {

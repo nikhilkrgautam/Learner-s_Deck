@@ -16,7 +16,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.userData);
     return (
       <React.Fragment>
         <h1>Home</h1>

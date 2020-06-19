@@ -7,17 +7,17 @@ const SignedInLinks = () => {
     <Fragment>
       <Grid xs={4} md={2}>
         <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Link to='/' style={{cursor: 'pointer', padding: '10px 5px'}}>Home</Link>
+        <Link to='/' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Home</Link>
         </div>
       </Grid>
       <Grid xs={4} md={2} >
         <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Link to='/profile' style={{cursor: 'pointer', padding: '10px 5px'}}>Profile</Link>
+        <Link to='/profile' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Profile</Link>
         </div>
       </Grid>
       <Grid xs={4} md={2} >
         <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Link to='/video' style={{cursor: 'pointer', padding: '10px 5px'}}>Video</Link>
+        <Link to='/video' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Video</Link>
         </div>
       </Grid>
     </Fragment>

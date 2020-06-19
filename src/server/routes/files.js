@@ -58,7 +58,7 @@ router.post('/upload', authorization, async (req, res) => {
 
       console.log("Request file ---", req.file);
       res.json(req.file.location);
-    })
+    });
 
   } catch (err) {
     console.error(err);
