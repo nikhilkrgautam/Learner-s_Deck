@@ -115,6 +115,7 @@ class LogInForm extends Component {
             <Grid xs={24} md={12}>
               <Input
                 size="large"
+                clearable
                 width="100%"
                 type="text"
                 onChange={this.handleChange}
@@ -126,8 +127,9 @@ class LogInForm extends Component {
               />
             </Grid>
             <Grid xs={24} md={12}>
-              <Input
+              <Input.Password
                   size="large"
+                  clearable
                   width="100%"
                   placeholder='Password'
                   type="password"
@@ -139,7 +141,7 @@ class LogInForm extends Component {
                 />
             </Grid>
           </Grid.Container>
-            <Button type="success" onClick={this.handleSubmit} style={{cursor: "pointer", marginTop: '20px'}}>
+            <Button htmlType="submit" type="success" onClick={this.handleSubmit} style={{cursor: "pointer", marginTop: '20px'}}>
               Log in
             </Button>
 

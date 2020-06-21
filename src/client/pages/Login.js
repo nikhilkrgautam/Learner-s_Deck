@@ -7,7 +7,7 @@ import { Note } from '@zeit-ui/react';
 class Login extends Component {
 
   componentDidMount() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }
 
   logInUser = (cred) => {
