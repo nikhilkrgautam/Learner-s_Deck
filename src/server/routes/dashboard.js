@@ -45,11 +45,11 @@ const s3 = new aws.S3({
 
 const storage = multerS3({
   s3: s3,
-  bucket: 'learners-deck-17-255',
+  bucket: 'learners-deck-21-1143',
   acl: 'public-read',
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key: function (req, file, cb) {
-    cb(null, req.user.id + "-profile-image-" + Date.now() + path.extname(file.originalname));
+    cb(null, "profile-images/" + req.user.id + "-" + Date.now() + path.extname(file.originalname));
   }
 });
 

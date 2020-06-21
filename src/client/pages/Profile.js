@@ -20,8 +20,17 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.resetNotes();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (
+  //     this.props.location.pathname !== prevProps.location.pathname
+  //   ) {
+  //     window.scrollTo(0, 0);
+  //     console.log("Scrolled up!");
+  //   }
+  // }
 
   submitProfileImage = (imageData) => {
     this.props.updateImage(imageData);

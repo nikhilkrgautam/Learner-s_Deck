@@ -158,6 +158,7 @@ class LogInForm extends Component {
             <Grid xs={24} md={12}>
               <Input
                 size="large"
+                clearable
                 width="100%"
                 type="text"
                 onChange={this.handleChange}
@@ -171,6 +172,7 @@ class LogInForm extends Component {
             <Grid xs={24} md={12}>
             <Input
               size="large"
+              clearable
               width="100%"
               type="text"
               onChange={this.handleChange}
@@ -182,8 +184,9 @@ class LogInForm extends Component {
             />
             </Grid>
             <Grid xs={24} md={12}>
-            <Input
+            <Input.Password
               size="large"
+              clearable
               width="100%"
               placeholder='Password'
               type="password"
@@ -195,8 +198,9 @@ class LogInForm extends Component {
             />
             </Grid>
             <Grid xs={24} md={12}>
-            <Input
+            <Input.Password
               size="large"
+              clearable
               width="100%"
               placeholder='Confirm Password'
               type="password"
@@ -224,7 +228,7 @@ class LogInForm extends Component {
               </Radio.Group>
             </Grid>
           </Grid.Container>
-          <Button type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={this.handleSubmit}>
+          <Button htmlType="submit" type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={this.handleSubmit}>
             Sign up
           </Button>
         </form>

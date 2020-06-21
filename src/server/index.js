@@ -5,6 +5,7 @@ const path = require("path");
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
 require("dotenv").config();
+// const busboy = require('connect-busboy');
 const port = process.env.PORT || 5000;
 
 const dashRouter = require('./routes/dashboard');
@@ -18,6 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
+// app.use(busboy({
+//     highWaterMark: 2 * 1024 * 1024,
+// }));
 
 // Routes
 app.use('/api/dash', dashRouter);
