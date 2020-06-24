@@ -44,8 +44,8 @@ router.post('/register', validation, async (req, res) => {
 
     const token = jwtGenerator(newUser.rows[0].user_id, role);
 
-    res.cookie('eBuzzToken', token, { httpOnly: true, secure: true, maxAge: 86400000, domain: 'ebuzzet.com', sameSite: true });
-    // res.cookie('eBuzzToken', token, { httpOnly: true });
+    // res.cookie('eBuzzToken', token, { httpOnly: true, secure: true, maxAge: 86400000, domain: 'ebuzzet.com', sameSite: true });
+    res.cookie('eBuzzToken', token, { httpOnly: true });
 
     res.json({ token });
 
@@ -75,8 +75,8 @@ router.post('/login', validation, async (req, res) => {
 
     const token = jwtGenerator(user.rows[0].user_id, user.rows[0].role);
 
-    res.cookie('eBuzzToken', token, { httpOnly: true, secure: true, maxAge: 86400000, domain: 'ebuzzet.com', sameSite: true });
-    // res.cookie('eBuzzToken', token, { httpOnly: true });
+    // res.cookie('eBuzzToken', token, { httpOnly: true, secure: true, maxAge: 86400000, domain: 'ebuzzet.com', sameSite: true });
+    res.cookie('eBuzzToken', token, { httpOnly: true });
 
     res.json({ token });
 
@@ -102,8 +102,8 @@ router.get("/is-verify", authorization, async (req, res) => {
 router.get("/logout", authorization, async (req, res) => {
   try {
 
-    res.clearCookie('eBuzzToken', { httpOnly: true, secure: true, domain: 'ebuzzet.com', sameSite: true });
-    // res.clearCookie('eBuzzToken', { httpOnly: true });
+    // res.clearCookie('eBuzzToken', { httpOnly: true, secure: true, domain: 'ebuzzet.com', sameSite: true });
+    res.clearCookie('eBuzzToken', { httpOnly: true });
     res.json('Log out success');
 
   } catch (err) {
