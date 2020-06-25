@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const outputDirectory = 'dist';
 
 module.exports = {
@@ -54,9 +54,9 @@ module.exports = {
       favicon: './public/favicon.ico'
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
-    minimizer: [new UglifyJsPlugin()],
+    minimizer: [new TerserPlugin()],
   },
 };
