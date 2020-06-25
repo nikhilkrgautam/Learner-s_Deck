@@ -5,7 +5,7 @@ import { toastHOC } from '../hoc/toast';
 import { compose } from 'redux';
 import { Collapse, Text } from '@zeit-ui/react';
 
-class Home extends Component {
+class Dashboard extends Component {
 
   componentDidMount() {
     if(!this.props.userData) {
@@ -61,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   toastHOC
-)(Home);
+)(Dashboard);

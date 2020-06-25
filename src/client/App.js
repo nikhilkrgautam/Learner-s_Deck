@@ -8,11 +8,12 @@ import Footer from './pages/components/footer/Footer';
 // import Signup from './pages/Signup';
 // import Profile from './pages/Profile';
 // import Video from './pages/Video';
-const Home = lazy(() => import('./pages/Home' /* webpackChunkName: "home" */));
+const Dashboard = lazy(() => import('./pages/Dashboard' /* webpackChunkName: "home" */));
+const LandingPage = lazy(() => import('./pages/LandingPage' /* webpackChunkName: "landing" */));
 const Login = lazy(() => import('./pages/Login' /* webpackChunkName: "login" */));
 const Signup = lazy(() => import('./pages/Signup' /* webpackChunkName: "signup" */));
 const Profile = lazy(() => import('./pages/Profile' /* webpackChunkName: "profile" */));
-const Video = lazy(() => import('./pages/Video' /* webpackChunkName: "video" */));
+// const Video = lazy(() => import('./pages/Video' /* webpackChunkName: "video" */));
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
 
@@ -42,28 +43,33 @@ class App extends Component {
               <Route
                 path='/'
                 exact={true}
-                render={(props) => isAuthenticated ? <Home {...props} /> : <Redirect to='/login' />}
+                render={(props) => !isAuthenticated ? <LandingPage {...props} /> : <Redirect to='/dashboard' />}
+              />
+              <Route
+                path='/dashboard'
+                exact={true}
+                render={(props) => isAuthenticated ? <Dashboard {...props} /> : <Redirect to='/login' />}
               />
               <Route
                 path='/login'
                 exact={true}
-                render={(props) => !isAuthenticated ? <Login {...props} /> : <Redirect to='/' />}
+                render={(props) => !isAuthenticated ? <Login {...props} /> : <Redirect to='/dashboard' />}
               />
               <Route
                 path='/signup'
                 exact={true}
-                render={(props) => !isAuthenticated ? <Signup {...props} /> : <Redirect to='/' />}
+                render={(props) => !isAuthenticated ? <Signup {...props} /> : <Redirect to='/dashboard' />}
               />
               <Route
                 path='/profile'
                 exact={true}
                 render={(props) => isAuthenticated ? <Profile {...props} /> : <Redirect to='/login' />}
               />
-              <Route
+              {/*<Route
                 path='/video'
                 exact={true}
                 render={(props) => isAuthenticated ? <Video {...props} /> : <Redirect to='/login' />}
-              />
+              />*/}
             </Switch>
           </Suspense>
         </main>

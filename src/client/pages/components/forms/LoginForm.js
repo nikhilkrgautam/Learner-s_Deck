@@ -15,6 +15,7 @@ class LogInForm extends Component {
       isBlocking: false,
       emailValid: true,
       passwordValid: true,
+      buttonLoading: false
     }
   }
 
@@ -78,7 +79,7 @@ class LogInForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if(this.state.success.email === "c" && this.state.success.password === "c") {
-      this.setState({isBlocking: false, emailValid: true, passwordValid: true}, () => {
+      this.setState({isBlocking: false, emailValid: true, passwordValid: true, buttonLoading: true}, () => {
         this.props.logInUser({ email: this.state.email, password: this.state.password });
         this.setState({email: '', password: ''});
         this.setState(prevState => {
@@ -141,7 +142,7 @@ class LogInForm extends Component {
                 />
             </Grid>
           </Grid.Container>
-            <Button htmlType="submit" type="success" onClick={this.handleSubmit} style={{cursor: "pointer", marginTop: '20px'}}>
+            <Button loading={this.state.buttonLoading} htmlType="submit" type="success" onClick={this.handleSubmit} style={{cursor: "pointer", marginTop: '20px'}}>
               Log in
             </Button>
 

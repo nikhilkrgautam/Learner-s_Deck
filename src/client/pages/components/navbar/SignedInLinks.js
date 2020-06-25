@@ -7,7 +7,7 @@ const SignedInLinks = () => {
     <Fragment>
       <Grid xs={4} md={2}>
         <div style={{display: 'flex', justifyContent: 'center'}}>
-        <Link to='/' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Home</Link>
+        <Link to='/dashboard' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Dashboard</Link>
         </div>
       </Grid>
       <Grid xs={4} md={2} >

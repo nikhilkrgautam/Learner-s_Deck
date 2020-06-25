@@ -20,6 +20,7 @@ class LogInForm extends Component {
       passwordValid: true,
       usernameValid: true,
       passwordMatch: true,
+      buttonLoading: false
     }
   }
 
@@ -109,7 +110,7 @@ class LogInForm extends Component {
     e.preventDefault();
     console.log(this.state.conpass);
     if(this.state.success.email === "c" && this.state.success.password === "c" && this.state.success.username === "c" && this.state.password === this.state.conpass) {
-      this.setState({isBlocking: false, emailValid: true, usernameValid: true, passwordValid: true, passwordMatch: true}, () => {
+      this.setState({isBlocking: false, emailValid: true, usernameValid: true, passwordValid: true, passwordMatch: true, buttonLoading: true}, () => {
         this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username, role: this.state.role });
         this.setState({email: '', password: '', username: '', conpass: ''});
         this.setState(prevState => {
@@ -228,7 +229,7 @@ class LogInForm extends Component {
               </Radio.Group>
             </Grid>
           </Grid.Container>
-          <Button htmlType="submit" type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={this.handleSubmit}>
+          <Button loading={this.state.buttonLoading} htmlType="submit" type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={this.handleSubmit}>
             Sign up
           </Button>
         </form>
