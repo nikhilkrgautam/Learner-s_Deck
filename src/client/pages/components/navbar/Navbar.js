@@ -10,8 +10,13 @@ class Navbar extends Component {
     const {isAuthenticated} = this.props;
     return (
       <Fragment>
-        <nav style={{backgroundColor: '#3291FF', position: "sticky", top: "0", zIndex: "9999"}}>
-          <Grid.Container justify="center" >
+        <nav style={{backgroundColor: '#0761D1', position: "sticky", top: "0", zIndex: "9999"}}>
+          <Grid.Container justify="center" alignItems="center" direction="row" >
+            <Grid xs={6} md={4}>
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+              <Link to='/' style={{cursor: 'pointer', padding: '5px 5px', fontSize: '45px', color: '#FFF'}}>Logo</Link>
+              </div>
+            </Grid>
             <Grid xs>
               <div></div>
             </Grid>

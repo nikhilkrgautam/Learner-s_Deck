@@ -5,7 +5,8 @@ const initState = {
   isAuthenticated: false,
   token: null,
   loginError: null,
-  signupError: null
+  signupError: null,
+  isLoading: false
 }
 
 const authReducer = (state = initState, action) => {
@@ -58,6 +59,22 @@ const authReducer = (state = initState, action) => {
       token: null,
       loginError: null,
       signupError: null
+    }
+  }
+
+  else if(action.type === ACTIONS.LOADING_ON) {
+    console.log('Loading now!');
+    return {
+      ...state,
+      isLoading: true
+    }
+  }
+
+  else if(action.type === ACTIONS.LOADING_OFF) {
+    console.log('Loading over!');
+    return {
+      ...state,
+      isLoading: false
     }
   }
 

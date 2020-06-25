@@ -5,8 +5,8 @@ import { Grid } from '@zeit-ui/react';
 const SignedInLinks = () => {
   return (
     <Fragment>
-      <Grid xs={4} md={2}>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+      <Grid xs={4} md={2} >
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <Link to='/dashboard' style={{cursor: 'pointer', padding: '10px 5px', color: '#FFF'}}>Dashboard</Link>
         </div>
       </Grid>

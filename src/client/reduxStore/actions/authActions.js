@@ -65,15 +65,18 @@ export const isLoggedIn = () => {
     //     token: token
     //   }
     // })
+    dispatch({ type: ACTIONS.LOADING_ON });
 
     axios.get('/api/auth/is-verify').then(res => {
 
       dispatch({ type: ACTIONS.LOGIN_SUCCESS });
+      dispatch({ type: ACTIONS.LOADING_OFF });
 
     }).catch(err => {
       console.log(err.response.status);
       console.log(err.response.data);
       dispatch({ type: ACTIONS.LOGIN_ERR });
+      dispatch({ type: ACTIONS.LOADING_OFF });
     });
   }
 }

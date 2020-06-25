@@ -20,58 +20,57 @@ import { isLoggedIn } from './reduxStore/actions/authActions';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: false
-    }
-  }
-
   componentDidMount() {
     this.props.isLoggedIn();
   }
 
   render() {
-    const {isAuthenticated, token} = this.props;
+    const {isAuthenticated, token, isLoading} = this.props;
 
     return (
       <BrowserRouter>
         <Navbar isAuthenticated={isAuthenticated}/>
         <main style={{minHeight: '100vh'}}>
-          <Suspense fallback={<div className='loader'>Loading...</div>}>
-            <Switch>
-              <Route
-                path='/'
-                exact={true}
-                render={(props) => !isAuthenticated ? <LandingPage {...props} /> : <Redirect to='/dashboard' />}
-              />
-              <Route
-                path='/dashboard'
-                exact={true}
-                render={(props) => isAuthenticated ? <Dashboard {...props} /> : <Redirect to='/login' />}
-              />
-              <Route
-                path='/login'
-                exact={true}
-                render={(props) => !isAuthenticated ? <Login {...props} /> : <Redirect to='/dashboard' />}
-              />
-              <Route
-                path='/signup'
-                exact={true}
-                render={(props) => !isAuthenticated ? <Signup {...props} /> : <Redirect to='/dashboard' />}
-              />
-              <Route
-                path='/profile'
-                exact={true}
-                render={(props) => isAuthenticated ? <Profile {...props} /> : <Redirect to='/login' />}
-              />
-              {/*<Route
-                path='/video'
-                exact={true}
-                render={(props) => isAuthenticated ? <Video {...props} /> : <Redirect to='/login' />}
-              />*/}
-            </Switch>
-          </Suspense>
+        {
+          isLoading ? (
+            <div className='loader'>Loading...</div>
+          ) : (
+            <Suspense fallback={<div className='loader'>Loading...</div>}>
+              <Switch>
+                <Route
+                  path='/'
+                  exact={true}
+                  render={(props) => !isAuthenticated ? <LandingPage {...props} /> : <Redirect to='/dashboard' />}
+                />
+                <Route
+                  path='/dashboard'
+                  exact={true}
+                  render={(props) => isAuthenticated ? <Dashboard {...props} /> : <Redirect to='/login' />}
+                />
+                <Route
+                  path='/login'
+                  exact={true}
+                  render={(props) => !isAuthenticated ? <Login {...props} /> : <Redirect to='/dashboard' />}
+                />
+                <Route
+                  path='/signup'
+                  exact={true}
+                  render={(props) => !isAuthenticated ? <Signup {...props} /> : <Redirect to='/dashboard' />}
+                />
+                <Route
+                  path='/profile'
+                  exact={true}
+                  render={(props) => isAuthenticated ? <Profile {...props} /> : <Redirect to='/login' />}
+                />
+                {/*<Route
+                  path='/video'
+                  exact={true}
+                  render={(props) => isAuthenticated ? <Video {...props} /> : <Redirect to='/login' />}
+                />*/}
+              </Switch>
+            </Suspense>
+          )
+        }
         </main>
         <Footer />
       </BrowserRouter>
@@ -83,7 +82,8 @@ const mapStateToProps = (state) => {
   // console.log(state);
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    token: state.auth.token
+    token: state.auth.token,
+    isLoading: state.auth.isLoading
   }
 }
 

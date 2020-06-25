@@ -54,7 +54,7 @@ module.exports = {
       favicon: './public/favicon.ico'
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ],
   optimization: {
     minimizer: [new TerserPlugin()],

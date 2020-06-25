@@ -9,6 +9,10 @@ export const LOGIN_ERR = "LOGIN_ERR";
 
 export const SIGNUP_ERR = "SIGNUP_ERR";
 
+export const LOADING_ON = "LOADING_ON";
+
+export const LOADING_OFF = "LOADING_OFF";
+
 export const GET_DATA_SUCCESS = "GET_DATA_SUCCESS";
 
 export const GET_DATA_ERR = "GET_DATA_ERR";

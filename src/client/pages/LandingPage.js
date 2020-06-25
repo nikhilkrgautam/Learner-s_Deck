@@ -10,14 +10,37 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <div style={{ margin: '30px auto', width: '60%' }}>
-        <Row>
-          <Text h1>eBuzzet</Text>
+      <div>
+        <Row justify="center" align="middle" style={{ backgroundColor: '#0A183D', minHeight: '700px' }}>
+          <Col span={8}>
+            <Row justify="center" align="middle" style={{ height: '100%' }}>
+              <Col align="middle">
+                <Text h1 style={{color: '#FFF'}}>eBuzzet</Text><br/>
+                <Text h3 style={{color: '#FFF'}}>Welcome to eBuzzet</Text>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={8}>
+            <img src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/dragon.png' />
+          </Col>
         </Row>
-        <Row>
-          <Text h3>Welcome to eBuzzet</Text>
+        <Row gap={.8} style={{ backgroundColor: '#FFF', minHeight: '400px' }}>
+          <Col>
+            <Text>Some text</Text>
+          </Col>
+          <Col>
+            <Text>Some more text</Text>
+          </Col>
         </Row>
-        <Row gap={.8}>
+        <Row style={{ backgroundColor: '#0A183D', minHeight: '600px' }}>
+          <Col>
+            <Text>Some text</Text>
+          </Col>
+          <Col>
+            <Text>Some more text</Text>
+          </Col>
+        </Row>
+        <Row gap={.8} style={{ backgroundColor: '#FFF', minHeight: '400px' }}>
           <Col>
             <Text>Some text</Text>
           </Col>

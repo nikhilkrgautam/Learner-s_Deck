@@ -7,7 +7,7 @@ class Footer extends Component {
 	render() {
 		return (
       <Fragment>
-  			<footer style={{padding: '0 40px'}}>
+  			<footer style={{padding: '0 40px', backgroundColor: '#FFF', color: '#000'}}>
           <Divider volume={2} y={1} style={{backgroundColor: '#111'}} />
           <p>Copyright &copy; 2020 All Rights Reserved by
           <Link to="/"> Ebuzzet </Link>.</p>
