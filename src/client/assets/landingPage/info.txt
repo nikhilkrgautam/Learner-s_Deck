@@ -1,0 +1,17 @@
+Navbar:
+ebuzzet small
+only 'login' and 'apply as teacher' link
+change color
+
+1st section
+Tagline
+9-12
+
+2nd section
+No ads, no payments, learn for free
+Don't believe? Try in once & decide
+
+3rd section
+Have to think
+
+Footer

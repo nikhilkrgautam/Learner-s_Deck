@@ -3,11 +3,15 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 
+export const JOIN_SUCCESS = "JOIN_SUCCESS";
+
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 export const LOGIN_ERR = "LOGIN_ERR";
 
 export const SIGNUP_ERR = "SIGNUP_ERR";
+
+export const JOIN_ERR = "JOIN_ERR";
 
 export const LOADING_ON = "LOADING_ON";
 

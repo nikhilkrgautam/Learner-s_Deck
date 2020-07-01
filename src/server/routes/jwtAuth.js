@@ -112,4 +112,29 @@ router.get("/logout", authorization, async (req, res) => {
   }
 });
 
+// Joinus route
+router.post('/joinus', validation, async (req, res) => {
+  try {
+
+    const { email } = req.body;
+
+    const user = await pool.query("SELECT * FROM waitlist WHERE email = $1", [email]);
+
+    if(user.rows.length !== 0) {
+      return res.status(401).json("User already exists");
+    }
+
+    const newUser = await pool.query(
+      "INSERT INTO waitlist (email, date_joined) VALUES ($1, NOW()) RETURNING *",
+      [email]
+    );
+
+    res.json('Joined successfully');
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server error");
+  }
+});
+
 module.exports = router;

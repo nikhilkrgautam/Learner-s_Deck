@@ -14,7 +14,7 @@ class Navbar extends Component {
           <Grid.Container justify="center" alignItems="center" direction="row" >
             <Grid xs={6} md={4}>
               <div style={{display: 'flex', justifyContent: 'center'}}>
-              <Link to='/' style={{cursor: 'pointer', padding: '5px 5px', fontSize: '45px', color: '#FFF'}}>eBuzzet</Link>
+              <Link to='/' style={{cursor: 'pointer', padding: '5px 5px', fontSize: '40px', color: '#FFF'}}>eBuzzet</Link>
               </div>
             </Grid>
             <Grid xs>

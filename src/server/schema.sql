@@ -21,6 +21,7 @@ CREATE TABLE student_profiles (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+-- Teacher Profile Table
 CREATE TABLE teacher_profiles (
   profile_id SERIAL,
   user_id UUID,
@@ -30,6 +31,14 @@ CREATE TABLE teacher_profiles (
   date_created DATE,
   PRIMARY KEY (profile_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Waitlist Table
+CREATE TABLE waitlist (
+  user_id UUID DEFAULT uuid_generate_v4(),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  date_joined DATE,
+  PRIMARY KEY (user_id)
 );
 
 -- Sample data
