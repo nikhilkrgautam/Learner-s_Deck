@@ -212,7 +212,7 @@ class LogInForm extends Component {
               id="conpass"
             />
             </Grid>
-            <Grid xs={24} md={12}>
+            {/*<Grid xs={24} md={12}>
               <Radio.Group value={this.state.role} onChange={this.handleRadio}>
                 <Radio
                   value="S"
@@ -227,9 +227,9 @@ class LogInForm extends Component {
                   id="role"
                 >Teacher</Radio>
               </Radio.Group>
-            </Grid>
+            </Grid>*/}
           </Grid.Container>
-          <Button loading={this.state.buttonLoading} htmlType="submit" type="success" style={{cursor: "pointer", marginTop: '20px'}} onClick={this.handleSubmit}>
+          <Button loading={this.state.buttonLoading} htmlType="submit" type="success" style={{cursor: "pointer", marginTop: '30px'}} onClick={this.handleSubmit}>
             Sign up
           </Button>
         </form>

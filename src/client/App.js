@@ -14,6 +14,7 @@ const Login = lazy(() => import('./pages/Login' /* webpackChunkName: "login" */)
 const Signup = lazy(() => import('./pages/Signup' /* webpackChunkName: "signup" */));
 const Profile = lazy(() => import('./pages/Profile' /* webpackChunkName: "profile" */));
 const Joinus = lazy(() => import('./pages/Joinus' /* webpackChunkName: "joinus" */));
+const Contact = lazy(() => import('./pages/Contact' /* webpackChunkName: "contact" */));
 // const Video = lazy(() => import('./pages/Video' /* webpackChunkName: "video" */));
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
@@ -67,6 +68,11 @@ class App extends Component {
                   path='/joinus'
                   exact={true}
                   render={(props) => !isAuthenticated ? <Joinus {...props} /> : <Redirect to='/dashboard' />}
+                />
+                <Route
+                  path='/contact'
+                  exact={true}
+                  render={(props) => <Contact {...props} />}
                 />
                 {/*<Route
                   path='/video'

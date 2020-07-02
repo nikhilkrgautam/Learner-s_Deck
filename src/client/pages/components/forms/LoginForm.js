@@ -142,7 +142,7 @@ class LogInForm extends Component {
                 />
             </Grid>
           </Grid.Container>
-            <Button loading={this.state.buttonLoading} htmlType="submit" type="success" onClick={this.handleSubmit} style={{cursor: "pointer", marginTop: '20px'}}>
+            <Button loading={this.state.buttonLoading} htmlType="submit" type="success" onClick={this.handleSubmit} style={{cursor: "pointer", marginTop: '30px'}}>
               Log in
             </Button>
 

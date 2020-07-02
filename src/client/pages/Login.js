@@ -19,7 +19,7 @@ class Login extends Component {
     const {loginError} = this.props;
     return (
       <React.Fragment>
-         <div style={{ margin: '30px auto', width: '60%' }}>
+         <div style={{ margin: '50px auto', width: '60%' }}>
            <h1>
              Log-in to your account
            </h1>

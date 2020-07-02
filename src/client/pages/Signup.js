@@ -19,7 +19,7 @@ class Signup extends Component {
     const {signupError} = this.props;
     return (
       <React.Fragment>
-        <div style={{ margin: '30px auto', width: '60%' }}>
+        <div style={{ margin: '50px auto', width: '60%' }}>
           <h1>
             Sign-up with your email
           </h1>

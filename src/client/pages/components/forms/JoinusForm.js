@@ -113,9 +113,6 @@ class JoinusForm extends Component {
             <Note type="warning">Enter a valid email address.</Note>
           )
         }
-        <h3>
-          Already joined? <Link to='/login'>Log in</Link>
-        </h3>
       </React.Fragment>
     );
   }
