@@ -19,16 +19,18 @@ class Login extends Component {
     const {loginError} = this.props;
     return (
       <React.Fragment>
-         <div style={{ margin: '50px auto', width: '60%' }}>
-           <h1>
-             Log-in to your account
-           </h1>
-           <LoginForm logInUser={this.logInUser} />
-             {
-               loginError ? (
-                 <Note type="error">{ loginError }</Note>
-               ) : null
-             }
+         <div style={{ padding: '70px 5px' }}>
+           <div style={{ margin: '10px auto', width: '80%' }}>
+             <h1>
+               Log-in to your account
+             </h1>
+             <LoginForm logInUser={this.logInUser} />
+               {
+                 loginError ? (
+                   <Note type="error">{ loginError }</Note>
+                 ) : null
+               }
+           </div>
          </div>
       </React.Fragment>
     );

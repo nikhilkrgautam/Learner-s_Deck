@@ -19,16 +19,18 @@ class Signup extends Component {
     const {signupError} = this.props;
     return (
       <React.Fragment>
-        <div style={{ margin: '50px auto', width: '60%' }}>
-          <h1>
-            Sign-up with your email
-          </h1>
-          <SignupForm signUpUser={this.signUpUser} />
-            {
-              signupError ? (
-                <Note type="error">{ signupError }</Note>
-              ) : null
-            }
+        <div style={{ padding: '70px 5px' }}>
+          <div style={{ margin: '10px auto', width: '80%' }}>
+            <h1>
+              Sign-up with your email
+            </h1>
+            <SignupForm signUpUser={this.signUpUser} />
+              {
+                signupError ? (
+                  <Note type="error">{ signupError }</Note>
+                ) : null
+              }
+          </div>
         </div>
       </React.Fragment>
     );
