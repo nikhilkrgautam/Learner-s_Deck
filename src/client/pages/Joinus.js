@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import JoinusForm from './components/forms/JoinusForm';
 import { connect } from 'react-redux';
 import { joinUser } from '../reduxStore/actions/joinActions';
-import { Note } from '@zeit-ui/react';
+import { Note, Text } from '@zeit-ui/react';
 
 class Joinus extends Component {
+
 
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -17,13 +18,27 @@ class Joinus extends Component {
 
   render() {
     const { joinError, joined } = this.props;
+
+    let pageHeading;
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
+      pageHeading = (
+        <Text h3 style={{ fontSize: '40px'}}>
+          Wanna join? Submit your email!
+        </Text>
+      );
+    } else {
+      pageHeading = (
+        <Text h3 style={{ fontSize: '50px'}}>
+          Wanna join? Submit your email!
+        </Text>
+      );
+    }
+
     return (
       <React.Fragment>
         <div style={{ padding: '70px 5px' }}>
           <div style={{ margin: '10px auto', width: '80%' }}>
-             <h1 style={{ margin: '60px 0' }}>
-               Wanna join? Submit your email!
-             </h1>
+             {pageHeading}
                {
                  joined ? (
                    <Note type="success">Thanks for joining us. You will receive an invitation mail soon.</Note>

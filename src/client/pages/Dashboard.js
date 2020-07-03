@@ -19,25 +19,27 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div style={{ margin: '30px auto', width: '60%' }}>
-        <h1>Home</h1>
-        {
-          this.props.userData ? (
-            <h2>Welcome {this.props.userData.username}</h2>
-          ) : null
-        }
-        <Collapse.Group>
-          <Collapse title="What is eBuzzet?">
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
-          </Collapse>
-          <Collapse title="How to use eBuzzet?">
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
-          </Collapse>
-        </Collapse.Group>
+      <div style={{ padding: '60px 5px' }}>
+        <div style={{ margin: '10px auto', width: '80%' }}>
+          <h1>Home</h1>
+          {
+            this.props.userData ? (
+              <h2>Welcome {this.props.userData.username}</h2>
+            ) : null
+          }
+          <Collapse.Group>
+            <Collapse title="What is eBuzzet?">
+              <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+            </Collapse>
+            <Collapse title="How to use eBuzzet?">
+              <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+            </Collapse>
+          </Collapse.Group>
+        </div>
       </div>
     );
   }

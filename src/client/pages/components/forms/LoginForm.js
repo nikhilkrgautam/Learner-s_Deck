@@ -88,6 +88,9 @@ class LogInForm extends Component {
           success.password = "w";
           return { success };
         })
+        setTimeout(() => {
+          this.setState({buttonLoading: false});
+        }, 3000);
       });
     }
     else {

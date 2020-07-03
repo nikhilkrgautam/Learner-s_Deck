@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignupForm from './components/forms/SignupForm';
 import { connect } from 'react-redux';
 import { signUpUser } from '../reduxStore/actions/authActions';
-import { Note } from '@zeit-ui/react';
+import { Note, Text } from '@zeit-ui/react';
 
 class Signup extends Component {
 
@@ -17,13 +17,27 @@ class Signup extends Component {
 
   render() {
     const {signupError} = this.props;
+
+    let pageHeading;
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
+      pageHeading = (
+        <Text h3 style={{ fontSize: '40px'}}>
+          Sign-up with your email
+        </Text>
+      );
+    } else {
+      pageHeading = (
+        <Text h3 style={{ fontSize: '50px'}}>
+          Sign-up with your email
+        </Text>
+      );
+    }
+
     return (
       <React.Fragment>
         <div style={{ padding: '70px 5px' }}>
           <div style={{ margin: '10px auto', width: '80%' }}>
-            <h1>
-              Sign-up with your email
-            </h1>
+            {pageHeading}
             <SignupForm signUpUser={this.signUpUser} />
               {
                 signupError ? (

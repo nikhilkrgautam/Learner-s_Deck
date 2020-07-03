@@ -5,7 +5,6 @@ import { updateImage, resetNotes, updateInfo } from '../reduxStore/actions/profi
 import { Card, Image, Text, Button, Note, Row, Col } from '@zeit-ui/react';
 import ProfileImage from './components/profile/ProfileImage';
 import ProfileInfoStudent from './components/profile/ProfileInfoStudent';
-import ProfileInfoTeacher from './components/profile/ProfileInfoTeacher';
 import { Redirect } from 'react-router-dom';
 
 class Profile extends Component {
@@ -51,202 +50,219 @@ class Profile extends Component {
   render() {
     const {profileImageError, profileImageSent, profileInfoError, profileInfoSent, userData} = this.props;
 
-    let userFields;
+    let userFields, imageFields, logOutButton, profileCard, pageHeading;
 
-    if(userData.role === 'S') {
-      userFields = (
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
+      pageHeading = (
+        <Text style={{padding: '40px 30px', margin: '0', fontSize: '40px', fontWeight: '700'}}>Profile</Text>
+      );
+    } else {
+      pageHeading = (
+        <Text style={{padding: '50px 60px', margin: '0', fontSize: '55px', fontWeight: '700'}}>Profile</Text>
+      );
+    }
+
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
+      profileCard = (
         <Fragment>
-          {/*    Class Section    */}
-          {
-            this.state.infoEditor === 'c' ? (
-              <ProfileInfoStudent type='Class' submitProfileInfo={(infoData) => this.submitProfileInfo(infoData)} />
-            ) : null
-          }
+          <Card width="100%" style={{marginBottom: '40px'}}>
+            <Image src={userData.image} height="20%" width="100%" style={{ objectFit: 'cover' }} />
+            <Text style={{ marginBottom: '15px', fontSize: '30px', fontWeight: '700' }}>{userData.username}</Text>
+            <Text style={{fontSize: '20px', fontWeight: '600'}} type="secondary">Your email: <span style={{color: '#0366D6'}}>{userData.email}</span></Text>
+            <Text style={{fontSize: '20px', fontWeight: '600'}} type="secondary">Class: <span style={{color: '#0366D6'}}>{userData.class ? userData.class : 'Not provided'}</span></Text>
+            <Text style={{fontSize: '20px', fontWeight: '600'}} type="secondary">School/College: <span style={{color: '#0366D6'}}>{userData.school ? userData.school : 'Not provided'}</span></Text>
 
-          {
-            (this.state.infoEditor) ? null : (
-              <div style={{margin: '40px 0'}}>
-                <Button
-                  type="success"
-                  style={{cursor: "pointer"}}
-                  onClick={() => this.setState({infoEditor: 'c'})}
-                >
-                  Update Class
-                </Button>
-              </div>
-            )
-          }
+            <Card.Footer>
+              <Text style={{fontSize: '20px'}} type="secondary">Joined on: {userData.date_created.slice(0,10)}</Text>
+            </Card.Footer>
+          </Card>
+        </Fragment>
+      );
+    } else {
+      profileCard = (
+        <Fragment>
+          <Card width="100%" style={{marginBottom: '40px'}}>
+            <Image src={userData.image} height="20%" width="100%" style={{ objectFit: 'cover' }} />
+            <Text h2 style={{ marginBottom: '15px' }}>{userData.username}</Text>
+            <Text h4 type="secondary">Your email: <span style={{color: '#0366D6'}}>{userData.email}</span></Text>
+            <Text h4 type="secondary">Class: <span style={{color: '#0366D6'}}>{userData.class ? userData.class : 'Not provided'}</span></Text>
+            <Text h4 type="secondary">School/College: <span style={{color: '#0366D6'}}>{userData.school ? userData.school : 'Not provided'}</span></Text>
 
-          {/*    School Section    */}
-          {
-            this.state.infoEditor === 's' ? (
-              <ProfileInfoStudent type='School' submitProfileInfo={(infoData) => this.submitProfileInfo(infoData)} />
-            ) : null
-          }
-
-          {
-            (this.state.infoEditor) ? null : (
-              <div style={{margin: '40px 0'}}>
-                <Button
-                  type="success"
-                  style={{cursor: "pointer"}}
-                  onClick={() => this.setState({infoEditor: 's'})}
-                >
-                  Update School
-                </Button>
-              </div>
-            )
-          }
+            <Card.Footer>
+              <Text h4 type="secondary">Joined on: {userData.date_created.slice(0,10)}</Text>
+            </Card.Footer>
+          </Card>
         </Fragment>
       );
     }
-    else if (userData.role === 'T') {
-      userFields = (
+
+
+    imageFields = (
+      <Fragment>
+        {/*    Image Section    */}
+        {
+          this.state.imageEditor ? (
+            <ProfileImage submitProfileImage={(imageData) => this.submitProfileImage(imageData)} />
+          ) : null
+        }
+
+        {
+          this.state.imageEditor ? null : (
+            <div style={{margin: '40px 0'}}>
+              <Button
+                type="success"
+                style={{cursor: "pointer"}}
+                onClick={() => this.setState({imageEditor: true})}
+              >
+                Change Image
+              </Button>
+            </div>
+          )
+        }
+
+        {
+          profileImageError ? (
+            <Note type="error" style={{marginTop: '20px'}}>{ profileImageError }</Note>
+          ) : null
+        }
+        {
+          profileImageSent ? (
+            <Note type="success" style={{marginTop: '20px'}}>File uploaded successfully!</Note>
+          ) : null
+        }
+      </Fragment>
+    );
+
+    userFields = (
+      <Fragment>
+        {/*    Class Section    */}
+        {
+          this.state.infoEditor === 'c' ? (
+            <ProfileInfoStudent type='Class' submitProfileInfo={(infoData) => this.submitProfileInfo(infoData)} />
+          ) : null
+        }
+
+        {
+          (this.state.infoEditor) ? null : (
+            <div style={{margin: '40px 0'}}>
+              <Button
+                type="success"
+                style={{cursor: "pointer"}}
+                onClick={() => this.setState({infoEditor: 'c'})}
+              >
+                Update Class
+              </Button>
+            </div>
+          )
+        }
+
+        {/*    School Section    */}
+        {
+          this.state.infoEditor === 's' ? (
+            <ProfileInfoStudent type='School' submitProfileInfo={(infoData) => this.submitProfileInfo(infoData)} />
+          ) : null
+        }
+
+        {
+          (this.state.infoEditor) ? null : (
+            <div style={{margin: '40px 0'}}>
+              <Button
+                type="success"
+                style={{cursor: "pointer"}}
+                onClick={() => this.setState({infoEditor: 's'})}
+              >
+                Update School
+              </Button>
+            </div>
+          )
+        }
+
+        {/*    Error Section    */}
+        {
+          profileInfoError ? (
+            <Note type="error" style={{marginTop: '20px'}}>{ profileInfoError }</Note>
+          ) : null
+        }
+        {
+          profileInfoSent ? (
+            <Note type="success" style={{marginTop: '20px'}}>Details updated!</Note>
+          ) : null
+        }
+      </Fragment>
+    );
+
+    logOutButton = (
+      <Fragment>
+        {/*    Log Out Button    */}
+        <div style={{margin: '40px 0'}}>
+          <Button type="error" style={{cursor: "pointer"}} onClick={() => this.logOut()}>
+            Log out
+          </Button>
+        </div>
+      </Fragment>
+    );
+
+    let profileSection;
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
+      profileSection = (
         <Fragment>
-          {/*    Degree Section    */}
-          {
-            this.state.infoEditor === 'd' ? (
-              <ProfileInfoTeacher type='Degree' submitProfileInfo={(infoData) => this.submitProfileInfo(infoData)} />
-            ) : null
-          }
+          <Col span={18}>
+            <Row justify="center" align="middle" style={{ height: '100%' }}>
+              <Col align="middle" style={{maxWidth: '450px'}}>
 
-          {
-            (this.state.infoEditor) ? null : (
-              <div style={{margin: '40px 0'}}>
-                <Button
-                  type="success"
-                  style={{cursor: "pointer"}}
-                  onClick={() => this.setState({infoEditor: 'd'})}
-                >
-                  Update Degree
-                </Button>
-              </div>
-            )
-          }
+                { profileCard }
 
-          {/*    Experience Section    */}
-          {
-            this.state.infoEditor === 'e' ? (
-              <ProfileInfoTeacher type='Experience' submitProfileInfo={(infoData) => this.submitProfileInfo(infoData)} />
-            ) : null
-          }
+              </Col>
+            </Row>
+            <Row justify="center" align="middle" style={{ height: '100%' }}>
+              <Col align="middle">
 
-          {
-            (this.state.infoEditor) ? null : (
-              <div style={{margin: '40px 0'}}>
-                <Button
-                  type="success"
-                  style={{cursor: "pointer"}}
-                  onClick={() => this.setState({infoEditor: 'e'})}
-                >
-                  Update Experience
-                </Button>
-              </div>
-            )
-          }
+                { imageFields }
+
+                { userFields }
+
+                { logOutButton }
+
+              </Col>
+            </Row>
+          </Col>
         </Fragment>
       );
-    }
-    else {
-      userFields = null;
+    } else {
+      profileSection = (
+        <Fragment>
+          <Col span={10}>
+            <Row justify="center" align="middle" style={{ height: '100%' }}>
+              <Col align="middle" style={{maxWidth: '450px'}}>
+
+                { profileCard }
+
+              </Col>
+            </Row>
+          </Col>
+
+          <Col span={8}>
+            <Row justify="center" align="middle" style={{ height: '100%' }}>
+              <Col align="middle">
+
+                { imageFields }
+
+                { userFields }
+
+                { logOutButton }
+
+              </Col>
+            </Row>
+          </Col>
+        </Fragment>
+      );
     }
 
     return (
       <Fragment>
-          <h1 style={{margin: '40px 60px'}}>Profile</h1>
+          {pageHeading}
           <Row justify="center" align="middle" style={{ minHeight: '800px' }}>
-            <Col span={8}>
-              <Row justify="center" align="middle" style={{ height: '100%' }}>
-                <Col align="middle">
-
-                  <Card width="80%" style={{marginBottom: '40px'}}>
-                    <Image src={userData.image} height="20%" width="100%" style={{ objectFit: 'cover' }} />
-                    <Text h2 style={{ marginBottom: '15px' }}>{userData.username}</Text>
-                    <Text h4 type="secondary">Your email: <span style={{color: '#0366D6'}}>{userData.email}</span></Text>
-                    {
-                      userData.role === 'S' ? (
-                        <Fragment>
-                          <Text h4 type="secondary">Class: <span style={{color: '#0366D6'}}>{userData.class ? userData.class : 'Not provided'}</span></Text>
-                          <Text h4 type="secondary">School/College: <span style={{color: '#0366D6'}}>{userData.school ? userData.school : 'Not provided'}</span></Text>
-                        </Fragment>
-                      ) : (
-                        <Fragment>
-                          <Text h4 type="secondary">Degree: <span style={{color: '#0366D6'}}>{userData.degree ? userData.degree : 'Not provided'}</span></Text>
-                          <Text h4 type="secondary">Experience: <span style={{color: '#0366D6'}}>{userData.experience ? userData.experience : 'Not provided'}</span></Text>
-                        </Fragment>
-                      )
-                    }
-                    <Card.Footer>
-                      <Text h4 type="secondary">Joined on: {userData.date_created.slice(0,10)}</Text>
-                    </Card.Footer>
-                  </Card>
-
-                </Col>
-              </Row>
-            </Col>
-
-            <Col span={8}>
-              <Row justify="center" align="middle" style={{ height: '100%' }}>
-                <Col align="middle">
-
-                  {/*    Image Section    */}
-                  {
-                    this.state.imageEditor ? (
-                      <ProfileImage submitProfileImage={(imageData) => this.submitProfileImage(imageData)} />
-                    ) : null
-                  }
-
-                  {
-                    this.state.imageEditor ? null : (
-                      <div style={{margin: '40px 0'}}>
-                        <Button
-                          type="success"
-                          style={{cursor: "pointer"}}
-                          onClick={() => this.setState({imageEditor: true})}
-                        >
-                          Change Image
-                        </Button>
-                      </div>
-                    )
-                  }
-
-                  {
-                    profileImageError ? (
-                      <Note type="error" style={{marginTop: '20px'}}>{ profileImageError }</Note>
-                    ) : null
-                  }
-                  {
-                    profileImageSent ? (
-                      <Note type="success" style={{marginTop: '20px'}}>File uploaded successfully!</Note>
-                    ) : null
-                  }
-
-
-                  { userFields }
-
-
-                  {/*    Error Section    */}
-                  {
-                    profileInfoError ? (
-                      <Note type="error" style={{marginTop: '20px'}}>{ profileInfoError }</Note>
-                    ) : null
-                  }
-                  {
-                    profileInfoSent ? (
-                      <Note type="success" style={{marginTop: '20px'}}>Details updated!</Note>
-                    ) : null
-                  }
-
-                  {/*    Log Out Button    */}
-                  <div style={{margin: '40px 0'}}>
-                    <Button type="error" style={{cursor: "pointer"}} onClick={() => this.logOut()}>
-                      Log out
-                    </Button>
-                  </div>
-
-                </Col>
-              </Row>
-            </Col>
+            { profileSection }
           </Row>
       </Fragment>
     )

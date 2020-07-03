@@ -12,35 +12,9 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      windowSize: 'lg',
       menuOpen: false
     };
   }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.resize.bind(this));
-		this.resize();
-  }
-
-  resize() {
-		if (window.innerWidth < 10000 && window.innerWidth > 1280) {
-			this.setState({
-				windowSize: "lg"
-			});
-		} else if (window.innerWidth <= 1280 && window.innerWidth > 900) {
-			this.setState({
-				windowSize: "md"
-			});
-		} else if (window.innerWidth <= 900 && window.innerWidth > 650) {
-			this.setState({
-				windowSize: "sm"
-			});
-		} else if (window.innerWidth <= 650 && window.innerWidth > 0) {
-			this.setState({
-				windowSize: "xs"
-			});
-		}
-	}
 
   handleStateChange = (state) => {
     this.setState({menuOpen: state.isOpen})
@@ -55,7 +29,7 @@ class Navbar extends Component {
 
     let navbar;
 
-    if(this.state.windowSize === 'sm' || this.state.windowSize === 'xs') {
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
       navbar = (
         <Fragment>
           {

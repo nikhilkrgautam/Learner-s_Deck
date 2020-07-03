@@ -10,7 +10,7 @@ const authorization = require('../middleware/authorization');
 router.post('/register', validation, async (req, res) => {
   try {
 
-    const { username, email, password, role } = req.body;
+    const { username, email, password } = req.body;
 
     const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
 
@@ -24,25 +24,16 @@ router.post('/register', validation, async (req, res) => {
     const bcryptPassword = await bcrypt.hash(password, salt);
 
     const newUser = await pool.query(
-      "INSERT INTO users (username, email, password, role) VALUES ($1, $2, $3, $4) RETURNING *",
-      [username, email, bcryptPassword, role]
+      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
+      [username, email, bcryptPassword]
     );
 
-    if(role === 'S') {
-      const newProfile = await pool.query(
-        "INSERT INTO student_profiles (user_id, date_created) VALUES ($1, NOW()) RETURNING *",
-        [newUser.rows[0].user_id]
-      );
-    } else if(role === 'T') {
-      const newProfile = await pool.query(
-        "INSERT INTO teacher_profiles (user_id, date_created) VALUES ($1, NOW()) RETURNING *",
-        [newUser.rows[0].user_id]
-      );
-    } else {
-      return res.status(500).json("Server error");
-    }
+    const newProfile = await pool.query(
+      "INSERT INTO student_profiles (user_id, date_created) VALUES ($1, NOW()) RETURNING *",
+      [newUser.rows[0].user_id]
+    );
 
-    const token = jwtGenerator(newUser.rows[0].user_id, role);
+    const token = jwtGenerator(newUser.rows[0].user_id);
 
     // res.cookie('eBuzzToken', token, { httpOnly: true, secure: true, maxAge: 86400000, domain: 'ebuzzet.com', sameSite: true });
     res.cookie('eBuzzToken', token, { httpOnly: true });
@@ -73,7 +64,7 @@ router.post('/login', validation, async (req, res) => {
       return res.status(401).json("Email or Password is incorrect");
     }
 
-    const token = jwtGenerator(user.rows[0].user_id, user.rows[0].role);
+    const token = jwtGenerator(user.rows[0].user_id);
 
     // res.cookie('eBuzzToken', token, { httpOnly: true, secure: true, maxAge: 86400000, domain: 'ebuzzet.com', sameSite: true });
     res.cookie('eBuzzToken', token, { httpOnly: true });

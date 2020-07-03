@@ -5,7 +5,6 @@ CREATE TABLE users (
   username VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  role CHAR(1) NOT NULL,
   PRIMARY KEY (user_id)
 );
 
@@ -21,6 +20,23 @@ CREATE TABLE student_profiles (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+-- Waitlist Table
+CREATE TABLE waitlist (
+  user_id UUID DEFAULT uuid_generate_v4(),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  date_joined DATE,
+  PRIMARY KEY (user_id)
+);
+
+-- Teachers Table
+CREATE TABLE teachers (
+  user_id UUID DEFAULT uuid_generate_v4(),
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (user_id)
+);
+
 -- Teacher Profile Table
 CREATE TABLE teacher_profiles (
   profile_id SERIAL,
@@ -30,15 +46,20 @@ CREATE TABLE teacher_profiles (
   experience VARCHAR(255),
   date_created DATE,
   PRIMARY KEY (profile_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id)
+  FOREIGN KEY (user_id) REFERENCES teachers(user_id)
 );
 
--- Waitlist Table
-CREATE TABLE waitlist (
-  user_id UUID DEFAULT uuid_generate_v4(),
-  email VARCHAR(255) NOT NULL UNIQUE,
-  date_joined DATE,
-  PRIMARY KEY (user_id)
+-- Courses Table
+CREATE TABLE courses (
+  course_id UUID DEFAULT uuid_generate_v4(),
+  teacher_id UUID,
+  name VARCHAR(255),
+  description VARCHAR(511),
+  subject VARCHAR(255),
+  class SMALLINT,
+  date_created DATE,
+  PRIMARY KEY (course_id),
+  FOREIGN KEY (teacher_id) REFERENCES teachers(user_id)
 );
 
 -- Sample data

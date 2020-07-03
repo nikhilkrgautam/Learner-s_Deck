@@ -4,17 +4,9 @@ import { Link as RouterLink } from 'react-router-dom';
 
 class LandingPage extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      windowSize: 'lg'
-    };
-  }
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.addEventListener("resize", this.resize.bind(this));
-		this.resize();
   }
 
   // const breakpoints: ZeitUIThemesBreakpoints = {
@@ -25,31 +17,11 @@ class LandingPage extends Component {
   //   xl: { min: '1920px', max: '10000px' },
   // }
 
-  resize() {
-		if (window.innerWidth < 10000 && window.innerWidth > 1280) {
-			this.setState({
-				windowSize: "lg"
-			});
-		} else if (window.innerWidth <= 1280 && window.innerWidth > 900) {
-			this.setState({
-				windowSize: "md"
-			});
-		} else if (window.innerWidth <= 900 && window.innerWidth > 650) {
-			this.setState({
-				windowSize: "sm"
-			});
-		} else if (window.innerWidth <= 650 && window.innerWidth > 0) {
-			this.setState({
-				windowSize: "xs"
-			});
-		}
-	}
-
   render() {
 
     let courseSpeciality, mainHeading, quoteSection, learnFree;
     // Course Speciality
-    if(this.state.windowSize === 'sm' || this.state.windowSize === 'xs') {
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
       courseSpeciality = (
         <Fragment>
           <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '850px' }}>
@@ -110,7 +82,7 @@ class LandingPage extends Component {
     }
 
     // Page Heading
-    if(this.state.windowSize === 'sm' || this.state.windowSize === 'xs') {
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
       mainHeading = (
         <Fragment>
           <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '620px' }}>
@@ -159,7 +131,7 @@ class LandingPage extends Component {
     }
 
     // Quote Section
-    if(this.state.windowSize === 'sm' || this.state.windowSize === 'xs') {
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
       quoteSection = (
         <Row justify="center" align="middle" style={{ minHeight: '500px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/studentsIndia3.webp)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           <Col span={22}>
@@ -186,7 +158,7 @@ class LandingPage extends Component {
     }
 
     // Learn for free Section
-    if(this.state.windowSize === 'sm' || this.state.windowSize === 'xs') {
+    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
       learnFree = (
         <Row justify="center" align="middle" style={{ backgroundColor: '#FFF', minHeight: '650px' }}>
           <Col align='middle'>
@@ -230,8 +202,6 @@ class LandingPage extends Component {
         </Row>
       );
     }
-
-    console.log(this.state.windowSize);
 
     return (
       <div>

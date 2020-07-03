@@ -11,7 +11,6 @@ class LogInForm extends Component {
       password: '',
       username: '',
       conpass: '',
-      role: 'S',
       success: {
 
       },
@@ -22,12 +21,6 @@ class LogInForm extends Component {
       passwordMatch: true,
       buttonLoading: false
     }
-  }
-
-  handleRadio = (value) => {
-    this.setState({
-      role: value
-    });
   }
 
   handleChange = (e) => {
@@ -111,7 +104,7 @@ class LogInForm extends Component {
     console.log(this.state.conpass);
     if(this.state.success.email === "c" && this.state.success.password === "c" && this.state.success.username === "c" && this.state.password === this.state.conpass) {
       this.setState({isBlocking: false, emailValid: true, usernameValid: true, passwordValid: true, passwordMatch: true, buttonLoading: true}, () => {
-        this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username, role: this.state.role });
+        this.props.signUpUser({ email: this.state.email, password: this.state.password, username: this.state.username });
         this.setState({email: '', password: '', username: '', conpass: ''});
         this.setState(prevState => {
           let success = { ...prevState.success };
@@ -212,22 +205,6 @@ class LogInForm extends Component {
               id="conpass"
             />
             </Grid>
-            {/*<Grid xs={24} md={12}>
-              <Radio.Group value={this.state.role} onChange={this.handleRadio}>
-                <Radio
-                  value="S"
-                  size="large"
-                  name="role"
-                  id="role"
-                >Student</Radio>
-                <Radio
-                  value="T"
-                  size="large"
-                  name="role"
-                  id="role"
-                >Teacher</Radio>
-              </Radio.Group>
-            </Grid>*/}
           </Grid.Container>
           <Button loading={this.state.buttonLoading} htmlType="submit" type="success" style={{cursor: "pointer", marginTop: '30px'}} onClick={this.handleSubmit}>
             Sign up
@@ -253,9 +230,9 @@ class LogInForm extends Component {
             <Note type="warning">The passwords do not match.</Note>
           )
         }
-        <h4>
+        <h3>
           Already registered? <Link to='/login'>Log In</Link>
-        </h4>
+        </h3>
       </React.Fragment>
     );
   }

@@ -22,16 +22,51 @@ import { isLoggedIn } from './reduxStore/actions/authActions';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      windowSize: 'lg'
+    };
+    this.resize = this.resize.bind(this);
+  }
+
   componentDidMount() {
     this.props.isLoggedIn();
+    window.addEventListener("resize", this.resize);
+		this.resize();
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resize);
+  }
+
+  resize() {
+		if (window.innerWidth < 10000 && window.innerWidth > 1280) {
+			this.setState({
+				windowSize: "lg"
+			});
+		} else if (window.innerWidth <= 1280 && window.innerWidth > 900) {
+			this.setState({
+				windowSize: "md"
+			});
+		} else if (window.innerWidth <= 900 && window.innerWidth > 650) {
+			this.setState({
+				windowSize: "sm"
+			});
+		} else if (window.innerWidth <= 650 && window.innerWidth > 0) {
+			this.setState({
+				windowSize: "xs"
+			});
+		}
+	}
 
   render() {
     const {isAuthenticated, token, isLoading} = this.props;
 
+    console.log(this.state.windowSize);
     return (
       <BrowserRouter>
-        <Navbar isAuthenticated={isAuthenticated}/>
+        <Navbar isAuthenticated={isAuthenticated} windowSize={this.state.windowSize}/>
         <main style={{minHeight: '100vh'}}>
         {
           isLoading ? (
@@ -42,49 +77,49 @@ class App extends Component {
                 <Route
                   path='/'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <LandingPage {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <LandingPage windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/dashboard'
                   exact={true}
-                  render={(props) => isAuthenticated ? <Dashboard {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <Dashboard windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/login'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <Login {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <Login windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/signup'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <Signup {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <Signup windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/profile'
                   exact={true}
-                  render={(props) => isAuthenticated ? <Profile {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <Profile windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/joinus'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <Joinus {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <Joinus windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/contact'
                   exact={true}
-                  render={(props) => <Contact {...props} />}
+                  render={(props) => <Contact windowSize={this.state.windowSize} {...props} />}
                 />
                 {/*<Route
                   path='/video'
                   exact={true}
-                  render={(props) => isAuthenticated ? <Video {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <Video windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />*/}
               </Switch>
             </Suspense>
           )
         }
         </main>
-        <Footer />
+        <Footer windowSize={this.state.windowSize} />
       </BrowserRouter>
     );
   }
