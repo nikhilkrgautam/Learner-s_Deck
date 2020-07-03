@@ -60,19 +60,19 @@ class LandingPage extends Component {
               <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 30px' }}>
                 <Col align='middle'>
                   <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Premium Quality</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.jpg' />
+                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.webp' />
                 </Col>
               </Row>
               <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 30px' }}>
                 <Col align='middle'>
                   <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Verified Teachers</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.jpg' />
+                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.webp' />
                 </Col>
               </Row>
               <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 40px' }}>
                 <Col align='middle'>
                   <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Interactive Learning</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.jpg' />
+                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.webp' />
                 </Col>
               </Row>
             </Col>
@@ -90,17 +90,17 @@ class LandingPage extends Component {
               <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 80px' }}>
                 <Col span={8} style={{margin: '20px 20px'}}>
                   <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Premium Quality</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.jpg' />
+                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.webp' />
                 </Col>
 
                 <Col span={8} style={{margin: '20px 20px'}}>
                   <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Verified Teachers</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.jpg' />
+                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.webp' />
                 </Col>
 
                 <Col span={8} style={{margin: '20px 20px'}}>
                   <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Interactive Learning</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.jpg' />
+                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.webp' />
                 </Col>
               </Row>
             </Col>
@@ -161,7 +161,7 @@ class LandingPage extends Component {
     // Quote Section
     if(this.state.windowSize === 'sm' || this.state.windowSize === 'xs') {
       quoteSection = (
-        <Row justify="center" align="middle" style={{ minHeight: '500px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/studentsIndia3.jpg)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <Row justify="center" align="middle" style={{ minHeight: '500px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/studentsIndia3.webp)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           <Col span={22}>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
               <Col align="middle">
@@ -173,7 +173,7 @@ class LandingPage extends Component {
       );
     } else {
       quoteSection = (
-        <Row justify="center" align="middle" style={{ minHeight: '800px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/studentsIndia3.jpg)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <Row justify="center" align="middle" style={{ minHeight: '800px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/studentsIndia3.webp)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           <Col span={12}>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
               <Col align="middle">

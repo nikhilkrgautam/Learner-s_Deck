@@ -19,22 +19,24 @@ class Joinus extends Component {
     const { joinError, joined } = this.props;
     return (
       <React.Fragment>
-         <div style={{ margin: '30px auto', width: '60%' }}>
-           <h1 style={{ margin: '60px 0' }}>
-             Wanna join? Submit your email!
-           </h1>
-             {
-               joined ? (
-                 <Note type="success">Thanks for joining us. You'll receive an invitation mail soon.</Note>
-               ) : (
-                 <JoinusForm joinUser={this.joinUser} />
-               )
-             }
-             {
-               joinError ? (
-                 <Note type="error">{ joinError }</Note>
-               ) : null
-             }
+        <div style={{ padding: '70px 5px' }}>
+          <div style={{ margin: '10px auto', width: '80%' }}>
+             <h1 style={{ margin: '60px 0' }}>
+               Wanna join? Submit your email!
+             </h1>
+               {
+                 joined ? (
+                   <Note type="success">Thanks for joining us. You will receive an invitation mail soon.</Note>
+                 ) : (
+                   <JoinusForm joinUser={this.joinUser} />
+                 )
+               }
+               {
+                 joinError ? (
+                   <Note type="error">{ joinError }</Note>
+                 ) : null
+               }
+            </div>
          </div>
       </React.Fragment>
     );
