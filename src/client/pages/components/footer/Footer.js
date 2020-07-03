@@ -13,7 +13,7 @@ class Footer extends Component {
 						<Grid.Container justify="center" alignItems="center" direction="row" >
 	            <Grid xs={14} md={10}>
 								<Text style={{fontSize: '14px', color: '#FFF'}}>Copyright &copy; 2020 All Rights Reserved by
-			          <Link to="/" style={{color: '#3291FF'}}> Ebuzzet</Link>.</Text>
+			          <Link to="/" style={{color: '#3291FF'}}> Ebuzzet</Link></Text>
 	            </Grid>
 	            <Grid xs>
 	              <div></div>
