@@ -58,15 +58,15 @@ const storage = multerS3({
 
 const upload = multer({
   storage: storage,
-  limits:{fileSize: 200000000}
-  // fileFilter: (req, file, cb) => {
-  //   if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-  //       cb(null, true);
-  //   } else {
-  //       cb(null, false);
-  //       return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-  //   }
-  // }
+  limits:{fileSize: 200000000},
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "video/mp4") {
+        cb(null, true);
+    } else {
+        cb(null, false);
+        return cb(new Error('Only .mp4 format allowed!'));
+    }
+  }
 }).single("myFile");
 
 router.post('/uploadLarge', authorization, async (req, res) => {

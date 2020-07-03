@@ -28,9 +28,6 @@ app.use('/api/dash', dashRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/file', fileRouter);
 
-// app.get('/api/ping', function (req, res) {
-//  return res.json('pong');
-// });
 
 app.use(express.static(path.join("dist")));
 

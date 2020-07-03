@@ -3,8 +3,7 @@ import * as ACTIONS from '../actions/actionTypes';
 
 const initState = {
   joinError: null,
-  joined: false,
-  isLoading: false
+  joined: false
 }
 
 const joinReducer = (state = initState, action) => {
