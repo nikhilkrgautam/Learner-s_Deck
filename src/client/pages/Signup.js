@@ -3,6 +3,7 @@ import SignupForm from './components/forms/SignupForm';
 import { connect } from 'react-redux';
 import { signUpUser } from '../reduxStore/actions/authActions';
 import { Note, Text } from '@zeit-ui/react';
+import LightSpeed from 'react-reveal/LightSpeed';
 
 class Signup extends Component {
 
@@ -36,6 +37,7 @@ class Signup extends Component {
     return (
       <React.Fragment>
         <div style={{ padding: '70px 5px' }}>
+          <LightSpeed left>
           <div style={{ margin: '10px auto', width: '80%' }}>
             {pageHeading}
             <SignupForm signUpUser={this.signUpUser} />
@@ -45,6 +47,7 @@ class Signup extends Component {
                 ) : null
               }
           </div>
+          </LightSpeed>
         </div>
       </React.Fragment>
     );

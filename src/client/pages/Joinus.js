@@ -3,6 +3,7 @@ import JoinusForm from './components/forms/JoinusForm';
 import { connect } from 'react-redux';
 import { joinUser } from '../reduxStore/actions/joinActions';
 import { Note, Text } from '@zeit-ui/react';
+import LightSpeed from 'react-reveal/LightSpeed';
 
 class Joinus extends Component {
 
@@ -37,6 +38,7 @@ class Joinus extends Component {
     return (
       <React.Fragment>
         <div style={{ padding: '70px 5px' }}>
+          <LightSpeed left>
           <div style={{ margin: '10px auto', width: '80%' }}>
              {pageHeading}
                {
@@ -52,6 +54,7 @@ class Joinus extends Component {
                  ) : null
                }
             </div>
+            </LightSpeed>
          </div>
       </React.Fragment>
     );

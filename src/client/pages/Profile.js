@@ -6,6 +6,7 @@ import { Card, Image, Text, Button, Note, Row, Col } from '@zeit-ui/react';
 import ProfileImage from './components/profile/ProfileImage';
 import ProfileInfoStudent from './components/profile/ProfileInfoStudent';
 import { Redirect } from 'react-router-dom';
+import Flip from 'react-reveal/Flip';
 
 class Profile extends Component {
 
@@ -208,13 +209,16 @@ class Profile extends Component {
         <Fragment>
           <Col span={18}>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
+              <Flip left>
               <Col align="middle" style={{maxWidth: '450px'}}>
 
                 { profileCard }
 
               </Col>
+              </Flip>
             </Row>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
+              <Flip left>
               <Col align="middle">
 
                 { imageFields }
@@ -224,6 +228,7 @@ class Profile extends Component {
                 { logOutButton }
 
               </Col>
+              </Flip>
             </Row>
           </Col>
         </Fragment>
@@ -232,6 +237,7 @@ class Profile extends Component {
       profileSection = (
         <Fragment>
           <Col span={10}>
+            <Flip left>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
               <Col align="middle" style={{maxWidth: '450px'}}>
 
@@ -239,9 +245,11 @@ class Profile extends Component {
 
               </Col>
             </Row>
+            </Flip>
           </Col>
 
           <Col span={8}>
+            <Flip left>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
               <Col align="middle">
 
@@ -253,6 +261,7 @@ class Profile extends Component {
 
               </Col>
             </Row>
+            </Flip>
           </Col>
         </Fragment>
       );
@@ -261,7 +270,7 @@ class Profile extends Component {
     return (
       <Fragment>
           {pageHeading}
-          <Row justify="center" align="middle" style={{ minHeight: '800px' }}>
+          <Row justify="center" align="middle" style={{ minHeight: '700px' }}>
             { profileSection }
           </Row>
       </Fragment>
