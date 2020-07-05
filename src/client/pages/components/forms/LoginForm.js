@@ -19,6 +19,10 @@ class LogInForm extends Component {
     }
   }
 
+  componentWillUnmount = () => {
+    this.clearTimer();
+  };
+
   handleChange = (e) => {
     const {name, value} = e.target;
 
@@ -76,6 +80,22 @@ class LogInForm extends Component {
     });
   }
 
+  clearTimer = () => {
+    if (this.timerHandle) {
+      clearTimeout(this.timerHandle);
+      this.timerHandle = 0;
+    }
+  };
+
+  setTimer = () => {
+    if (this.timerHandle) {
+      return;
+    }
+    this.timerHandle = setTimeout(() => {
+      this.setState({buttonLoading: false});
+    }, 3000);
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     if(this.state.success.email === "c" && this.state.success.password === "c") {
@@ -88,9 +108,7 @@ class LogInForm extends Component {
           success.password = "w";
           return { success };
         })
-        setTimeout(() => {
-          this.setState({buttonLoading: false});
-        }, 3000);
+        this.setTimer();
       });
     }
     else {

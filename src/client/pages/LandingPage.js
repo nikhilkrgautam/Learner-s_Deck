@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Row, Col, Text, Button, Image, Link, Card } from '@zeit-ui/react';
+import { Row, Col, Text, Button, Image, Link } from '@zeit-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import HeadShake from 'react-reveal/HeadShake';

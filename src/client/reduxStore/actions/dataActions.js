@@ -2,7 +2,7 @@
 import * as ACTIONS from './actionTypes';
 import axios from 'axios';
 
-export const getData = () => {
+export const getUserData = () => {
   return (dispatch) => {
     // const token = localStorage.token;
 
@@ -23,6 +23,37 @@ export const getData = () => {
       console.error(err);
       dispatch({ type: ACTIONS.GET_DATA_ERR });
       dispatch({ type: ACTIONS.LOADING_OFF });
+    });
+  }
+}
+
+export const getCoursesData = (subData) => {
+  return (dispatch) => {
+
+    dispatch({ type: ACTIONS.COURSE_LOAD_ON });
+
+    axios.post('/api/courses/subject', subData, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+
+      if(subData.subject === 'Physics') {
+        dispatch({ type: ACTIONS.GET_COURSE_PHYSICS_SUCCESS, payload: res.data });
+      }
+      else if(subData.subject === 'Chemistry') {
+        dispatch({ type: ACTIONS.GET_COURSE_CHEMISTRY_SUCCESS, payload: res.data });
+      }
+      else if(subData.subject === 'Maths') {
+        dispatch({ type: ACTIONS.GET_COURSE_MATHS_SUCCESS, payload: res.data });
+      }
+
+      dispatch({ type: ACTIONS.COURSE_LOAD_OFF });
+
+    }).catch(err => {
+      console.error(err);
+      dispatch({ type: ACTIONS.GET_COURSE_ERR });
+      dispatch({ type: ACTIONS.COURSE_LOAD_OFF });
     });
   }
 }

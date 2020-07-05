@@ -15,6 +15,7 @@ const Signup = lazy(() => import('./pages/Signup' /* webpackChunkName: "signup" 
 const Profile = lazy(() => import('./pages/Profile' /* webpackChunkName: "profile" */));
 const Joinus = lazy(() => import('./pages/Joinus' /* webpackChunkName: "joinus" */));
 const Contact = lazy(() => import('./pages/Contact' /* webpackChunkName: "contact" */));
+const Courses = lazy(() => import('./pages/Courses' /* webpackChunkName: "courses" */));
 // const Video = lazy(() => import('./pages/Video' /* webpackChunkName: "video" */));
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
@@ -63,10 +64,9 @@ class App extends Component {
   render() {
     const {isAuthenticated, token, isLoading} = this.props;
 
-    console.log(this.state.windowSize);
     return (
       <BrowserRouter>
-        <Navbar isAuthenticated={isAuthenticated} windowSize={this.state.windowSize}/>
+        <Navbar isLoading={isLoading} isAuthenticated={isAuthenticated} windowSize={this.state.windowSize}/>
         <main style={{minHeight: '100vh'}}>
         {
           isLoading ? (
@@ -98,6 +98,11 @@ class App extends Component {
                   path='/profile'
                   exact={true}
                   render={(props) => isAuthenticated ? <Profile windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                />
+                <Route
+                  path='/courses'
+                  exact={true}
+                  render={(props) => isAuthenticated ? <Courses windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/joinus'

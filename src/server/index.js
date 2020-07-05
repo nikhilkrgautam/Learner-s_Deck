@@ -11,6 +11,7 @@ const port = process.env.PORT || 5000;
 const dashRouter = require('./routes/dashboard');
 const authRouter = require('./routes/jwtAuth');
 const fileRouter = require('./routes/files');
+const courseRouter = require('./routes/courses');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use('/api/dash', dashRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/file', fileRouter);
+app.use('/api/courses', courseRouter);
 
 
 app.use(express.static(path.join("dist")));

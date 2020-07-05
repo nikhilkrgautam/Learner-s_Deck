@@ -12,7 +12,6 @@ const initState = {
 const authReducer = (state = initState, action) => {
 
   if(action.type === ACTIONS.LOGIN_SUCCESS) {
-    console.log('Login success!');
     return {
       ...state,
       isAuthenticated: true,
@@ -22,7 +21,6 @@ const authReducer = (state = initState, action) => {
   }
 
   else if(action.type === ACTIONS.LOGIN_ERR) {
-    console.log('Login failed!');
     return {
       ...state,
       isAuthenticated: false,
@@ -32,7 +30,6 @@ const authReducer = (state = initState, action) => {
   }
 
   if(action.type === ACTIONS.SIGNUP_SUCCESS) {
-    console.log('Signup success!');
     return {
       ...state,
       isAuthenticated: true,
@@ -42,7 +39,6 @@ const authReducer = (state = initState, action) => {
   }
 
   else if(action.type === ACTIONS.SIGNUP_ERR) {
-    console.log('Signup failed!');
     return {
       ...state,
       isAuthenticated: false,
@@ -52,7 +48,6 @@ const authReducer = (state = initState, action) => {
   }
 
   else if(action.type === ACTIONS.LOGOUT_SUCCESS) {
-    console.log('Logout success!');
     return {
       ...state,
       isAuthenticated: false,
@@ -63,7 +58,6 @@ const authReducer = (state = initState, action) => {
   }
 
   else if(action.type === ACTIONS.LOADING_ON) {
-    console.log('Loading now!');
     return {
       ...state,
       isLoading: true
@@ -71,7 +65,6 @@ const authReducer = (state = initState, action) => {
   }
 
   else if(action.type === ACTIONS.LOADING_OFF) {
-    console.log('Loading over!');
     return {
       ...state,
       isLoading: false

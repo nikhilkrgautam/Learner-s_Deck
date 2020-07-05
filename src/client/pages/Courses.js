@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import { Row, Col, Text, Button, Image, Link, Card } from '@zeit-ui/react';
+import { Row, Col, Text, Button, Image, Link, Tabs } from '@zeit-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { compose } from 'redux';
+import Physics from './components/courses/Physics';
+import Maths from './components/courses/Maths';
+import Chemistry from './components/courses/Chemistry';
 
 class Courses extends Component {
 
@@ -12,111 +15,40 @@ class Courses extends Component {
 
   render() {
 
-    let courseSpeciality, mainHeading, quoteSection, learnFree;
-    // Course Speciality
+    let mainTab;
+
+    // Top tabs
     if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
-      courseSpeciality = (
+      mainTab = (
         <Fragment>
-          <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '850px' }}>
+          <Row justify="center" align="middle" style={{ minHeight: '850px' }}>
             <Col span={24}>
               <Row justify="center" align="middle" style={{ height: '100%', margin: '40px 10px 0px' }}>
-                <Text style={{color: '#FFF', fontSize: '35px', textAlign: 'center'}}>Our Course Speciality</Text>
-              </Row>
-              <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 30px' }}>
-                <Col align='middle'>
-                  <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Premium Quality</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.webp' />
-                </Col>
-              </Row>
-              <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 30px' }}>
-                <Col align='middle'>
-                  <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Verified Teachers</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.webp' />
-                </Col>
-              </Row>
-              <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 40px' }}>
-                <Col align='middle'>
-                  <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Interactive Learning</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.webp' />
-                </Col>
+                <Text h1 type='success'>Under Construction</Text>
               </Row>
             </Col>
           </Row>
         </Fragment>
       );
     } else {
-      courseSpeciality = (
+      mainTab = (
         <Fragment>
-          <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '850px' }}>
-            <Col span={20}>
-              <Row justify="center" align="middle" style={{ height: '100%', margin: '80px 10px 60px' }}>
-                <Text style={{color: '#FFF', fontSize: '50px', textAlign: 'center'}}>Our Course Speciality</Text>
-              </Row>
-              <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 80px' }}>
-                <Col span={8} style={{margin: '20px 20px'}}>
-                  <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Premium Quality</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.webp' />
-                </Col>
+          <Row justify="center" style={{ minHeight: '850px' }}>
+            <Col span={this.props.windowSize === "md" ? 22 : 20}>
+              <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
+                <Tabs.Item label="Physics" value="1">
+                  <Physics windowSize={this.props.windowSize} />
+                </Tabs.Item>
+                <Tabs.Item label="Chemistry" value="2">
+                  <Chemistry windowSize={this.props.windowSize} />
+                </Tabs.Item>
+                <Tabs.Item label="Maths" value="3">
+                  <Maths windowSize={this.props.windowSize} />
+                </Tabs.Item>
+              </Tabs>
+              {/*<Row justify="center" align="middle" style={{ height: '100%', margin: '40px 10px 40px' }}>
 
-                <Col span={8} style={{margin: '20px 20px'}}>
-                  <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Verified Teachers</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.webp' />
-                </Col>
-
-                <Col span={8} style={{margin: '20px 20px'}}>
-                  <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Interactive Learning</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.webp' />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Fragment>
-      );
-    }
-
-    // Page Heading
-    if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
-      mainHeading = (
-        <Fragment>
-          <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '620px' }}>
-            <Col align='middle'>
-              <Row justify="center" align="middle" style={{ height: '100%' }}>
-                <Col align="middle">
-                  <Text style={{color: '#FFF', fontSize: '50px'}}>eBuzzet</Text>
-                  <img height='200px' src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/dragon.png' />
-                  <Text h3 style={{color: '#FFF', fontSize: '26px', margin: '10px 5px'}}>India's very own eLearning platform</Text>
-                  <Text h3 style={{color: '#FFF', fontSize: '22px', margin: '10px 5px 40px'}}>For Classes 9 to 12</Text>
-                  <RouterLink to='/signup'>
-                    <Link>
-                      <Button type="success" style={{fontSize: '20px', padding: '10px 5px', height: '100%', borderRadius: '15px'}} >Get Started</Button>
-                    </Link>
-                  </RouterLink>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Fragment>
-      );
-    } else {
-      mainHeading = (
-        <Fragment>
-          <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '800px' }}>
-            <Col span={8}>
-              <Row justify="center" align="middle" style={{ height: '100%' }}>
-                <Col align="middle">
-                  <Text style={{color: '#FFF', fontSize: '60px'}}>eBuzzet</Text>
-                  <Text h3 style={{color: '#FFF', fontSize: '32px', margin: '10px 5px'}}>India's very own eLearning platform</Text>
-                  <Text h3 style={{color: '#FFF', fontSize: '26px', margin: '10px 5px 40px'}}>For Classes 9 to 12</Text>
-                  <RouterLink to='/signup'>
-                    <Link>
-                      <Button size="large" type="success" style={{fontSize: '25px', padding: '10px 5px', height: '100%', borderRadius: '15px'}} >Get Started</Button>
-                    </Link>
-                  </RouterLink>
-                </Col>
-              </Row>
-            </Col>
-            <Col span={10}>
-              <Image src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/dragon.png' />
+              </Row>*/}
             </Col>
           </Row>
         </Fragment>
@@ -126,9 +58,7 @@ class Courses extends Component {
     return (
       <div>
 
-        {mainHeading}
-
-        {courseSpeciality}
+        {mainTab}
 
       </div>
     );

@@ -25,7 +25,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const {isAuthenticated} = this.props;
+    const {isAuthenticated, isLoading} = this.props;
 
     let navbar;
 
@@ -62,7 +62,7 @@ class Navbar extends Component {
               <div></div>
             </Grid>
             {
-              isAuthenticated ? <SignedInLinks /> : <SignedOutLinks />
+              isLoading ? null : (isAuthenticated ? <SignedInLinks /> : <SignedOutLinks />)
             }
           </Grid.Container>
         </nav>

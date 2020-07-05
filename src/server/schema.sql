@@ -84,20 +84,20 @@ CREATE TABLE videos (
 
 INSERT INTO teachers (username, email, password)
 VALUES (
-  'H C Verma',
-  'hcverma@gmail.com',
-  'physicsislife123'
+  'M. S. Chauhan',
+  'mschauhan@gmail.com',
+  'chemislife123'
 );
 
 INSERT INTO courses (teacher_id, title, description, subject, class, time_created, thumbnail)
 VALUES (
-  '14488caf-17d5-442b-a92b-b9b458899375',
-  'Introduction to Quantum Physics',
-  'A very brief introduction to the world of quantum physics. Welcome!',
-  'Physics',
+  'b41ef7b0-26bd-498d-a19b-2da06cf228a3',
+  'Advanced Organic Chemistry Concepts',
+  'Let us discuss some advanced concepts in organic chemistry.',
+  'Chemistry',
   12,
-  '2016-06-22 19:10:25-07',
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/physics2.webp'
+  '2016-06-26 15:53:25-07',
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/chem1.webp'
 );
 
 INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, time_created)

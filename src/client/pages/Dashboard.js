@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getData } from '../reduxStore/actions/dataActions';
+import { getUserData } from '../reduxStore/actions/dataActions';
 import { toastHOC } from '../hoc/toast';
 import { compose } from 'redux';
 import { Collapse, Text } from '@zeit-ui/react';
@@ -9,7 +9,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     if(!this.props.userData) {
-      this.props.getData();
+      this.props.getUserData();
       setTimeout(() => {
         this.props.toastify();
       }, 2000);
@@ -54,8 +54,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getData: () => {
-      dispatch(getData());
+    getUserData: () => {
+      dispatch(getUserData());
     }
   }
 }

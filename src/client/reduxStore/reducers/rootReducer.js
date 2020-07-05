@@ -4,6 +4,7 @@ import dataReducer from './dataReducer';
 import fileReducer from './fileReducer';
 import profileReducer from './profileReducer';
 import joinReducer from './joinReducer';
+import courseReducer from './courseReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   data: dataReducer,
   file: fileReducer,
   profile: profileReducer,
-  join: joinReducer
+  join: joinReducer,
+  course: courseReducer
 });
 
 export default rootReducer;
