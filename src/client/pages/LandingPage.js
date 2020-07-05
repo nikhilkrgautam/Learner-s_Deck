@@ -6,7 +6,6 @@ import HeadShake from 'react-reveal/HeadShake';
 
 class LandingPage extends Component {
 
-
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -35,7 +34,7 @@ class LandingPage extends Component {
                 <Fade right>
                 <Col align='middle'>
                   <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Premium Quality</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.webp' />
+                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.jpg' />
                 </Col>
                 </Fade>
               </Row>
@@ -43,7 +42,7 @@ class LandingPage extends Component {
                 <Fade right>
                 <Col align='middle'>
                   <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Verified Teachers</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.webp' />
+                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.jpg' />
                 </Col>
                 </Fade>
               </Row>
@@ -51,7 +50,7 @@ class LandingPage extends Component {
                 <Fade right>
                 <Col align='middle'>
                   <Text style={{color: '#FFF', fontSize: '25px', textAlign: 'center'}}>Interactive Learning</Text>
-                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.webp' />
+                  <img width='100%' height='350px' style={{padding: '20px 20px', objectFit: 'cover', display: 'block'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.jpg' />
                 </Col>
                 </Fade>
               </Row>
@@ -71,17 +70,17 @@ class LandingPage extends Component {
               <Row justify="center" align="middle" style={{ height: '100%', margin: '10px 5px 80px' }}>
                 <Col span={8} style={{margin: '20px 20px'}}>
                   <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Premium Quality</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.webp' />
+                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/premiumQuality.jpg' />
                 </Col>
 
                 <Col span={8} style={{margin: '20px 20px'}}>
                   <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Verified Teachers</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.webp' />
+                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/verifiedTeacher.jpg' />
                 </Col>
 
                 <Col span={8} style={{margin: '20px 20px'}}>
                   <Text style={{color: '#FFF', fontSize: '30px', textAlign: 'center'}}>Interactive Learning</Text>
-                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.webp' />
+                  <img width='100%' height='400px' style={{padding: '20px 20px', objectFit: 'cover'}} src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/interactive.jpg' />
                 </Col>
               </Row>
               </Fade>
