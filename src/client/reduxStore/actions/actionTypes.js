@@ -56,3 +56,5 @@ export const GET_COURSE_ERR = "GET_COURSE_ERR";
 export const COURSE_LOAD_ON = "COURSE_LOAD_ON";
 
 export const COURSE_LOAD_OFF = "COURSE_LOAD_OFF";
+
+export const GET_COURSE_SUCCESS = "GET_COURSE_SUCCESS";

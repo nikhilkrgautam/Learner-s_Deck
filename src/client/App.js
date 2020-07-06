@@ -3,22 +3,19 @@ import './app.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './pages/components/navbar/Navbar';
 import Footer from './pages/components/footer/Footer';
-// import Home from './pages/Home';
-// import Login from './pages/Login';
-// import Signup from './pages/Signup';
-// import Profile from './pages/Profile';
-// import Video from './pages/Video';
 const Dashboard = lazy(() => import('./pages/Dashboard' /* webpackChunkName: "home" */));
-const LandingPage = lazy(() => import('./pages/LandingPage' /* webpackChunkName: "landing" */));
+const LandingPage = lazy(() => import('./pages/infoPages/LandingPage' /* webpackChunkName: "landing" */));
 const Login = lazy(() => import('./pages/authorization/Login' /* webpackChunkName: "login" */));
 const Signup = lazy(() => import('./pages/authorization/Signup' /* webpackChunkName: "signup" */));
 const Profile = lazy(() => import('./pages/Profile' /* webpackChunkName: "profile" */));
 const Joinus = lazy(() => import('./pages/authorization/Joinus' /* webpackChunkName: "joinus" */));
-const Contact = lazy(() => import('./pages/Contact' /* webpackChunkName: "contact" */));
+const Contact = lazy(() => import('./pages/infoPages/Contact' /* webpackChunkName: "contact" */));
 const Courses = lazy(() => import('./pages/Courses' /* webpackChunkName: "courses" */));
+const CoursePage = lazy(() => import('./pages/CoursePage' /* webpackChunkName: "coursepage" */));
 // const Video = lazy(() => import('./pages/Video' /* webpackChunkName: "video" */));
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
+import history from './utils/history';
 
 
 class App extends Component {
@@ -63,6 +60,7 @@ class App extends Component {
 
   render() {
     const {isAuthenticated, token, isLoading} = this.props;
+    const location = history.location;
 
     return (
       <BrowserRouter>
@@ -82,7 +80,7 @@ class App extends Component {
                 <Route
                   path='/dashboard'
                   exact={true}
-                  render={(props) => isAuthenticated ? <Dashboard windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <Dashboard firstLocation={location} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/login'
@@ -98,6 +96,10 @@ class App extends Component {
                   path='/profile'
                   exact={true}
                   render={(props) => isAuthenticated ? <Profile windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                />
+                <Route
+                  path='/courses/:course_id'
+                  render={(props) => isAuthenticated ? <CoursePage windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/courses'

@@ -13,8 +13,9 @@ class Dashboard extends Component {
       setTimeout(() => {
         this.props.toastify();
       }, 2000);
+      {this.props.history.push(this.props.firstLocation)}
     }
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
   render() {

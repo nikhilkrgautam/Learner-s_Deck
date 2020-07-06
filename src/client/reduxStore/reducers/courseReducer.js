@@ -2,18 +2,27 @@
 import * as ACTIONS from '../actions/actionTypes';
 
 const initState = {
-  courseData: null,
-  courseLoading: false
+  coursesData: null,
+  courseLoading: false,
+  courseData: null
 }
 
 const courseReducer = (state = initState, action) => {
 
-  if(action.type === ACTIONS.GET_COURSE_PHYSICS_SUCCESS) {
+  if(action.type === ACTIONS.GET_COURSE_SUCCESS) {
+    console.log('Course data received!');
+    return {
+      ...state,
+      courseData: action.payload
+    }
+  }
+
+  else if(action.type === ACTIONS.GET_COURSE_PHYSICS_SUCCESS) {
     console.log('Physics courses received!');
     return {
       ...state,
-      courseData: {
-        ...state.courseData,
+      coursesData: {
+        ...state.coursesData,
         physics: action.payload
       }
     }
@@ -23,8 +32,8 @@ const courseReducer = (state = initState, action) => {
     console.log('Maths courses received!');
     return {
       ...state,
-      courseData: {
-        ...state.courseData,
+      coursesData: {
+        ...state.coursesData,
         maths: action.payload
       }
     }
@@ -34,8 +43,8 @@ const courseReducer = (state = initState, action) => {
     console.log('Chemistry courses received!');
     return {
       ...state,
-      courseData: {
-        ...state.courseData,
+      coursesData: {
+        ...state.coursesData,
         chemistry: action.payload
       }
     }

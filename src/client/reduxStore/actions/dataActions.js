@@ -57,3 +57,27 @@ export const getCoursesData = (subData) => {
     });
   }
 }
+
+export const getCourseData = (courseData) => {
+  return (dispatch) => {
+
+    dispatch({ type: ACTIONS.COURSE_LOAD_ON });
+
+    axios.post('/api/courses/course', courseData, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      console.log(res.data);
+
+      dispatch({ type: ACTIONS.GET_COURSE_SUCCESS, payload: res.data });
+
+      dispatch({ type: ACTIONS.COURSE_LOAD_OFF });
+
+    }).catch(err => {
+      console.error(err);
+      dispatch({ type: ACTIONS.GET_COURSE_ERR });
+      dispatch({ type: ACTIONS.COURSE_LOAD_OFF });
+    });
+  }
+}

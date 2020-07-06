@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Row, Col, Text, Button, Link, Card, Tooltip } from '@zeit-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 // import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { getCoursesData } from '../../../reduxStore/actions/dataActions';
@@ -7,21 +8,21 @@ import { getCoursesData } from '../../../reduxStore/actions/dataActions';
 class Physics extends Component {
 
   componentDidMount() {
-    if(!this.props.courseData) {
+    if(!this.props.coursesData) {
       this.props.getCoursesData({subject: 'Physics'});
     }
   }
 
   render() {
-    const {courseData, courseLoading, windowSize} = this.props;
-    // console.log(courseData);
+    const {coursesData, courseLoading, windowSize} = this.props;
+    // console.log(coursesData);
 
     let physicsCourses;
-    if(courseData) {
-      if(courseData.physics) {
+    if(coursesData) {
+      if(coursesData.physics) {
         if(windowSize === 'sm' || windowSize === 'xs') {
 
-          physicsCourses = courseData.physics.map(course => {
+          physicsCourses = coursesData.physics.map(course => {
             return (
               <Row justify="center" align="middle" style={{ margin: '15px 5px', padding: '0' }} key={course.course_id}>
                 <Card width="100%" style={{maxWidth: '530px'}}>
@@ -39,14 +40,21 @@ class Physics extends Component {
                       </Text>
                     </Tooltip>
                   </Row>
-                  <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {course.class}</Text>
+                  <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
+                    <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {course.class}</Text>
+                    <RouterLink to={'/courses/' + course.course_id}>
+                      <Link>
+                        <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >View Course</Button>
+                      </Link>
+                    </RouterLink>
+                  </Row>
                 </Card>
               </Row>
             )
           });
         } else {
 
-          physicsCourses = courseData.physics.map(course => {
+          physicsCourses = coursesData.physics.map(course => {
             return (
               <Col span={this.props.windowSize === 'md' ? 8 : 7} align="space-between" style={{ margin: '5px', padding: '0' }} key={course.course_id}>
                 <Card width="100%" >
@@ -64,7 +72,14 @@ class Physics extends Component {
                       </Text>
                     </Tooltip>
                   </Row>
-                  <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {course.class}</Text>
+                  <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
+                    <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {course.class}</Text>
+                    <RouterLink to={'/courses/' + course.course_id}>
+                      <Link>
+                        <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >View Course</Button>
+                      </Link>
+                    </RouterLink>
+                  </Row>
                 </Card>
               </Col>
             )
@@ -105,7 +120,7 @@ class Physics extends Component {
 const mapStateToProps = (state) => {
   // console.log(state);
   return {
-    courseData: state.course.courseData,
+    coursesData: state.course.coursesData,
     courseLoading: state.course.courseLoading
   }
 }
