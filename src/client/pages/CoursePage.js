@@ -25,19 +25,42 @@ class Courses extends Component {
 
         mainTab = (
           <Fragment>
+            <Row align="middle" style={{ minHeight: '60px', padding: '50px 30px 10px' }}>
+              <Breadcrumbs>
+                <RouterLink to="/courses">
+                  <Breadcrumbs.Item nextLink>Courses</Breadcrumbs.Item>
+                </RouterLink>
+                <Breadcrumbs.Item>{courseData.subject}</Breadcrumbs.Item>
+              </Breadcrumbs>
+            </Row>
             <Row justify="center" style={{ minHeight: '850px' }}>
-              <Col span={24}>
-                <Tabs initialValue="1" className='courseTabs' style={{margin: '50px 10px 40px'}}>
-                  <Tabs.Item label="Lectures" value="1">
-                    Lectures dekho
-                  </Tabs.Item>
-                  <Tabs.Item label="Quizes" value="2">
-                    Quiz dedo
-                  </Tabs.Item>
-                  <Tabs.Item label="Tests" value="3">
-                    Test karlo
-                  </Tabs.Item>
-                </Tabs>
+              <Col span={22}>
+                <Row justify="center" align="middle" style={{ height: '100%', maxHeight: '375px' }}>
+                  <img width='100%' height='100%' style={{maxWidth: '670px', padding: '30px 0', objectFit: 'cover'}} src={courseData.thumbnail} />
+                </Row>
+                <Row justify="center" align="middle" style={{ }}>
+                  <Col style={{margin: '10px 0 10px 20px'}}>
+                    <Text h3 style={{ fontSize: '35px', lineHeight: '45px'}}>{courseData.title}</Text>
+                    <Text style={{ fontSize: '25px', lineHeight: '30px', margin: '10px 0'}}>{courseData.description}</Text>
+                    <Text style={{ color: '#333', fontSize: '20px', margin: '10px 0'}}>Taught by: {courseData.username}</Text>
+                    <Text style={{ fontSize: '20px', margin: '10px 0 20px'}}>Class: {courseData.class}</Text>
+                  </Col>
+                </Row>
+                <Row justify="center" style={{ minHeight: '200px' }}>
+                  <Col span={24}>
+                    <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
+                      <Tabs.Item label="Lectures" value="1">
+                        Lecture
+                      </Tabs.Item>
+                      <Tabs.Item label="Quizes" value="2">
+                        Quiz
+                      </Tabs.Item>
+                      <Tabs.Item label="Tests" value="3">
+                        Test
+                      </Tabs.Item>
+                    </Tabs>
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Fragment>
@@ -75,13 +98,13 @@ class Courses extends Component {
               <Col span={this.props.windowSize === "md" ? 22 : 20}>
                 <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
                   <Tabs.Item label="Lectures" value="1">
-                    Lectures dekho
+                    Lectures
                   </Tabs.Item>
                   <Tabs.Item label="Quizes" value="2">
-                    Quiz dedo
+                    Quiz
                   </Tabs.Item>
                   <Tabs.Item label="Tests" value="3">
-                    Test karlo
+                    Test
                   </Tabs.Item>
                 </Tabs>
               </Col>
