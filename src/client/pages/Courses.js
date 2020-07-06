@@ -21,11 +21,19 @@ class Courses extends Component {
     if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
       mainTab = (
         <Fragment>
-          <Row justify="center" align="middle" style={{ minHeight: '850px' }}>
+          <Row justify="center" style={{ minHeight: '850px' }}>
             <Col span={24}>
-              <Row justify="center" align="middle" style={{ height: '100%', margin: '40px 10px 0px' }}>
-                <Text h1 type='success'>Under Construction</Text>
-              </Row>
+              <Tabs initialValue="1" className='courseTabs' style={{margin: '50px 10px 40px'}}>
+                <Tabs.Item label="Physics" value="1">
+                  <Physics windowSize={this.props.windowSize} />
+                </Tabs.Item>
+                <Tabs.Item label="Chemistry" value="2">
+                  <Chemistry windowSize={this.props.windowSize} />
+                </Tabs.Item>
+                <Tabs.Item label="Maths" value="3">
+                  <Maths windowSize={this.props.windowSize} />
+                </Tabs.Item>
+              </Tabs>
             </Col>
           </Row>
         </Fragment>
@@ -46,9 +54,6 @@ class Courses extends Component {
                   <Maths windowSize={this.props.windowSize} />
                 </Tabs.Item>
               </Tabs>
-              {/*<Row justify="center" align="middle" style={{ height: '100%', margin: '40px 10px 40px' }}>
-
-              </Row>*/}
             </Col>
           </Row>
         </Fragment>

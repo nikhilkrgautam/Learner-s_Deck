@@ -37,7 +37,7 @@ export const getCoursesData = (subData) => {
         "Content-Type": "application/json"
       }
     }).then(res => {
-
+      console.log(res.data);
       if(subData.subject === 'Physics') {
         dispatch({ type: ACTIONS.GET_COURSE_PHYSICS_SUCCESS, payload: res.data });
       }

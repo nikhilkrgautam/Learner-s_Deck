@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import LoginForm from './components/forms/LoginForm';
+import LoginForm from '../components/forms/LoginForm';
 import { connect } from 'react-redux';
-import { logInUser } from '../reduxStore/actions/authActions';
+import { logInUser } from '../../reduxStore/actions/authActions';
 import { Note, Text } from '@zeit-ui/react';
 import LightSpeed from 'react-reveal/LightSpeed';
 

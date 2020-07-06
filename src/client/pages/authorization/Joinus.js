@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import JoinusForm from './components/forms/JoinusForm';
+import JoinusForm from '../components/forms/JoinusForm';
 import { connect } from 'react-redux';
-import { joinUser } from '../reduxStore/actions/joinActions';
+import { joinUser } from '../../reduxStore/actions/joinActions';
 import { Note, Text } from '@zeit-ui/react';
 import LightSpeed from 'react-reveal/LightSpeed';
 

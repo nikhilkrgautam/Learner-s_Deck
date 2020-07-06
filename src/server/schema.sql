@@ -84,20 +84,20 @@ CREATE TABLE videos (
 
 INSERT INTO teachers (username, email, password)
 VALUES (
-  'M. S. Chauhan',
-  'mschauhan@gmail.com',
-  'chemislife123'
+  'Vikas Gupta',
+  'vkgupta@gmail.com',
+  'mathsislife123'
 );
 
 INSERT INTO courses (teacher_id, title, description, subject, class, time_created, thumbnail)
 VALUES (
-  'b41ef7b0-26bd-498d-a19b-2da06cf228a3',
-  'Advanced Organic Chemistry Concepts',
-  'Let us discuss some advanced concepts in organic chemistry.',
-  'Chemistry',
+  'fc904cb2-382f-494f-97db-615877beb327',
+  'Vector Calculus',
+  'In this course, you will learn about the concepts of Vector Calculus.',
+  'Maths',
   12,
-  '2016-06-26 15:53:25-07',
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/chem1.webp'
+  '2016-06-20 21:45:25-07',
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/maths1.webp'
 );
 
 INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, time_created)

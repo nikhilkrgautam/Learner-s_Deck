@@ -37,6 +37,7 @@ class Navbar extends Component {
               <Menu right width={ 275 } isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
                 <Link onClick={() => this.closeMenu()} id="dashboard" style={{color: '#FFF'}} className="menu-item" to="/">Dashboard</Link>
                 <Link onClick={() => this.closeMenu()} id="login" style={{color: '#FFF'}} className="menu-item" to="/profile">Profile</Link>
+                <Link onClick={() => this.closeMenu()} id="courses" style={{color: '#FFF'}} className="menu-item" to="/courses">Courses</Link>
               </Menu>
             ) : (
               <Menu right width={ 275 } isOpen={this.state.menuOpen} onStateChange={(state) => this.handleStateChange(state)}>
