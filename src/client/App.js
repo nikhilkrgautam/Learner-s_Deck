@@ -12,7 +12,7 @@ const Joinus = lazy(() => import('./pages/authorization/Joinus' /* webpackChunkN
 const Contact = lazy(() => import('./pages/infoPages/Contact' /* webpackChunkName: "contact" */));
 const Courses = lazy(() => import('./pages/Courses' /* webpackChunkName: "courses" */));
 const CoursePage = lazy(() => import('./pages/CoursePage' /* webpackChunkName: "coursepage" */));
-// const Video = lazy(() => import('./pages/Video' /* webpackChunkName: "video" */));
+const VideoPage = lazy(() => import('./pages/VideoPage' /* webpackChunkName: "videopage" */));
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
 import history from './utils/history';
@@ -107,6 +107,10 @@ class App extends Component {
                   render={(props) => isAuthenticated ? <Courses windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
+                  path='/videos/:video_id'
+                  render={(props) => isAuthenticated ? <VideoPage windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                />
+                <Route
                   path='/joinus'
                   exact={true}
                   render={(props) => !isAuthenticated ? <Joinus windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
@@ -116,11 +120,6 @@ class App extends Component {
                   exact={true}
                   render={(props) => <Contact windowSize={this.state.windowSize} {...props} />}
                 />
-                {/*<Route
-                  path='/video'
-                  exact={true}
-                  render={(props) => isAuthenticated ? <Video windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
-                />*/}
               </Switch>
             </Suspense>
           )

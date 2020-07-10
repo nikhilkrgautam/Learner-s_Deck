@@ -46,4 +46,53 @@ router.post('/course', authorization, async (req, res) => {
   }
 });
 
+router.post('/videos', authorization, async (req, res) => {
+  try {
+    const { course_id } = req.body;
+
+    const course = await pool.query(
+      `SELECT c.course_id, v.teacher_id, v.video_id, v.title, v.video_link, v.description, v.subject, v.class, v.length, v.views, v.thumbnail, v.time_created
+      FROM courses AS c
+      LEFT JOIN videos as v ON c.course_id = v.course_id
+      WHERE c.course_id = $1`,
+      [course_id]
+    );
+
+    if(course.rows.length === 0) {
+      return res.status(401).json("No lectures in this course!");
+    }
+
+   res.json(course.rows);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+});
+
+router.post('/video', authorization, async (req, res) => {
+  try {
+    const { video_id } = req.body;
+
+    const video = await pool.query(
+      `SELECT t.username, c.course_id, v.teacher_id, v.video_id, v.title, v.video_link, v.description, v.subject, v.class, v.length, v.views, v.time_created
+      FROM teachers AS t
+      LEFT JOIN courses AS c ON c.teacher_id = t.user_id
+      LEFT JOIN videos AS v ON c.course_id = v.course_id
+      WHERE v.video_id = $1`,
+      [video_id]
+    );
+
+    if(video.rows.length === 0) {
+      return res.status(401).json("Video does not exist!");
+    }
+
+   res.json(video.rows[0]);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+});
+
 module.exports = router;

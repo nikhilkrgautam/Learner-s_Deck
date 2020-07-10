@@ -1,0 +1,80 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ReactPlayer from 'react-player';
+import { Row, Col, Text, Button, Link, Card, Tooltip } from '@zeit-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+import { getVideoData } from '../reduxStore/actions/dataActions';
+
+class VideoPage extends Component {
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+    const video_id = this.props.match.params.video_id;
+    this.props.getVideoData({video_id: video_id});
+  }
+
+  render() {
+    const {videoData, videosLoading, windowSize} = this.props;
+
+    let video;
+    if(videoData) {
+      video = (
+        <div>
+          <Text h1>{videoData.title}</Text>
+          <Text h3>{videoData.description}</Text>
+          <div className='player-wrapper' style={{width: '700px', margin: '40px 10px'}}>
+            <ReactPlayer
+              url={videoData.video_link}
+              className='react-player'
+              playing
+              controls
+              light='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/profile_pic.jpeg'
+              width='100%'
+              config={
+                {
+                  file: {
+                    attributes: {
+                      controlsList: 'nodownload'
+                    }
+                  }
+                }
+              }
+            />
+          </div>
+        </div>
+
+      );
+    }
+    else {
+      video = null
+    }
+
+    return (
+      <React.Fragment>
+        <Row justify="center" align="middle" style={{ margin: '15px 5px', padding: '0' }} >
+          <Col span={16}>
+            {video}
+          </Col>
+        </Row>
+      </React.Fragment>
+    )
+  }
+}
+
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    videoData: state.course.videoData,
+    videosLoading: state.course.videosLoading
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getVideoData: (videoData) => {
+      dispatch(getVideoData(videoData));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPage);

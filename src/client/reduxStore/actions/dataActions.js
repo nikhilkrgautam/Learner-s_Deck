@@ -81,3 +81,51 @@ export const getCourseData = (courseData) => {
     });
   }
 }
+
+export const getVideosData = (videosData) => {
+  return (dispatch) => {
+
+    dispatch({ type: ACTIONS.VIDEOS_LOAD_ON });
+
+    axios.post('/api/courses/videos', videosData, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      console.log(res.data);
+
+      dispatch({ type: ACTIONS.GET_VIDEOS_SUCCESS, payload: res.data });
+
+      dispatch({ type: ACTIONS.VIDEOS_LOAD_OFF });
+
+    }).catch(err => {
+      console.error(err);
+      dispatch({ type: ACTIONS.GET_VIDEOS_ERR });
+      dispatch({ type: ACTIONS.VIDEOS_LOAD_OFF });
+    });
+  }
+}
+
+export const getVideoData = (videoData) => {
+  return (dispatch) => {
+
+    dispatch({ type: ACTIONS.VIDEOS_LOAD_ON });
+
+    axios.post('/api/courses/video', videoData, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      console.log(res.data);
+
+      dispatch({ type: ACTIONS.GET_VIDEO_SUCCESS, payload: res.data });
+
+      dispatch({ type: ACTIONS.VIDEOS_LOAD_OFF });
+
+    }).catch(err => {
+      console.error(err);
+      dispatch({ type: ACTIONS.GET_VIDEOS_ERR });
+      dispatch({ type: ACTIONS.VIDEOS_LOAD_OFF });
+    });
+  }
+}

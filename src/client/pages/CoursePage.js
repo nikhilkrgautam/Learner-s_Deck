@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCourseData } from '../reduxStore/actions/dataActions';
 // import { compose } from 'redux';
+import CourseVideos from './components/courses/CourseVideos';
 
 class Courses extends Component {
 
@@ -15,6 +16,7 @@ class Courses extends Component {
 
   render() {
     const {courseData, courseLoading} = this.props;
+    const course_id = this.props.match.params.course_id;
 
     let mainTab;
     // Top tabs
@@ -50,7 +52,7 @@ class Courses extends Component {
                   <Col span={24}>
                     <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
                       <Tabs.Item label="Lectures" value="1">
-                        Lecture
+                        <CourseVideos windowSize={this.props.windowSize} courseId={course_id} />
                       </Tabs.Item>
                       <Tabs.Item label="Quizes" value="2">
                         Quiz
@@ -95,10 +97,10 @@ class Courses extends Component {
               </Col>
             </Row>
             <Row justify="center" style={{ minHeight: '400px' }}>
-              <Col span={this.props.windowSize === "md" ? 22 : 20}>
+              <Col span={this.props.windowSize === "md" ? 20 : 18}>
                 <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
                   <Tabs.Item label="Lectures" value="1">
-                    Lectures
+                    <CourseVideos courseId={course_id} />
                   </Tabs.Item>
                   <Tabs.Item label="Quizes" value="2">
                     Quiz

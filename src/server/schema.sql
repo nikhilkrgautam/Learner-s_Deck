@@ -74,6 +74,7 @@ CREATE TABLE videos (
   class SMALLINT NOT NULL,
   length INT,
   views INT,
+  thumbnail VARCHAR(2083),
   time_created TIMESTAMP,
   PRIMARY KEY (video_id),
   FOREIGN KEY (teacher_id) REFERENCES teachers(user_id),
@@ -100,17 +101,18 @@ VALUES (
   'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/maths1.webp'
 );
 
-INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, time_created)
+INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, thumbnail, time_created)
 VALUES (
   '14488caf-17d5-442b-a92b-b9b458899375',
   '2760dc7e-2f93-42f0-96b3-b6c36bd6bbf5',
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/CyberAlly.mp4',
-  'Chapter Two: Photoelectricity',
-  'In this lecture, we will look at Photoelectricity Principle.',
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/QuantumPhysics.mp4',
+  'Chapter Two: Atomic Model',
+  'In this lecture, we will look at the different models of atom.',
   'Physics',
   12,
-  4489,
-  14,
+  4234,
+  11,
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/physics2.jpg',
   '2016-06-23 15:16:25-07'
 );
 
@@ -130,3 +132,5 @@ SELECT t.username, c.course_id, c.description, c.title, v.teacher_id, v.video_id
 FROM teachers AS t
 LEFT JOIN courses AS c ON c.teacher_id = t.user_id
 LEFT JOIN videos AS v ON c.course_id = v.course_id;
+
+UPDATE videos SET video_link = 'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/video-1594362053648.mp4' WHERE video_id = 'e466bb46-c0d7-422f-a27e-676f09ae4a1a';

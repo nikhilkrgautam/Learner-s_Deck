@@ -102,7 +102,7 @@ class LandingPage extends Component {
                   <Text style={{color: '#FFF', fontSize: '50px'}}>eBuzzet</Text>
                   <img height='200px' src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/dragon.png' />
                   <Text h3 style={{color: '#FFF', fontSize: '26px', margin: '10px 5px'}}>India's very own eLearning platform</Text>
-                  <Text h3 style={{color: '#FFF', fontSize: '22px', margin: '10px 5px 40px'}}>For Classes 9 to 12</Text>
+                  <Text h3 style={{color: '#FFF', fontSize: '22px', margin: '10px 5px 40px'}}>For Classes 1 to 12</Text>
                   <RouterLink to='/signup'>
                     <Link>
                       <Button type="success" style={{fontSize: '20px', padding: '10px 5px', height: '100%', borderRadius: '15px'}} >Get Started</Button>
@@ -125,7 +125,7 @@ class LandingPage extends Component {
                 <Col align="middle">
                   <Text style={{color: '#FFF', fontSize: '60px'}}>eBuzzet</Text>
                   <Text h3 style={{color: '#FFF', fontSize: '32px', margin: '10px 5px'}}>India's very own eLearning platform</Text>
-                  <Text h3 style={{color: '#FFF', fontSize: '26px', margin: '10px 5px 40px'}}>For Classes 9 to 12</Text>
+                  <Text h3 style={{color: '#FFF', fontSize: '26px', margin: '10px 5px 40px'}}>For Classes 1 to 12</Text>
                   <RouterLink to='/signup'>
                     <Link>
                       <Button size="large" type="success" style={{fontSize: '25px', padding: '10px 5px', height: '100%', borderRadius: '15px'}} >Get Started</Button>
