@@ -103,16 +103,16 @@ VALUES (
 
 INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, thumbnail, time_created)
 VALUES (
-  '2a16b403-010f-4499-a0ff-38ba71c68add',
+  '81a355a5-3fab-45d5-8f1a-6d71c7e68db6',
   null,
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/physics-motion-straight-line.mp4',
-  'Physics: Motion in a straight line',
-  'Let us discuss about one of the basic topics of kinematics ie, motion in a straight line.',
-  'Physics',
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/chemistry-mole-concept.mp4',
+  'Chemistry: Mole Concept',
+  'In this video, we will learn about Mole concept, one of the most basic and import concepts in chemistry',
+  'Chemistry',
   11,
   4234,
   11,
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/physics3.jpg',
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/chem3.jpg',
   '2016-06-23 15:16:25-07'
 );
 
@@ -135,4 +135,4 @@ LEFT JOIN videos AS v ON c.course_id = v.course_id;
 
 UPDATE courses SET thumbnail = 'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/maths1.jpg' WHERE course_id = '767c7207-04e6-4219-a1a0-33afa68e99ba';
 
-UPDATE teachers SET email = 'sahilnare@gmail.com' WHERE user_id = '2a16b403-010f-4499-a0ff-38ba71c68add';
+UPDATE videos SET title = 'Physics: Quantum Theory' WHERE video_id = 'd636684a-c123-43e8-9efb-a7586f1857a3';
