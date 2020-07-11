@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { Row, Col, Text, Button, Image, Link } from '@zeit-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
-import HeadShake from 'react-reveal/HeadShake';
 
 class LandingPage extends Component {
 
@@ -97,7 +96,6 @@ class LandingPage extends Component {
           <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '700px' }}>
             <Col align='middle'>
               <Row justify="center" align="middle" style={{ height: '100%' }}>
-                <HeadShake>
                 <Col align="middle">
                   <Text style={{color: '#FFF', fontSize: '50px'}}>eBuzzet</Text>
                   <img height='200px' src='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/dragon.png' />
@@ -109,7 +107,6 @@ class LandingPage extends Component {
                     </Link>
                   </RouterLink>
                 </Col>
-                </HeadShake>
               </Row>
             </Col>
           </Row>
@@ -121,7 +118,6 @@ class LandingPage extends Component {
           <Row justify="center" align="middle" style={{ backgroundColor: '#7928CA', minHeight: '850px' }}>
             <Col span={8}>
               <Row justify="center" align="middle" style={{ height: '100%' }}>
-                <HeadShake>
                 <Col align="middle">
                   <Text style={{color: '#FFF', fontSize: '60px'}}>eBuzzet</Text>
                   <Text h3 style={{color: '#FFF', fontSize: '32px', margin: '10px 5px'}}>India's very own eLearning platform</Text>
@@ -132,7 +128,6 @@ class LandingPage extends Component {
                     </Link>
                   </RouterLink>
                 </Col>
-                </HeadShake>
               </Row>
             </Col>
             <Col span={10}>
@@ -146,7 +141,7 @@ class LandingPage extends Component {
     // Quote Section
     if(this.props.windowSize === 'sm' || this.props.windowSize === 'xs') {
       quoteSection = (
-        <Row justify="center" align="middle" style={{ minHeight: '500px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/studentsIndia3.webp)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <Row justify="center" align="middle" style={{ minHeight: '500px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/indianKids.jpg)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           <Col span={22}>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
               <Fade left>
@@ -160,7 +155,7 @@ class LandingPage extends Component {
       );
     } else {
       quoteSection = (
-        <Row justify="center" align="middle" style={{ minHeight: '800px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/studentsIndia3.webp)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <Row justify="center" align="middle" style={{ minHeight: '800px', background: 'url(https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/landingPage/indianKids.jpg)', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
           <Col span={12}>
             <Row justify="center" align="middle" style={{ height: '100%' }}>
               <Fade left>

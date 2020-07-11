@@ -3,7 +3,6 @@ import LoginForm from '../components/forms/LoginForm';
 import { connect } from 'react-redux';
 import { logInUser } from '../../reduxStore/actions/authActions';
 import { Note, Text } from '@zeit-ui/react';
-import LightSpeed from 'react-reveal/LightSpeed';
 
 class Login extends Component {
 
@@ -37,7 +36,6 @@ class Login extends Component {
     return (
       <React.Fragment>
          <div style={{ padding: '70px 5px' }}>
-           <LightSpeed left>
            <div style={{ margin: '10px auto', width: '80%' }}>
              {pageHeading}
              <LoginForm logInUser={this.logInUser} />
@@ -47,7 +45,6 @@ class Login extends Component {
                  ) : null
                }
            </div>
-          </LightSpeed>
          </div>
       </React.Fragment>
     );

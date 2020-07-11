@@ -129,3 +129,23 @@ export const getVideoData = (videoData) => {
     });
   }
 }
+
+export const getAllVideos = () => {
+  return (dispatch) => {
+
+    dispatch({ type: ACTIONS.VIDEOS_LOAD_ON });
+
+    axios.get('/api/courses/allVideos').then(res => {
+      console.log(res.data);
+
+      dispatch({ type: ACTIONS.GET_ALL_VIDEOS_SUCCESS, payload: res.data });
+
+      dispatch({ type: ACTIONS.VIDEOS_LOAD_OFF });
+
+    }).catch(err => {
+      console.error(err);
+      dispatch({ type: ACTIONS.GET_ALL_VIDEOS_ERR });
+      dispatch({ type: ACTIONS.VIDEOS_LOAD_OFF });
+    });
+  }
+}

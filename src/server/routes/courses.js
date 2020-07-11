@@ -95,4 +95,25 @@ router.post('/video', authorization, async (req, res) => {
   }
 });
 
+router.get('/allVideos', authorization, async (req, res) => {
+  try {
+
+    const videos = await pool.query(
+      `SELECT t.username, v.teacher_id, v.video_id, v.title, v.video_link, v.description, v.subject, v.thumbnail, v.class, v.length, v.views, v.time_created
+      FROM teachers AS t
+      INNER JOIN videos AS v ON t.user_id = v.teacher_id`
+    );
+
+    if(videos.rows.length === 0) {
+      return res.status(401).json("No videos!");
+    }
+
+   res.json(videos.rows);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+});
+
 module.exports = router;

@@ -22,13 +22,13 @@ class VideoPage extends Component {
         <div>
           <Text h1>{videoData.title}</Text>
           <Text h3>{videoData.description}</Text>
-          <div className='player-wrapper' style={{width: '700px', margin: '40px 10px'}}>
+          <div className='player-wrapper' style={{width: '100%', margin: '40px 10px'}}>
             <ReactPlayer
               url={videoData.video_link}
               className='react-player'
               playing
               controls
-              light='https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/profile_pic.jpeg'
+              light={videoData.thumbnail}
               width='100%'
               config={
                 {

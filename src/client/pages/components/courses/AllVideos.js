@@ -3,24 +3,28 @@ import { Row, Col, Text, Button, Link, Card, Tooltip } from '@zeit-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 // import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getVideosData } from '../../../reduxStore/actions/dataActions';
+import { getAllVideos } from '../../../reduxStore/actions/dataActions';
 
-class CourseVideos extends Component {
+class AllVideos extends Component {
 
   componentDidMount() {
-    this.props.getVideosData({course_id: this.props.courseId});
+    const {allVideosData} = this.props;
+    if(!allVideosData) {
+      this.props.getAllVideos();
+    }
+
   }
 
   render() {
-    const {videosData, videosLoading, windowSize} = this.props;
-    // console.log(coursesData);
+    const {allVideosData, videosLoading, windowSize} = this.props;
+    console.log(allVideosData);
 
     let videoList;
-    if(videosData) {
+    if(allVideosData) {
       if(windowSize === 'sm' || windowSize === 'xs') {
-        if(videosData[0].title) {
+        if(allVideosData[0].title) {
 
-          videoList = videosData.map(video => {
+          videoList = allVideosData.map(video => {
             return (
               <Row justify="center" align="middle" style={{ margin: '15px 5px', padding: '0' }} key={video.video_id} >
                 <Col style={{}}>
@@ -52,9 +56,9 @@ class CourseVideos extends Component {
           videoList = null;
         }
       } else {
-        if(videosData[0].title) {
+        if(allVideosData[0].title) {
 
-          videoList = videosData.map(video => {
+          videoList = allVideosData.map(video => {
             return (
                 <Row justify="center" align="middle" style={{ margin: '15px 5px', padding: '0' }} key={video.video_id}>
                   <Col style={{maxWidth: '350px'}}>
@@ -106,8 +110,25 @@ class CourseVideos extends Component {
       );
     }
 
+    let pageHeading;
+    if(windowSize === 'sm' || windowSize === 'xs') {
+      pageHeading = (
+        <Row align="middle" style={{ margin: '15px 10px 10px' }}>
+          <Text style={{fontSize: '30px', margin: '0'}}>Free videos:</Text>
+        </Row>
+      );
+    } else {
+
+      pageHeading = (
+        <Row align="middle" style={{ margin: '20px 10px' }}>
+          <Text style={{fontSize: '45px', margin: '0'}}>Free videos:</Text>
+        </Row>
+      );
+    }
+
     return (
       <Fragment>
+        { pageHeading }
         { alignment }
       </Fragment>
     )
@@ -117,17 +138,17 @@ class CourseVideos extends Component {
 const mapStateToProps = (state) => {
   // console.log(state);
   return {
-    videosData: state.course.videosData,
+    allVideosData: state.course.allVideos,
     videosLoading: state.course.videosLoading
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getVideosData: (videosData) => {
-      dispatch(getVideosData(videosData));
+    getAllVideos: () => {
+      dispatch(getAllVideos());
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CourseVideos);
+export default connect(mapStateToProps, mapDispatchToProps)(AllVideos);

@@ -85,34 +85,34 @@ CREATE TABLE videos (
 
 INSERT INTO teachers (username, email, password)
 VALUES (
-  'Vikas Gupta',
-  'vkgupta@gmail.com',
-  'mathsislife123'
+  'Meet Soni',
+  'meetsoni@gmail.com',
+  'chemislife123'
 );
 
 INSERT INTO courses (teacher_id, title, description, subject, class, time_created, thumbnail)
 VALUES (
   'fc904cb2-382f-494f-97db-615877beb327',
-  'Vector Calculus',
-  'In this course, you will learn about the concepts of Vector Calculus.',
+  'Set Theory',
+  'Introduction to the Set Thoery.',
   'Maths',
-  12,
+  11,
   '2016-06-20 21:45:25-07',
   'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/maths1.webp'
 );
 
 INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, thumbnail, time_created)
 VALUES (
-  '14488caf-17d5-442b-a92b-b9b458899375',
-  '2760dc7e-2f93-42f0-96b3-b6c36bd6bbf5',
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/QuantumPhysics.mp4',
-  'Chapter Two: Atomic Model',
-  'In this lecture, we will look at the different models of atom.',
+  '2a16b403-010f-4499-a0ff-38ba71c68add',
+  null,
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/physics-motion-straight-line.mp4',
+  'Physics: Motion in a straight line',
+  'Let us discuss about one of the basic topics of kinematics ie, motion in a straight line.',
   'Physics',
-  12,
+  11,
   4234,
   11,
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/physics2.jpg',
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/physics3.jpg',
   '2016-06-23 15:16:25-07'
 );
 
@@ -133,4 +133,6 @@ FROM teachers AS t
 LEFT JOIN courses AS c ON c.teacher_id = t.user_id
 LEFT JOIN videos AS v ON c.course_id = v.course_id;
 
-UPDATE videos SET video_link = 'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/video-1594362053648.mp4' WHERE video_id = 'e466bb46-c0d7-422f-a27e-676f09ae4a1a';
+UPDATE courses SET thumbnail = 'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/maths1.jpg' WHERE course_id = '767c7207-04e6-4219-a1a0-33afa68e99ba';
+
+UPDATE teachers SET email = 'sahilnare@gmail.com' WHERE user_id = '2a16b403-010f-4499-a0ff-38ba71c68add';

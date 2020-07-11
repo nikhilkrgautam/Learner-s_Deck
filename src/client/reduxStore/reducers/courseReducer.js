@@ -7,7 +7,8 @@ const initState = {
   courseData: null,
   videosData: null,
   videosLoading: false,
-  videoData: null
+  videoData: null,
+  allVideos: null
 }
 
 const courseReducer = (state = initState, action) => {
@@ -69,6 +70,14 @@ const courseReducer = (state = initState, action) => {
     }
   }
 
+  else if(action.type === ACTIONS.GET_ALL_VIDEOS_SUCCESS) {
+    console.log('All videos received!');
+    return {
+      ...state,
+      allVideos: action.payload
+    }
+  }
+
   else if(action.type === ACTIONS.GET_COURSE_ERR) {
     console.log('Getting courses failed!');
     return {
@@ -78,6 +87,13 @@ const courseReducer = (state = initState, action) => {
 
   else if(action.type === ACTIONS.GET_VIDEOS_ERR) {
     console.log('Getting videos failed!');
+    return {
+      ...state
+    }
+  }
+
+  else if(action.type === ACTIONS.GET_ALL_VIDEOS_ERR) {
+    console.log('Getting all videos failed!');
     return {
       ...state
     }

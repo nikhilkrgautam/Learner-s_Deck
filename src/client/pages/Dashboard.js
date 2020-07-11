@@ -4,6 +4,7 @@ import { getUserData } from '../reduxStore/actions/dataActions';
 import { toastHOC } from '../hoc/toast';
 import { compose } from 'redux';
 import { Collapse, Text } from '@zeit-ui/react';
+import AllVideos from './components/courses/AllVideos';
 
 class Dashboard extends Component {
 
@@ -19,27 +20,43 @@ class Dashboard extends Component {
   }
 
   render() {
+    const {windowSize} = this.props;
+    let pageWidth;
+    if(windowSize === 'sm' || windowSize === 'xs') {
+      pageWidth = '100%';
+    } else {
+      pageWidth = '80%';
+    }
+
+    let nameUser;
+    if(this.props.userData) {
+      if(windowSize === 'sm' || windowSize === 'xs') {
+        nameUser = (<Text h2 style={{fontSize: '30px'}}>Welcome {this.props.userData.username}</Text>);
+      } else {
+        nameUser = (<h2>Welcome {this.props.userData.username}</h2>);
+      }
+    } else {
+      nameUser = null;
+    }
+
+
     return (
       <div style={{ padding: '60px 5px' }}>
-        <div style={{ margin: '10px auto', width: '80%' }}>
-          <h1>Home</h1>
+        <div style={{ margin: '10px auto', width: pageWidth }}>
           {
-            this.props.userData ? (
-              <h2>Welcome {this.props.userData.username}</h2>
-            ) : null
+             nameUser
           }
           <Collapse.Group>
             <Collapse title="What is eBuzzet?">
-              <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+              <Text>eBuzzet is an online education platform that promises to provide high quality education to the students of India at an affordable cost.</Text>
             </Collapse>
             <Collapse title="How to use eBuzzet?">
-              <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+              <Text>You can access all the videos below. Or if you want to see all the structured courses you can click on the 'Courses' tab on the navbar.<br/>
+              You can also edit your profile to get better recommendations in the profile section which you can visit by clicking on the 'Profile' tab in the navbar.
+              </Text>
             </Collapse>
           </Collapse.Group>
+          <AllVideos windowSize={this.props.windowSize} />
         </div>
       </div>
     );
