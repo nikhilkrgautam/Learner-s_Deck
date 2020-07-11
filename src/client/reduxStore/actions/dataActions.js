@@ -14,7 +14,7 @@ export const getUserData = () => {
     dispatch({ type: ACTIONS.LOADING_ON });
 
     axios.get('/api/dash/').then(res => {
-      console.log(res.data);
+      // console.log(res.data);
 
       dispatch({ type: ACTIONS.GET_DATA_SUCCESS, payload: res.data });
       dispatch({ type: ACTIONS.LOADING_OFF });
@@ -37,7 +37,7 @@ export const getCoursesData = (subData) => {
         "Content-Type": "application/json"
       }
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       if(subData.subject === 'Physics') {
         dispatch({ type: ACTIONS.GET_COURSE_PHYSICS_SUCCESS, payload: res.data });
       }
@@ -68,7 +68,7 @@ export const getCourseData = (courseData) => {
         "Content-Type": "application/json"
       }
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
 
       dispatch({ type: ACTIONS.GET_COURSE_SUCCESS, payload: res.data });
 
@@ -92,7 +92,7 @@ export const getVideosData = (videosData) => {
         "Content-Type": "application/json"
       }
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
 
       dispatch({ type: ACTIONS.GET_VIDEOS_SUCCESS, payload: res.data });
 
@@ -116,7 +116,7 @@ export const getVideoData = (videoData) => {
         "Content-Type": "application/json"
       }
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
 
       dispatch({ type: ACTIONS.GET_VIDEO_SUCCESS, payload: res.data });
 

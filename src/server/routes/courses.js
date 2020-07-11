@@ -75,7 +75,7 @@ router.post('/video', authorization, async (req, res) => {
     const { video_id } = req.body;
 
     const video = await pool.query(
-      `SELECT t.username, v.teacher_id, v.video_id, v.title, v.video_link, v.description, v.subject, v.class, v.length, v.views, v.time_created
+      `SELECT t.username, v.teacher_id, v.video_id, v.title, v.video_link, v.description, v.subject, v.thumbnail, v.class, v.length, v.views, v.time_created
       FROM teachers AS t
       INNER JOIN videos AS v ON t.user_id = v.teacher_id
       WHERE v.video_id = $1`,
