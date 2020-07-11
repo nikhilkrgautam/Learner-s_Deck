@@ -103,16 +103,16 @@ VALUES (
 
 INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, thumbnail, time_created)
 VALUES (
-  '81a355a5-3fab-45d5-8f1a-6d71c7e68db6',
-  null,
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/chemistry-mole-concept.mp4',
-  'Chemistry: Mole Concept',
-  'In this video, we will learn about Mole concept, one of the most basic and import concepts in chemistry',
-  'Chemistry',
+  '2a16b403-010f-4499-a0ff-38ba71c68add',
+  'fc033c6e-ed5b-400f-96c5-119fd9cdad70',
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/QuantumPhysics.mp4',
+  'Physics: Quantum Theory Part 2',
+  'In this video, we will learn about more concepts from quantum theory',
+  'Physics',
   11,
   4234,
-  11,
-  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/chem3.jpg',
+  12,
+  'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videoThumbnails/physics3.jpg',
   '2016-06-23 15:16:25-07'
 );
 

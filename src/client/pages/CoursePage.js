@@ -48,9 +48,9 @@ class Courses extends Component {
                     <Text style={{ fontSize: '20px', margin: '10px 0 20px'}}>Class: {courseData.class}</Text>
                   </Col>
                 </Row>
-                <Row justify="center" style={{ minHeight: '200px' }}>
+                <Row justify="center" style={{ minHeight: '200px', padding: '10px 5px 80px' }}>
                   <Col span={24}>
-                    <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
+                    <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 30px'}}>
                       <Tabs.Item label="Lectures" value="1">
                         <CourseVideos windowSize={this.props.windowSize} courseId={course_id} />
                       </Tabs.Item>
@@ -96,7 +96,7 @@ class Courses extends Component {
                 </Row>
               </Col>
             </Row>
-            <Row justify="center" style={{ minHeight: '400px' }}>
+            <Row justify="center" style={{ minHeight: '400px', padding: '20px 5px 60px' }}>
               <Col span={this.props.windowSize === "md" ? 20 : 18}>
                 <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
                   <Tabs.Item label="Lectures" value="1">
