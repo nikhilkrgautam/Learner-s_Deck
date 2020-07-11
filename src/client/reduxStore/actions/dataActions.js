@@ -149,3 +149,10 @@ export const getAllVideos = () => {
     });
   }
 }
+
+export const clearVideo = () => {
+  return (dispatch) => {
+
+    dispatch({ type: ACTIONS.CLEAR_VIDEO });
+  }
+}

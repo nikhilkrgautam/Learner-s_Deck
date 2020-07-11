@@ -78,6 +78,14 @@ const courseReducer = (state = initState, action) => {
     }
   }
 
+  else if(action.type === ACTIONS.CLEAR_VIDEO) {
+    console.log('Getting all videos failed!');
+    return {
+      ...state,
+      videoData: null
+    }
+  }
+
   else if(action.type === ACTIONS.GET_COURSE_ERR) {
     console.log('Getting courses failed!');
     return {

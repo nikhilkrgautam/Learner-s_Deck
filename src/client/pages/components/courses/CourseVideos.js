@@ -31,7 +31,7 @@ class CourseVideos extends Component {
                     <Col style={{maxWidth: '450px'}}>
                       <Text h3 style={{fontSize: '20px', margin: '10px 0 0'}}>{video.title}</Text>
                       <Row align="middle">
-                        <Tooltip text={video.description} type="success">
+                        <Tooltip text={video.description} trigger="click" type="success">
                           <Text type="success" style={{fontSize: '16px', margin: '4px 0 0', lineHeight: '20px'}}>
                             {video.description.slice(0,50) + '...'}
                           </Text>

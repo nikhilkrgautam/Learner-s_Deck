@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 import { Row, Col, Text, Button, Link, Card, Tooltip } from '@zeit-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { getVideoData } from '../reduxStore/actions/dataActions';
+import { getVideoData, clearVideo } from '../reduxStore/actions/dataActions';
 
 class VideoPage extends Component {
 
@@ -12,6 +12,10 @@ class VideoPage extends Component {
     const video_id = this.props.match.params.video_id;
     this.props.getVideoData({video_id: video_id});
   }
+
+  componentWillUnmount = () => {
+    this.props.clearVideo();
+  };
 
   render() {
     const {videoData, videosLoading, windowSize} = this.props;
@@ -73,6 +77,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getVideoData: (videoData) => {
       dispatch(getVideoData(videoData));
+    },
+    clearVideo: () => {
+      dispatch(clearVideo());
     }
   }
 }
