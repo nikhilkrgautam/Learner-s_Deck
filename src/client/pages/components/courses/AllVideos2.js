@@ -32,11 +32,11 @@ class AllVideos2 extends Component {
             if(video.subject === 'Physics') {
               return (
                 <Row justify="center" align="middle" style={{ margin: '15px 5px', padding: '0' }} key={video.video_id} >
-                  <Card width="100%" style={{maxWidth: '530px'}}>
-                    <img width='100%' height='250px' style={{ objectFit: 'cover', display: 'block'}} src={video.thumbnail}/>
+                  <Card width="100%" style={{maxWidth: '480px'}}>
+                    <img width='100%' height='180px' style={{ objectFit: 'cover', display: 'block'}} src={video.thumbnail}/>
                     <Row align="middle" >
                       <Tooltip text={video.title} trigger="click" type="success">
-                        <Text style={{fontSize: '20px', margin: '10px 0', lineHeight: '25px'}}>{video.title.slice(0,24) + '...'}</Text>
+                        <Text style={{fontSize: '20px', margin: '6px 0', lineHeight: '25px'}}>{video.title.slice(0,24) + '...'}</Text>
                       </Tooltip>
                     </Row>
                     <Row align="middle" >
@@ -46,9 +46,9 @@ class AllVideos2 extends Component {
                         </Text>
                       </Tooltip>
                     </Row>
-                    <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
+                    <Row align="middle" justify="space-between" style={{margin: '6px 0 0'}}>
                       <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                      <RouterLink to={'/courses/' + video.course_id}>
+                      <RouterLink to={'/courses/' + video.video_id}>
                         <Link>
                           <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                         </Link>
@@ -67,11 +67,11 @@ class AllVideos2 extends Component {
             if(video.subject === 'Chemistry') {
               return (
                 <Row justify="center" align="middle" style={{ margin: '15px 5px', padding: '0' }} key={video.video_id} >
-                  <Card width="100%" style={{maxWidth: '530px'}}>
-                    <img width='100%' height='250px' style={{ objectFit: 'cover', display: 'block'}} src={video.thumbnail}/>
+                  <Card width="100%" style={{maxWidth: '480px'}}>
+                    <img width='100%' height='180px' style={{ objectFit: 'cover', display: 'block'}} src={video.thumbnail}/>
                     <Row align="middle" >
                       <Tooltip text={video.title} trigger="click" type="success">
-                        <Text style={{fontSize: '20px', margin: '10px 0', lineHeight: '25px'}}>{video.title.slice(0,24) + '...'}</Text>
+                        <Text style={{fontSize: '20px', margin: '6px 0', lineHeight: '25px'}}>{video.title.slice(0,24) + '...'}</Text>
                       </Tooltip>
                     </Row>
                     <Row align="middle" >
@@ -81,9 +81,9 @@ class AllVideos2 extends Component {
                         </Text>
                       </Tooltip>
                     </Row>
-                    <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
+                    <Row align="middle" justify="space-between" style={{margin: '6px 0 0'}}>
                       <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                      <RouterLink to={'/courses/' + video.course_id}>
+                      <RouterLink to={'/courses/' + video.video_id}>
                         <Link>
                           <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                         </Link>
@@ -102,11 +102,11 @@ class AllVideos2 extends Component {
             if(video.subject === 'Maths') {
               return (
                 <Row justify="center" align="middle" style={{ margin: '15px 5px', padding: '0' }} key={video.video_id} >
-                  <Card width="100%" style={{maxWidth: '530px'}}>
-                    <img width='100%' height='250px' style={{ objectFit: 'cover', display: 'block'}} src={video.thumbnail}/>
+                  <Card width="100%" style={{maxWidth: '480px'}}>
+                    <img width='100%' height='180px' style={{ objectFit: 'cover', display: 'block'}} src={video.thumbnail}/>
                     <Row align="middle" >
                       <Tooltip text={video.title} trigger="click" type="success">
-                        <Text style={{fontSize: '20px', margin: '10px 0', lineHeight: '25px'}}>{video.title.slice(0,24) + '...'}</Text>
+                        <Text style={{fontSize: '20px', margin: '6px 0', lineHeight: '25px'}}>{video.title.slice(0,24) + '...'}</Text>
                       </Tooltip>
                     </Row>
                     <Row align="middle" >
@@ -116,9 +116,9 @@ class AllVideos2 extends Component {
                         </Text>
                       </Tooltip>
                     </Row>
-                    <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
+                    <Row align="middle" justify="space-between" style={{margin: '6px 0 0'}}>
                       <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                      <RouterLink to={'/courses/' + video.course_id}>
+                      <RouterLink to={'/courses/' + video.video_id}>
                         <Link>
                           <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                         </Link>
@@ -162,7 +162,7 @@ class AllVideos2 extends Component {
                       </Row>
                       <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
                         <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                        <RouterLink to={'/courses/' + video.course_id}>
+                        <RouterLink to={'/courses/' + video.video_id}>
                           <Link>
                             <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                           </Link>
@@ -197,7 +197,7 @@ class AllVideos2 extends Component {
                       </Row>
                       <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
                         <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                        <RouterLink to={'/courses/' + video.course_id}>
+                        <RouterLink to={'/courses/' + video.video_id}>
                           <Link>
                             <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                           </Link>
@@ -232,7 +232,7 @@ class AllVideos2 extends Component {
                       </Row>
                       <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
                         <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                        <RouterLink to={'/courses/' + video.course_id}>
+                        <RouterLink to={'/courses/' + video.video_id}>
                           <Link>
                             <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                           </Link>
