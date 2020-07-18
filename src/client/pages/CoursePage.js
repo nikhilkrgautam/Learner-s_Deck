@@ -35,7 +35,7 @@ class Courses extends Component {
                 <Breadcrumbs.Item>{courseData.subject}</Breadcrumbs.Item>
               </Breadcrumbs>
             </Row>
-            <Row justify="center" style={{ minHeight: '850px' }}>
+            <Row justify="center" style={{ minHeight: '1700px' }}>
               <Col span={22}>
                 <Row justify="center" align="middle" style={{ height: '100%', maxHeight: '375px' }}>
                   <img width='100%' height='100%' style={{maxWidth: '670px', padding: '30px 0', objectFit: 'cover'}} src={courseData.thumbnail} />

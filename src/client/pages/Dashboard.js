@@ -4,7 +4,7 @@ import { getUserData } from '../reduxStore/actions/dataActions';
 import { toastHOC } from '../hoc/toast';
 import { compose } from 'redux';
 import { Collapse, Text } from '@zeit-ui/react';
-import AllVideos from './components/courses/AllVideos';
+import AllVideos from './components/courses/AllVideos2';
 
 class Dashboard extends Component {
 
@@ -41,12 +41,12 @@ class Dashboard extends Component {
 
 
     return (
-      <div style={{ padding: '60px 5px' }}>
+      <div style={{ padding: '40px 5px 60px' }}>
         <div style={{ margin: '10px auto', width: pageWidth }}>
           {
              nameUser
           }
-          <Collapse.Group>
+          {/*<Collapse.Group>
             <Collapse title="What is eBuzzet?">
               <Text>eBuzzet is an online education platform that promises to provide high quality education to the students of India at an affordable cost.</Text>
             </Collapse>
@@ -55,7 +55,7 @@ class Dashboard extends Component {
               You can also edit your profile to get better recommendations in the profile section which you can visit by clicking on the 'Profile' tab in the navbar.
               </Text>
             </Collapse>
-          </Collapse.Group>
+          </Collapse.Group>*/}
           <AllVideos windowSize={this.props.windowSize} />
         </div>
       </div>

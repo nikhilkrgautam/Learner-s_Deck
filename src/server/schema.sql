@@ -103,8 +103,8 @@ VALUES (
 
 INSERT INTO videos (teacher_id, course_id, video_link, title, description, subject, class, length, views, thumbnail, time_created)
 VALUES (
-  '2a16b403-010f-4499-a0ff-38ba71c68add',
-  'fc033c6e-ed5b-400f-96c5-119fd9cdad70',
+  '14488caf-17d5-442b-a92b-b9b458899375',
+  null,
   'https://learners-deck-21-1143.sgp1.cdn.digitaloceanspaces.com/videos/QuantumPhysics.mp4',
   'Physics: Quantum Theory Part 2',
   'In this video, we will learn about more concepts from quantum theory',
