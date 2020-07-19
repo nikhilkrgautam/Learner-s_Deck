@@ -48,7 +48,7 @@ class AllVideos2 extends Component {
                     </Row>
                     <Row align="middle" justify="space-between" style={{margin: '6px 0 0'}}>
                       <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                      <RouterLink to={'/courses/' + video.video_id}>
+                      <RouterLink to={'/videos/' + video.video_id}>
                         <Link>
                           <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                         </Link>
@@ -83,7 +83,7 @@ class AllVideos2 extends Component {
                     </Row>
                     <Row align="middle" justify="space-between" style={{margin: '6px 0 0'}}>
                       <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                      <RouterLink to={'/courses/' + video.video_id}>
+                      <RouterLink to={'/videos/' + video.video_id}>
                         <Link>
                           <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                         </Link>
@@ -118,7 +118,7 @@ class AllVideos2 extends Component {
                     </Row>
                     <Row align="middle" justify="space-between" style={{margin: '6px 0 0'}}>
                       <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                      <RouterLink to={'/courses/' + video.video_id}>
+                      <RouterLink to={'/videos/' + video.video_id}>
                         <Link>
                           <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                         </Link>
@@ -162,7 +162,7 @@ class AllVideos2 extends Component {
                       </Row>
                       <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
                         <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                        <RouterLink to={'/courses/' + video.video_id}>
+                        <RouterLink to={'/videos/' + video.video_id}>
                           <Link>
                             <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                           </Link>
@@ -197,7 +197,7 @@ class AllVideos2 extends Component {
                       </Row>
                       <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
                         <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                        <RouterLink to={'/courses/' + video.video_id}>
+                        <RouterLink to={'/videos/' + video.video_id}>
                           <Link>
                             <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                           </Link>
@@ -232,7 +232,7 @@ class AllVideos2 extends Component {
                       </Row>
                       <Row align="middle" justify="space-between" style={{margin: '10px 0 0'}}>
                         <Text style={{fontSize: '18px', marginTop: '8px', lineHeight: '20px', color: '#7928CA'}}>Class: {video.class}</Text>
-                        <RouterLink to={'/courses/' + video.video_id}>
+                        <RouterLink to={'/videos/' + video.video_id}>
                           <Link>
                             <Button size="small" type="success" style={{fontSize: '18px', padding: '2px 5px', height: '100%', borderRadius: '10px'}} >Watch</Button>
                           </Link>

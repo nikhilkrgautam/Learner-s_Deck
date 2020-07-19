@@ -16,6 +16,15 @@ const VideoPage = lazy(() => import('./pages/VideoPage' /* webpackChunkName: "vi
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
 import history from './utils/history';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-173039520-2');
+
+history.listen((location) => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname)
+  }
+);
 
 
 class App extends Component {
@@ -80,7 +89,7 @@ class App extends Component {
                 <Route
                   path='/dashboard'
                   exact={true}
-                  render={(props) => isAuthenticated ? <Dashboard firstLocation={location} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <Dashboard firstLocation={location} ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/login'
