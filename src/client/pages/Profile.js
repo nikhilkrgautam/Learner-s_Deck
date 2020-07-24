@@ -20,7 +20,9 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.resetNotes();
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+    this.props.ReactGA.set({ page: location.pathname });
+    this.props.ReactGA.pageview(this.props.history.location.pathname);
   }
 
   // componentDidUpdate(prevProps) {

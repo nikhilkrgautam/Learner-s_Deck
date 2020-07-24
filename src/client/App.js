@@ -18,13 +18,6 @@ import { isLoggedIn } from './reduxStore/actions/authActions';
 import history from './utils/history';
 import ReactGA from 'react-ga';
 
-ReactGA.initialize('UA-173039520-2');
-
-history.listen((location) => {
-    ReactGA.set({ page: location.pathname });
-    ReactGA.pageview(location.pathname)
-  }
-);
 
 
 class App extends Component {
@@ -41,6 +34,9 @@ class App extends Component {
     this.props.isLoggedIn();
     window.addEventListener("resize", this.resize);
 		this.resize();
+    ReactGA.initialize('UA-173039520-2');
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(this.props.history.location.pathname);
   }
 
   componentWillUnmount() {
@@ -84,7 +80,7 @@ class App extends Component {
                 <Route
                   path='/'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <LandingPage windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <LandingPage ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/dashboard'
@@ -94,40 +90,40 @@ class App extends Component {
                 <Route
                   path='/login'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <Login windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <Login ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/signup'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <Signup windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <Signup ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/profile'
                   exact={true}
-                  render={(props) => isAuthenticated ? <Profile windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <Profile ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/courses/:course_id'
-                  render={(props) => isAuthenticated ? <CoursePage windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <CoursePage ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/courses'
                   exact={true}
-                  render={(props) => isAuthenticated ? <Courses windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <Courses ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/videos/:video_id'
-                  render={(props) => isAuthenticated ? <VideoPage windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
+                  render={(props) => isAuthenticated ? <VideoPage ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/login' />}
                 />
                 <Route
                   path='/joinus'
                   exact={true}
-                  render={(props) => !isAuthenticated ? <Joinus windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
+                  render={(props) => !isAuthenticated ? <Joinus ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} /> : <Redirect to='/dashboard' />}
                 />
                 <Route
                   path='/contact'
                   exact={true}
-                  render={(props) => <Contact windowSize={this.state.windowSize} {...props} />}
+                  render={(props) => <Contact ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} />}
                 />
               </Switch>
             </Suspense>

@@ -8,6 +8,8 @@ class Signup extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    this.props.ReactGA.set({ page: location.pathname });
+    this.props.ReactGA.pageview(this.props.history.location.pathname);
   }
 
   signUpUser = (cred) => {

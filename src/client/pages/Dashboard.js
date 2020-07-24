@@ -14,8 +14,9 @@ class Dashboard extends Component {
       setTimeout(() => {
         this.props.toastify();
       }, 2000);
-      this.props.ReactGA.pageview(this.props.firstLocation.pathname);
       {this.props.history.push(this.props.firstLocation)}
+      this.props.ReactGA.set({ page: location.pathname });
+      this.props.ReactGA.pageview(this.props.history.location.pathname);
     }
     window.scrollTo(0, 0);
   }
