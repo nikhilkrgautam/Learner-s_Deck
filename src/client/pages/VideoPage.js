@@ -11,8 +11,8 @@ class VideoPage extends Component {
     window.scrollTo(0, 0);
     const video_id = this.props.match.params.video_id;
     this.props.getVideoData({video_id: video_id});
-    this.props.ReactGA.set({ page: location.pathname });
-    this.props.ReactGA.pageview(this.props.history.location.pathname);
+    this.props.ReactGA.set({ page: this.props.location.pathname });
+    this.props.ReactGA.pageview(this.props.location.pathname);
   }
 
   componentWillUnmount = () => {

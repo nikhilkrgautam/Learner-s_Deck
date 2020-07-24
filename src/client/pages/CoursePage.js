@@ -12,8 +12,8 @@ class Courses extends Component {
     window.scrollTo(0, 0);
     const course_id = this.props.match.params.course_id;
     this.props.getCourseData({course_id: course_id});
-    this.props.ReactGA.set({ page: location.pathname });
-    this.props.ReactGA.pageview(this.props.history.location.pathname);
+    this.props.ReactGA.set({ page: this.props.location.pathname });
+    this.props.ReactGA.pageview(this.props.location.pathname);
   }
 
   render() {

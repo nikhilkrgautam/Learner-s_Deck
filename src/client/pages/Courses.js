@@ -11,8 +11,8 @@ class Courses extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.props.ReactGA.set({ page: location.pathname });
-    this.props.ReactGA.pageview(this.props.history.location.pathname);
+    this.props.ReactGA.set({ page: this.props.location.pathname });
+    this.props.ReactGA.pageview(this.props.location.pathname);
   }
 
   render() {

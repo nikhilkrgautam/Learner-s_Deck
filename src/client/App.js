@@ -35,8 +35,8 @@ class App extends Component {
     window.addEventListener("resize", this.resize);
 		this.resize();
     ReactGA.initialize('UA-173039520-2');
-    ReactGA.set({ page: location.pathname });
-    ReactGA.pageview(this.props.history.location.pathname);
+    ReactGA.set({ page: history.location.pathname });
+    ReactGA.pageview(history.location.pathname);
   }
 
   componentWillUnmount() {
