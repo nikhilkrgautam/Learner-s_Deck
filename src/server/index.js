@@ -12,6 +12,7 @@ const dashRouter = require('./routes/dashboard');
 const authRouter = require('./routes/jwtAuth');
 const fileRouter = require('./routes/files');
 const courseRouter = require('./routes/courses');
+const cyberRouter = require('./routes/cyberAlly/tensorflow.js');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/dash', dashRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/file', fileRouter);
 app.use('/api/courses', courseRouter);
+app.use('/api/cyberAlly', cyberRouter);
 
 
 app.use(express.static(path.join("dist")));
