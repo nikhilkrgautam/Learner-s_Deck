@@ -4916,6 +4916,11 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
+libgif@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/libgif/-/libgif-0.0.3.tgz#18c86ace0ec98d86d5d984b5dac9cb567f20d20e"
+  integrity sha512-4lJhyr5AQvHIs+Btdqvx0UgUAuZNJhcG6vZS0yYNrYm4B1k9Lo4NxezWR5AQ7EJrXkxmktrx1ZplWJVwRBz/ew==
+
 load-json-file@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-2.0.0.tgz#7947e42149af80d696cbf797bcaabcfe1fe29ca8"
@@ -5634,6 +5639,13 @@ npmlog@^4.0.2:
     console-control-strings "~1.1.0"
     gauge "~2.7.3"
     set-blocking "~2.0.0"
+
+nsfwjs@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/nsfwjs/-/nsfwjs-2.2.0.tgz#963ade422a44953e6486cb293ba69722fd42fe89"
+  integrity sha512-xNd+wpI7IcaEmtmYYzjOcpcBtR5BLA/nRgtmFe97ujiIqKHn4O0NGQcclfYZXLPknpTa7C6k9b8nzJIKtZPj6w==
+  dependencies:
+    libgif "0.0.3"
 
 nth-check@~1.0.1:
   version "1.0.2"
