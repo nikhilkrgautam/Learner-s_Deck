@@ -1,21 +1,29 @@
 const router = require("express").Router();
-const tf = require("@tensorflow/tfjs-node");
-const tokenizers = require("tokenizers");
+// const tf = require("@tensorflow/tfjs-node");
+// const tokenizers = require("tokenizers");
 const nsfw = require('nsfwjs');
 const axios = require('axios');
 // const spawn = require("child_process").spawn;
+const toxicity = require('@tensorflow-models/toxicity');
 
-let model1;
+// let model1;
+//
+// tf.node.loadSavedModel("./saved_model").then((mdl) => {
+// 	model1 = mdl;
+// });
+//
+// let wordPieceTokenizer;
+// tokenizers.BertWordPieceTokenizer.fromOptions({ vocabFile:  "./vocab.txt", lowercase : false }).then(wPT => {
+// 	wordPieceTokenizer = wPT;
+// 	wordPieceTokenizer.setPadding({maxLength : 192});
+// });
 
-tf.node.loadSavedModel("./saved_model").then((mdl) => {
-	model1 = mdl;
+const Threshold = 0.7;
+let model_toxicity;
+toxicity.load(Threshold).then(mdl => {
+	model_toxicity = mdl;
 });
 
-let wordPieceTokenizer;
-tokenizers.BertWordPieceTokenizer.fromOptions({ vocabFile:  "./vocab.txt", lowercase : false }).then(wPT => {
-	wordPieceTokenizer = wPT;
-	wordPieceTokenizer.setPadding({maxLength : 192});
-});
 
 let model_nsfw;
 nsfw.load().then(mdl => {
@@ -26,31 +34,34 @@ router.post('/model', async (req, res) => {
 	try {
 		const { sentence } = req.body;
 
-		// const model = await tf.node.loadSavedModel("./saved_model");
-		// console.log(model);
+		// const {ids} = await wordPieceTokenizer.encode(sentence);
+		// console.log(ids);
+		//
+		// const result = tf.tidy(() => {
+		//     const input_tensor = tf.tensor(ids,undefined,"int32");
+		//     const ip = input_tensor.expandDims(0);
+		//
+		//     return model1.predict({
+		//         "input_ids": ip
+		//     });
+		// });
+		//
+		// console.log(result);
+		//
+		// const answer = await result["output_0"].squeeze().array();
+		// console.log(answer);
+		//
+		// res.json({answer: answer});
 
-		// const wordPieceTokenizer = await tokenizers.BertWordPieceTokenizer.fromOptions({ vocabFile: "./vocab.txt", lowercase : false });
-		// wordPieceTokenizer.setPadding({maxLength : 192});
+		const predictions = await model_toxicity.classify(sentence);
+		// console.log(predictions);
+		// for(i=0; i<7; i++){
+		// 	if(predictions[i].results[0].match){
+		// 			console.log(predictions[i].label + " was found with probability of " + predictions[i].results[0].probabilities[1]);
+		// 	}
+		// }
 
-		const {ids} = await wordPieceTokenizer.encode(sentence);
-		console.log(ids);
-
-		const result = tf.tidy(() => {
-		    const input_tensor = tf.tensor(ids,undefined,"int32");
-		    const ip = input_tensor.expandDims(0);
-
-		    return model1.predict({
-		        "input_ids": ip
-		    });
-		});
-
-		console.log(result);
-
-		const answer = await result["output_0"].squeeze().array();
-		console.log(answer);
-
-		res.json({answer: answer});
-
+		res.json({predictions: predictions});
 
 
 	} catch (err) {

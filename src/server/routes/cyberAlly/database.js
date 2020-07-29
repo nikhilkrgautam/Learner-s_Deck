@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const pool = require('../db');
+const pool = require('../../db');
 
 router.get('/allcomments', async (req, res) => {
   try {
@@ -15,3 +15,5 @@ router.get('/allcomments', async (req, res) => {
     res.status(500).json("Server error");
   }
 });
+
+module.exports = router;
