@@ -16,12 +16,14 @@ router.get('/allcomments', async (req, res) => {
   }
 });
 
-router.get('/allcomments/youtube', async (req, res) => {
+router.post('/allcomments/youtube', async (req, res) => {
   try {
 
+    const { email } = req.body;
+
     const comments = await pool.query(
-      `SELECT website, comment, username, commentLink, user_id FROM comments WHERE website = $1`,
-      ['youtube']
+      `SELECT website, comment, username, commentLink, user_id FROM comments WHERE website = $1 AND email = $2`,
+      ['youtube', email]
     );
 
    res.json(comments.rows);
@@ -32,12 +34,14 @@ router.get('/allcomments/youtube', async (req, res) => {
   }
 });
 
-router.get('/allcomments/twitter', async (req, res) => {
+router.post('/allcomments/twitter', async (req, res) => {
   try {
 
+    const { email } = req.body;
+
     const comments = await pool.query(
-      `SELECT website, comment, username, commentLink, user_id FROM comments WHERE website = $1`,
-      ['twitter']
+      `SELECT website, comment, username, commentLink, user_id FROM comments WHERE website = $1 AND email = $2`,
+      ['twitter', email]
     );
 
    res.json(comments.rows);
@@ -48,12 +52,14 @@ router.get('/allcomments/twitter', async (req, res) => {
   }
 });
 
-router.get('/allcomments/facebook', async (req, res) => {
+router.post('/allcomments/facebook', async (req, res) => {
   try {
 
+    const { email } = req.body;
+
     const comments = await pool.query(
-      `SELECT website, comment, username, commentLink, user_id FROM comments WHERE website = $1`,
-      ['facebook']
+      `SELECT website, comment, username, commentLink, user_id FROM comments WHERE website = $1 AND email = $2`,
+      ['facebook', email]
     );
 
    res.json(comments.rows);

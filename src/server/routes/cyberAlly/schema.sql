@@ -4,6 +4,7 @@ CREATE TABLE comments (
   comment VARCHAR(2047) NOT NULL,
   username VARCHAR(255) NOT NULL,
   commentLink VARCHAR(2047),
+  email VARCHAR(255),
   user_id UUID,
   PRIMARY KEY (comment_id),
   FOREIGN KEY (user_id) REFERENCES commenters(user_id)
@@ -25,7 +26,7 @@ CREATE TABLE cyberUsers (
 
 INSERT INTO cyberUsers (email)
 VALUES (
-  'fsociety@gmail.com',
+  'yukta@gmail.com'
 );
 
 INSERT INTO commenters (username, website, comments)
@@ -35,11 +36,12 @@ VALUES (
   0
 );
 
-INSERT INTO comments (website, comment, username, commentLink, user_id)
+INSERT INTO comments (website, comment, username, commentLink, email, user_id)
 VALUES (
   'facebook',
   'I hate this fucking website!!!',
   'Joker',
   '',
+  'yukta@gmail.com',
   '3d324f9f-1a34-4c5b-b785-067dd2810893'
 );
