@@ -64,4 +64,23 @@ router.get('/allcomments/facebook', async (req, res) => {
   }
 });
 
+router.post('/login', async (req, res) => {
+  try {
+
+    const { email } = req.body;
+
+    const user = await pool.query("SELECT * FROM cyberUsers WHERE email = $1", [email]);
+
+    if(user.rows.length === 0) {
+      return res.status(401).json("Failure");
+    }
+
+    res.json("Success");
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server error");
+  }
+});
+
 module.exports = router;

@@ -17,18 +17,29 @@ CREATE TABLE commenters (
   PRIMARY KEY (user_id)
 );
 
+CREATE TABLE cyberUsers (
+  user_id UUID DEFAULT uuid_generate_v4(),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  PRIMARY KEY (user_id)
+);
+
+INSERT INTO cyberUsers (email)
+VALUES (
+  'fsociety@gmail.com',
+);
+
 INSERT INTO commenters (username, website, comments)
 VALUES (
-  'Jordan Belfort',
-  'twitter',
+  'Joker',
+  'facebook',
   0
 );
 
 INSERT INTO comments (website, comment, username, commentLink, user_id)
 VALUES (
-  'twitter',
-  'Fuck off dickwad #getoffmylawn',
-  'Jordan Belfort',
+  'facebook',
+  'I hate this fucking website!!!',
+  'Joker',
   '',
-  '65118d24-da59-4240-bcb8-4ab69264a7ca'
+  '3d324f9f-1a34-4c5b-b785-067dd2810893'
 );

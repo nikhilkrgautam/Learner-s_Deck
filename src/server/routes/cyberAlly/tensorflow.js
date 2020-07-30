@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const tf = require("@tensorflow/tfjs-node");
+const tf = require("@tensorflow/tfjs-node");
 // const tokenizers = require("tokenizers");
 const nsfw = require('nsfwjs');
 const axios = require('axios');
