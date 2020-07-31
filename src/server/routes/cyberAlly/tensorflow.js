@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const pool = require('../../db');
 const tf = require("@tensorflow/tfjs-node");
 // const tokenizers = require("tokenizers");
 const nsfw = require('nsfwjs');
@@ -30,11 +31,11 @@ nsfw.load().then(mdl => {
 	model_nsfw = mdl;
 });
 
-let matched = false;
 
 router.post('/model', async (req, res) => {
 	try {
-		const { sentence, username, email } = req.body;
+		const { sentence, website, username, email } = req.body;
+		const matched = false;
 
 		// const {ids} = await wordPieceTokenizer.encode(sentence);
 		// console.log(ids);
@@ -57,12 +58,12 @@ router.post('/model', async (req, res) => {
 
 		const predictions = await model_toxicity.classify(sentence);
 		// console.log(predictions);
-		// for(i=0; i<7; i++){
-		// 	if(predictions[i].results[0].match){
-		// 			// console.log(predictions[i].label + " was found with probability of " + predictions[i].results[0].probabilities[1]);
-		// 			matched = true;
-		// 	}
-		// }
+		for(i=0; i<7; i++){
+			if(predictions[i].results[0].match){
+					// console.log(predictions[i].label + " was found with probability of " + predictions[i].results[0].probabilities[1]);
+					matched = true;
+			}
+		}
 
 		res.json({predictions: predictions});
 
@@ -72,7 +73,7 @@ router.post('/model', async (req, res) => {
 
 	    if(commenter.rows.length !== 0) {
 				const newComment = await pool.query(
-		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3) RETURNING *",
+		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
 		      [website, sentence, username, '', email, commenter.rows[0].user_id]
 		    );
 	    }
@@ -83,12 +84,11 @@ router.post('/model', async (req, res) => {
 		    );
 
 				const newComment = await pool.query(
-		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3) RETURNING *",
+		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
 		      [website, sentence, username, '', email, newCommenter.rows[0].user_id]
 		    );
 			}
 		}
-		matched = false;
 
 	} catch (err) {
 			console.log(err);
