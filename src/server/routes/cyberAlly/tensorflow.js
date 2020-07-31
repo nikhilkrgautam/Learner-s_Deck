@@ -30,9 +30,11 @@ nsfw.load().then(mdl => {
 	model_nsfw = mdl;
 });
 
+let matched = false;
+
 router.post('/model', async (req, res) => {
 	try {
-		const { sentence } = req.body;
+		const { sentence, username, email } = req.body;
 
 		// const {ids} = await wordPieceTokenizer.encode(sentence);
 		// console.log(ids);
@@ -57,12 +59,36 @@ router.post('/model', async (req, res) => {
 		// console.log(predictions);
 		// for(i=0; i<7; i++){
 		// 	if(predictions[i].results[0].match){
-		// 			console.log(predictions[i].label + " was found with probability of " + predictions[i].results[0].probabilities[1]);
+		// 			// console.log(predictions[i].label + " was found with probability of " + predictions[i].results[0].probabilities[1]);
+		// 			matched = true;
 		// 	}
 		// }
 
 		res.json({predictions: predictions});
 
+		if(matched) {
+
+			const commenter = await pool.query("SELECT * FROM commenters WHERE username = $1 AND website = $2", [username, website]);
+
+	    if(commenter.rows.length !== 0) {
+				const newComment = await pool.query(
+		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3) RETURNING *",
+		      [website, sentence, username, '', email, commenter.rows[0].user_id]
+		    );
+	    }
+			else {
+				const newCommenter = await pool.query(
+		      "INSERT INTO commenters (username, website, comments) VALUES ($1, $2, $3) RETURNING *",
+		      [username, website, 1]
+		    );
+
+				const newComment = await pool.query(
+		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3) RETURNING *",
+		      [website, sentence, username, '', email, newCommenter.rows[0].user_id]
+		    );
+			}
+		}
+		matched = false;
 
 	} catch (err) {
 			console.log(err);
@@ -82,7 +108,6 @@ router.post('/nsfw', async (req, res) => {
 	  const image = await tf.node.decodeImage(pic.data,3);
 	  const predictions = await model_nsfw.classify(image);
 	  image.dispose();
-	  console.log(predictions);
 
 		res.json({predictions: predictions});
 
