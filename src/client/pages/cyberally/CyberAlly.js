@@ -38,7 +38,7 @@ class CyberAlly extends Component {
     let twitter = [];
     let facebook = [];
     window.scrollTo(0, 0);
-    axios.get('https://ebuzzet.com/api/cyberAllyData/allcomments').then(res => {
+    axios.get('/api/cyberAllyData/allcomments').then(res => {
       // console.log(res.data);
       res.data.forEach((item, i) => {
         if(item.website === 'youtube') {
@@ -58,7 +58,7 @@ class CyberAlly extends Component {
       this.setState({commentsData: [...res.data]});
     });
 
-    axios.get('https://ebuzzet.com/api/cyberAllyData/allimages').then(res => {
+    axios.get('/api/cyberAllyData/allimages').then(res => {
       this.setState({imagesData: [...res.data]});
     });
   }
