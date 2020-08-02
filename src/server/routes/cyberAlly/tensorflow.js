@@ -115,7 +115,12 @@ router.post('/nsfw', async (req, res) => {
 
 		predictions.forEach(item => {
       if(item.className === "Porn") {
-        if(item.probability > 0.85) {
+        if(item.probability > 0.7) {
+					isNsfw = true;
+        }
+      }
+			if(item.className === "Sexy") {
+        if(item.probability > 0.97) {
 					isNsfw = true;
         }
       }

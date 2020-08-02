@@ -26,6 +26,7 @@ class CyberAlly extends Component {
       verticalTickValues: [],
       horizontalTickValues: [0],
       commentsData: [],
+      imagesData: [],
       youtubeData: [],
       twitterData: [],
       facebookData: []
@@ -37,7 +38,7 @@ class CyberAlly extends Component {
     let twitter = [];
     let facebook = [];
     window.scrollTo(0, 0);
-    axios.get('/api/cyberAllyData/allcomments').then(res => {
+    axios.get('https://ebuzzet.com/api/cyberAllyData/allcomments').then(res => {
       // console.log(res.data);
       res.data.forEach((item, i) => {
         if(item.website === 'youtube') {
@@ -55,6 +56,10 @@ class CyberAlly extends Component {
       });
 
       this.setState({commentsData: [...res.data]});
+    });
+
+    axios.get('https://ebuzzet.com/api/cyberAllyData/allimages').then(res => {
+      this.setState({imagesData: [...res.data]});
     });
   }
 
@@ -81,7 +86,7 @@ class CyberAlly extends Component {
         <Row justify="center" style={{ minHeight: '850px' }}>
           <Col span={22}>
             <Tabs initialValue="1" className='courseTabs' style={{margin: '30px 10px 40px'}}>
-              <Tabs.Item label="Radial" value="1">
+              <Tabs.Item label="Infographics" value="1">
                 <div style={{marginTop: '50px'}}>
                   <Col span={12}>
                     <RadialChart
@@ -91,9 +96,9 @@ class CyberAlly extends Component {
                       getLabel={d => d.name}
                       data={myData}
                       labelsRadiusMultiplier={0.8}
-                      labelsStyle={{fontSize: 24, fill: '#222'}}
+                      labelsStyle={{fontSize: 24, fill: '#FFF'}}
                       showLabels
-                      style={{stroke: '#fff', strokeWidth: 2}}
+                      style={{stroke: '#fff', strokeWidth: 1}}
                       width={500}
                       height={500} />
                   </Col>
@@ -102,15 +107,15 @@ class CyberAlly extends Component {
                       getLabel={d => d.name}
                       data={classData}
                       labelsRadiusMultiplier={0.9}
-                      labelsStyle={{fontSize: 20, fill: '#222'}}
+                      labelsStyle={{fontSize: 20, fill: '#FFF'}}
                       showLabels
-                      style={{stroke: '#fff', strokeWidth: 2}}
+                      style={{stroke: '#fff', strokeWidth: 1}}
                       width={500}
                       height={500} />
                   </Col>
                 </div>
               </Tabs.Item>
-              <Tabs.Item label="Line" value="2">
+              {/*<Tabs.Item label="Line" value="2">
                 <XYPlot width={300} height={300} {...{xDomain, yDomain}}>
                     {!verticalTickValues || verticalTickValues.length ? (
                       <VerticalGridLines tickValues={this.state.verticalTickValues} />
@@ -130,8 +135,8 @@ class CyberAlly extends Component {
                       ]}
                     />
                 </XYPlot>
-              </Tabs.Item>
-              <Tabs.Item label="Plot" value="3">
+              </Tabs.Item>*/}
+              {/*<Tabs.Item label="Plot" value="3">
                 <XYPlot width={300} height={300}>
                   <VerticalGridLines />
                   <HorizontalGridLines />
@@ -152,12 +157,20 @@ class CyberAlly extends Component {
                     data={[{x: 1, y: 11}, {x: 1.5, y: 29}, {x: 3, y: 7}]}
                   />
                 </XYPlot>
-              </Tabs.Item>
-              <Tabs.Item label="Comments Data" value="4">
+              </Tabs.Item>*/}
+              <Tabs.Item label="Comments Table" value="4">
                 <Table data={commentsData}>
                   <Table.Column prop="comment" label="Comment" />
                   <Table.Column prop="username" label="Username" />
                   <Table.Column prop="website" label="Website" />
+                </Table>
+              </Tabs.Item>
+              <Tabs.Item label="Images Table" value="5">
+                <Table data={imagesData}>
+                  {/*<Table.Column prop="imgUrl" label="Image Link" />
+                  <Table.Column prop="username" label="Username" />*/}
+                  <Table.Column prop="imgUrl"><Text b>Image Link</Text></Table.Column>
+                  <Table.Column prop="username"><Text b>Username</Text></Table.Column>
                 </Table>
               </Tabs.Item>
             </Tabs>

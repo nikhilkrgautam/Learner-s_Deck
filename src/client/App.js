@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import './app.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Navbar from './pages/components/navbar/Navbar';
+// import Navbar from './pages/components/navbar/Navbar';
 import Footer from './pages/components/footer/Footer';
 const Dashboard = lazy(() => import('./pages/Dashboard' /* webpackChunkName: "home" */));
 const LandingPage = lazy(() => import('./pages/infoPages/LandingPage' /* webpackChunkName: "landing" */));
@@ -13,7 +13,7 @@ const Contact = lazy(() => import('./pages/infoPages/Contact' /* webpackChunkNam
 const Courses = lazy(() => import('./pages/Courses' /* webpackChunkName: "courses" */));
 const CoursePage = lazy(() => import('./pages/CoursePage' /* webpackChunkName: "coursepage" */));
 const VideoPage = lazy(() => import('./pages/VideoPage' /* webpackChunkName: "videopage" */));
-const CyberAlly = lazy(() => import('./pages/cyberally/CyberAlly' /* webpackChunkName: "videopage" */));
+const CyberAlly = lazy(() => import('./pages/cyberally/CyberAlly' /* webpackChunkName: "cyberally" */));
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
 import history from './utils/history';
@@ -70,7 +70,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Navbar isLoading={isLoading} isAuthenticated={isAuthenticated} windowSize={this.state.windowSize}/>
+        {/*<Navbar isLoading={isLoading} isAuthenticated={isAuthenticated} windowSize={this.state.windowSize}/>*/}
         <main style={{minHeight: '100vh'}}>
         {
           isLoading ? (
