@@ -131,15 +131,17 @@ router.post('/nsfw', async (req, res) => {
 				"INSERT INTO nsfwImages (imgUrl, username) VALUES ($1, $2) RETURNING *",
 				[imgUrl, username]
 			);
-			axios.post('https://cyberally.herokuapp.com/search', {image_url: imgUrl, resized_images: false} {
+			axios.post('https://cyberally.herokuapp.com/search', {image_url: imgUrl, resized_images: false}, {
 				headers: {"Content-Type": "application/json"}
 			}).then(res => {
-				res.links.forEach((item, i) => {
-					pool.query(
-						"INSERT INTO nsfwReverseSearch (image_id, link) VALUES ($1, $2) RETURNING *",
-						[newImage.rows[0].image_id, item]
-					);
-				});
+				if(res.data.links.length > 0) {
+					res.data.links.forEach((item, i) => {
+						pool.query(
+							"INSERT INTO nsfwReverseSearch (image_id, link) VALUES ($1, $2) RETURNING *",
+							[newImage.rows[0].image_id, item]
+						);
+					});
+				}
 			});
 		}
 		isNsfw = false;
