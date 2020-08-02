@@ -101,6 +101,7 @@ router.post('/nsfw', async (req, res) => {
 	try {
 
 		const { imgUrl, username } = req.body;
+		let isNsfw = false;
 
 		const pic = await axios.get(imgUrl, {
 	    responseType: 'arraybuffer',
@@ -115,13 +116,18 @@ router.post('/nsfw', async (req, res) => {
 		predictions.forEach(item => {
       if(item.className === "Porn") {
         if(item.probability > 0.85) {
-					const newImage = await pool.query(
-			      "INSERT INTO nsfwImages (imgUrl, username) VALUES ($1, $2) RETURNING *",
-			      [imgUrl, username]
-			    );
+					isNsfw = true;
         }
       }
     });
+
+		if(isNsfw) {
+			const newImage = await pool.query(
+				"INSERT INTO nsfwImages (imgUrl, username) VALUES ($1, $2) RETURNING *",
+				[imgUrl, username]
+			);
+		}
+		isNsfw = false;
 
 	} catch (err) {
 			console.log(err);
