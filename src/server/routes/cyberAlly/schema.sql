@@ -31,6 +31,14 @@ CREATE TABLE nsfwImages (
   PRIMARY KEY (image_id)
 );
 
+CREATE TABLE nsfwReverseSearch (
+  link_id UUID SERIAL,
+  image_id UUID,
+  link VARCHAR(1023),
+  PRIMARY KEY (link_id),
+  FOREIGN KEY (image_id) REFERENCES nsfwImages(image_id)
+);
+
 INSERT INTO cyberUsers (email)
 VALUES (
   'meet@gmail.com'
