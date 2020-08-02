@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Row, Col, Text, Button, Tabs, Table } from '@zeit-ui/react';
+import { Row, Col, Text, Button, Tabs, Table, Link } from '@zeit-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
 import 'react-vis/dist/style.css';
@@ -37,6 +37,7 @@ class CyberAlly extends Component {
     let youtube = [];
     let twitter = [];
     let facebook = [];
+    let images = [];
     window.scrollTo(0, 0);
     axios.get('/api/cyberAllyData/allcomments').then(res => {
       // console.log(res.data);
@@ -59,14 +60,19 @@ class CyberAlly extends Component {
     });
 
     axios.get('/api/cyberAllyData/allimages').then(res => {
-      this.setState({imagesData: [...res.data]});
+      res.data.forEach((item, i) => {
+        item.imgurl = <Link href={item.imgurl} target='_blank' icon color>{item.imgurl}</Link>;
+        images.push(item);
+      });
+
+      this.setState({imagesData: images});
     });
   }
 
   render() {
     const {xDomain, yDomain, verticalTickValues, horizontalTickValues, yAxisOn0, xAxisOn0} = this.state;
-    const {commentsData, youtubeData, twitterData, facebookData} = this.state;
-    console.log(commentsData, youtubeData.length, twitterData.length, facebookData.length);
+    const {commentsData, youtubeData, twitterData, facebookData, imagesData} = this.state;
+    console.log(imagesData);
     const myData = [
       {angle: youtubeData.length, name: 'Youtube', color: '#FF0000'},
       {angle: twitterData.length, name: 'Twitter', color: '#71C9F8'},
@@ -159,19 +165,21 @@ class CyberAlly extends Component {
                 </XYPlot>
               </Tabs.Item>*/}
               <Tabs.Item label="Comments Table" value="4">
-                <Table data={commentsData}>
-                  <Table.Column prop="comment" label="Comment" />
-                  <Table.Column prop="username" label="Username" />
-                  <Table.Column prop="website" label="Website" />
-                </Table>
+                <div style={{marginTop: '30px'}}>
+                  <Table data={commentsData}>
+                    <Table.Column prop="comment" width={1000}><Text style={{fontSize: '22px'}} b>Comment</Text></Table.Column>
+                    <Table.Column prop="website"><Text style={{fontSize: '22px'}} b>Website</Text></Table.Column>
+                    <Table.Column prop="username"><Text style={{fontSize: '22px'}} b>Username</Text></Table.Column>
+                  </Table>
+                </div>
               </Tabs.Item>
               <Tabs.Item label="Images Table" value="5">
-                <Table data={imagesData}>
-                  {/*<Table.Column prop="imgUrl" label="Image Link" />
-                  <Table.Column prop="username" label="Username" />*/}
-                  <Table.Column prop="imgUrl"><Text b>Image Link</Text></Table.Column>
-                  <Table.Column prop="username"><Text b>Username</Text></Table.Column>
-                </Table>
+                <div style={{marginTop: '30px'}}>
+                  <Table data={imagesData}>
+                    <Table.Column prop="imgurl" width={900}><Text style={{fontSize: '22px'}} b>Image Link</Text></Table.Column>
+                    <Table.Column prop="username"><Text style={{fontSize: '22px'}} b>Username</Text></Table.Column>
+                  </Table>
+                </div>
               </Tabs.Item>
             </Tabs>
 
