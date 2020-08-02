@@ -12,6 +12,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.rv-xy-plot__axis__tick__text {
+  font-size: 16px !important;
+}
+
 .loader,
 .loader:before,
 .loader:after {

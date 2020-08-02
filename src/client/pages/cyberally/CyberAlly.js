@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Row, Col, Text, Button, Tabs, Table, Link, Grid } from '@zeit-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Row, Col, Text, Button, Tabs, Table, Link, Grid, Collapse } from '@zeit-ui/react';
 import axios from 'axios';
 import 'react-vis/dist/style.css';
 import {
@@ -132,9 +131,22 @@ class CyberAlly extends Component {
     axios.get('https://ebuzzet.com/api/cyberAllyData/allimages').then(res => {
       res.data.images.forEach((item, i) => {
         item.imgurl = <Link href={item.imgurl} target='_blank' icon color>{item.imgurl}</Link>;
+        let links = [];
+        res.data.imageLinks.forEach((it, i) => {
+          if(it.image_id === item.image_id) {
+            links.push(it);
+          }
+        });
+        let linkComp = (<div>
+                {
+                  links.map(i => <Text>{i.link}</Text>)
+                }
+            </div>
+          );
+        item.links = linkComp;
         images.push(item);
       });
-      console.log(res.data);
+      console.log(images);
       this.setState({imagesData: images});
     });
   }
@@ -197,69 +209,40 @@ class CyberAlly extends Component {
                   </Col>
                 </Row>
                 <Row style={{marginTop: '80px'}}>
-                    <XYPlot xType="ordinal" width={1200} height={500} xDistance={200}>
-                      <VerticalGridLines />
-                      <HorizontalGridLines />
-                      <XAxis />
-                      <YAxis />
-                      <VerticalBarSeries data={this.state.barGraphDataYoutube} />
-                      {/*<LabelSeries data={labelData} getLabel={d => d.x} />*/}
-                    </XYPlot>
+                  <Col>
+                    <Row>
+                      <Text h3 style={{fontSize: '25px'}}>Top toxic commenters on Youtube:</Text>
+                    </Row>
+                    <Row>
+                      <XYPlot xType="ordinal" width={1600} height={500} xDistance={200}>
+                        <VerticalGridLines />
+                        <HorizontalGridLines />
+                        <XAxis />
+                        <YAxis />
+                        <VerticalBarSeries data={this.state.barGraphDataYoutube} />
+                        {/*<LabelSeries data={labelData} getLabel={d => d.x} />*/}
+                      </XYPlot>
+                    </Row>
+                  </Col>
                 </Row>
                 <Row style={{marginTop: '80px'}}>
-                    <XYPlot xType="ordinal" width={1200} height={500} xDistance={200}>
-                      <VerticalGridLines />
-                      <HorizontalGridLines />
-                      <XAxis />
-                      <YAxis />
-                      <VerticalBarSeries data={this.state.barGraphDataTwitter} />
-                      {/*<LabelSeries data={labelData} getLabel={d => d.x} />*/}
-                    </XYPlot>
+                  <Col>
+                    <Row>
+                      <Text h3 style={{fontSize: '25px'}}>Top toxic commenters on Twitter:</Text>
+                    </Row>
+                    <Row>
+                      <XYPlot xType="ordinal" width={1400} height={500} xDistance={200}>
+                        <VerticalGridLines />
+                        <HorizontalGridLines />
+                        <XAxis />
+                        <YAxis />
+                        <VerticalBarSeries data={this.state.barGraphDataTwitter} />
+                        {/*<LabelSeries data={labelData} getLabel={d => d.x} />*/}
+                      </XYPlot>
+                    </Row>
+                  </Col>
                 </Row>
               </Tabs.Item>
-              {/*<Tabs.Item label="Line" value="2">
-                <XYPlot width={300} height={300} {...{xDomain, yDomain}}>
-                    {!verticalTickValues || verticalTickValues.length ? (
-                      <VerticalGridLines tickValues={this.state.verticalTickValues} />
-                    ) : null}
-                    {!horizontalTickValues || horizontalTickValues.length ? (
-                      <HorizontalGridLines tickValues={horizontalTickValues} />
-                    ) : null}
-                    <XAxis on0={xAxisOn0} />
-                    <YAxis on0={yAxisOn0} />
-                    <LineSeries
-                      data={[
-                        {x: -1, y: 10},
-                        {x: 0, y: 5},
-                        {x: 1, y: 3},
-                        {x: 2, y: -5},
-                        {x: 3, y: 15}
-                      ]}
-                    />
-                </XYPlot>
-              </Tabs.Item>*/}
-              {/*<Tabs.Item label="Plot" value="3">
-                <XYPlot width={300} height={300}>
-                  <VerticalGridLines />
-                  <HorizontalGridLines />
-                  <XAxis />
-                  <YAxis />
-                  <LineMarkSeries
-                    className="linemark-series-example"
-                    style={{
-                      strokeWidth: '3px'
-                    }}
-                    lineStyle={{stroke: 'red'}}
-                    markStyle={{stroke: 'blue'}}
-                    data={[{x: 1, y: 10}, {x: 2, y: 5}, {x: 3, y: 15}]}
-                  />
-                  <LineMarkSeries
-                    className="linemark-series-example-2"
-                    curve={'curveMonotoneX'}
-                    data={[{x: 1, y: 11}, {x: 1.5, y: 29}, {x: 3, y: 7}]}
-                  />
-                </XYPlot>
-              </Tabs.Item>*/}
               <Tabs.Item label="Comments Table" value="4">
                 <div style={{marginTop: '30px'}}>
                   <Table data={commentsData}>
@@ -274,7 +257,7 @@ class CyberAlly extends Component {
                   <Table data={imagesData}>
                     <Table.Column prop="imgurl" width={900}><Text style={{fontSize: '22px'}} b>Image Link</Text></Table.Column>
                     <Table.Column prop="username"><Text style={{fontSize: '22px'}} b>Username</Text></Table.Column>
-                    <Table.Column prop="link"><Text style={{fontSize: '22px'}} b>Reverse Image Search</Text></Table.Column>
+                    <Table.Column prop="links"><Text style={{fontSize: '22px'}} b>Reverse Image Search</Text></Table.Column>
                   </Table>
                 </div>
               </Tabs.Item>
