@@ -13,6 +13,7 @@ const Contact = lazy(() => import('./pages/infoPages/Contact' /* webpackChunkNam
 const Courses = lazy(() => import('./pages/Courses' /* webpackChunkName: "courses" */));
 const CoursePage = lazy(() => import('./pages/CoursePage' /* webpackChunkName: "coursepage" */));
 const VideoPage = lazy(() => import('./pages/VideoPage' /* webpackChunkName: "videopage" */));
+const CyberAlly = lazy(() => import('./pages/cyberally/CyberAlly' /* webpackChunkName: "videopage" */));
 import { connect } from 'react-redux';
 import { isLoggedIn } from './reduxStore/actions/authActions';
 import history from './utils/history';
@@ -124,6 +125,11 @@ class App extends Component {
                   path='/contact'
                   exact={true}
                   render={(props) => <Contact ReactGA={ReactGA} windowSize={this.state.windowSize} {...props} />}
+                />
+                <Route
+                  path='/cyberally'
+                  exact={true}
+                  render={(props) => <CyberAlly {...props} />}
                 />
               </Switch>
             </Suspense>

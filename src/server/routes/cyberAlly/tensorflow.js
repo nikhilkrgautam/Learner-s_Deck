@@ -68,25 +68,26 @@ router.post('/model', async (req, res) => {
 		res.json({predictions: predictions});
 
 		if(matched) {
+			if(website) {
+				const commenter = await pool.query("SELECT * FROM commenters WHERE username = $1 AND website = $2", [username, website]);
 
-			const commenter = await pool.query("SELECT * FROM commenters WHERE username = $1 AND website = $2", [username, website]);
+		    if(commenter.rows.length !== 0) {
+					const newComment = await pool.query(
+			      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+			      [website, sentence, username, '', email, commenter.rows[0].user_id]
+			    );
+		    }
+				else {
+					const newCommenter = await pool.query(
+			      "INSERT INTO commenters (username, website, comments) VALUES ($1, $2, $3) RETURNING *",
+			      [username, website, 1]
+			    );
 
-	    if(commenter.rows.length !== 0) {
-				const newComment = await pool.query(
-		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-		      [website, sentence, username, '', email, commenter.rows[0].user_id]
-		    );
-	    }
-			else {
-				const newCommenter = await pool.query(
-		      "INSERT INTO commenters (username, website, comments) VALUES ($1, $2, $3) RETURNING *",
-		      [username, website, 1]
-		    );
-
-				const newComment = await pool.query(
-		      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-		      [website, sentence, username, '', email, newCommenter.rows[0].user_id]
-		    );
+					const newComment = await pool.query(
+			      "INSERT INTO comments (website, comment, username, commentLink, email, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+			      [website, sentence, username, '', email, newCommenter.rows[0].user_id]
+			    );
+				}
 			}
 		}
 
@@ -99,7 +100,7 @@ router.post('/model', async (req, res) => {
 router.post('/nsfw', async (req, res) => {
 	try {
 
-		const { imgUrl } = req.body;
+		const { imgUrl, username } = req.body;
 
 		const pic = await axios.get(imgUrl, {
 	    responseType: 'arraybuffer',
@@ -110,6 +111,17 @@ router.post('/nsfw', async (req, res) => {
 	  image.dispose();
 
 		res.json({predictions: predictions});
+
+		predictions.forEach(item => {
+      if(item.className === "Porn") {
+        if(item.probability > 0.85) {
+					const newImage = await pool.query(
+			      "INSERT INTO nsfwImages (imgUrl, username) VALUES ($1, $2) RETURNING *",
+			      [imgUrl, username]
+			    );
+        }
+      }
+    });
 
 	} catch (err) {
 			console.log(err);

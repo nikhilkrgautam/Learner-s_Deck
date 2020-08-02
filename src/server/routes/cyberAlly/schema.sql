@@ -24,9 +24,16 @@ CREATE TABLE cyberUsers (
   PRIMARY KEY (user_id)
 );
 
+CREATE TABLE nsfwImages (
+  image_id UUID DEFAULT uuid_generate_v4(),
+  imgUrl VARCHAR(2083) NOT NULL,
+  username VARCHAR(255),
+  PRIMARY KEY (image_id)
+);
+
 INSERT INTO cyberUsers (email)
 VALUES (
-  'yukta@gmail.com'
+  'meet@gmail.com'
 );
 
 INSERT INTO commenters (username, website, comments)
@@ -39,9 +46,9 @@ VALUES (
 INSERT INTO comments (website, comment, username, commentLink, email, user_id)
 VALUES (
   'facebook',
-  'I hate this fucking website!!!',
+  'Get fucked!!!',
   'Joker',
   '',
   'yukta@gmail.com',
-  '3d324f9f-1a34-4c5b-b785-067dd2810893'
+  '00a86bc4-5d96-4231-8127-dbd73488c0f3'
 );
