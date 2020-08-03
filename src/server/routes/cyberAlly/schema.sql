@@ -39,12 +39,11 @@ CREATE TABLE nsfwReverseSearch (
   FOREIGN KEY (image_id) REFERENCES nsfwImages(image_id)
 );
 
--- CREATE TABLE userReported (
---   user_id UUID DEFAULT uuid_generate_v4(),
---   email VARCHAR(255) NOT NULL,
---   username VARCHAR(255),
---   PRIMARY KEY (user_id)
--- );
+CREATE TABLE userReported (
+  account_id UUID DEFAULT uuid_generate_v4(),
+  account VARCHAR(255) NOT NULL,
+  PRIMARY KEY (account_id)
+);
 
 INSERT INTO cyberUsers (email)
 VALUES (

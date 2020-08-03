@@ -5,6 +5,24 @@ const fs = require('fs');
 const es = require('event-stream');
 const axios = require('axios');
 
+router.post('/report', async (req, res) => {
+  try {
+
+    const { account } = req.body;
+
+    const newReport = await pool.query(
+      "INSERT INTO userReported (account) VALUES ($1) RETURNING *",
+      [account]
+    );
+
+    res.json(newReport.rows[0]);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error");
+  }
+});
+
 router.get('/allcomments', async (req, res) => {
   try {
 
@@ -127,58 +145,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// router.get('/frequency', async (req, res) => {
-//   try {
-//
-//     axios.get('https://ebuzzet.com/api/cyberAllyData/allcomments')
-//         .then(res => {
-//             var i;
-//             for(i=0;i<res.data.length;i++)
-//             {
-//                 console.log(res.data[i].comment);
-//                 if(i === 0)
-//                 {
-//                     fs.writeFile('temp.txt',res.data[i].comment,function(err){
-//                         console.log(err);
-//                     });
-//                 }
-//                 else{
-//             fs.appendFile('temp.txt', res.data[i].comment + '\n', function (err) {
-//                 console.log(err);
-//             });
-//                     }
-//             }
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         });
-//
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json("Server error");
-//   }
-// });
-//
-// router.get('/graphData', async (req, res) => {
-//   try {
-//
-//     fs.createReadStream('temp.txt')
-//     .pipe(es.split())
-//     .pipe(nlp.tokenizer())
-//     .pipe(nlp.stopwords())
-//     .pipe(nlp.stemmer())
-//     .pipe(nlp.frequency())
-//     .on('data', function (freqDist) {
-//       console.log(freqDist.slice(0, 10));
-//     })
-//     .on('error', function (err) {
-//       console.error(err);
-//     });
-//
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json("Server error");
-//   }
-// });
+
 
 module.exports = router;
